@@ -153,7 +153,7 @@ export default function CombinedAbout() {
   ]
 
   return (
-    <div ref={aboutRef} className="relative text-white overflow-hidden">
+    <div ref={aboutRef} className="relative bg-gradient-to-t from-black to-gray-900 text-white overflow-hidden">
       <style jsx>{`
         @keyframes fadeInUp {
           from {

@@ -186,7 +186,7 @@ export default function CulturalNightsDemo() {
   ]
 
   return (
-    <div className="min-h-screen bg-black py-20 pb-80">
+    <div className="min-h-screen bg-gradient-to-r from-black to-gray-900 py-20 pb-80">
       <div className="text-center mb-16 px-4">
         <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1cb683] via-emerald-400 to-[#1cb683] mb-6 animate-pulse">
           Cultural Nights
