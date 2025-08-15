@@ -3,6 +3,10 @@ import useSmoothScroll from "@/Components/SmoothScrollProvider";
 
 export default function App({ Component, pageProps }) {
   useSmoothScroll();
-
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <title>Elevate 2.0</title>
+      <Component {...pageProps} />
+    </>
+  );
 }
