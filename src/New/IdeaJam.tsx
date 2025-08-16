@@ -14,6 +14,17 @@ interface Project {
 
 export default function IdeaJamSection() {
   const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const projects: Project[] = [
     {
@@ -72,32 +83,32 @@ export default function IdeaJamSection() {
   const has3DSupport = supportsCSS3D()
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-r from-black to-gray-900 text-white py-20 px-4 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-r from-black to-gray-900 text-white py-12 md:py-20 px-4 overflow-hidden">
       <div className="relative max-w-7xl mx-auto text-center">
-        <div className="mb-12 relative">
-          <p className="text-emerald-400 text-5xl md:text-6xl lg:text-8xl font-bold mb-8 tracking-wide">IdeaJam 2025</p>
+        <div className="mb-8 md:mb-12 relative">
+          <p className="text-emerald-400 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 md:mb-8 tracking-wide">IdeaJam 2025</p>
           <motion.div
-            className="h-1 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent mx-auto mb-10"
+            className="h-1 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent mx-auto mb-6 md:mb-10"
             initial={{ width: 0 }}
-            animate={{ width: "200px" }}
+            animate={{ width: isMobile ? "120px" : "200px" }}
             transition={{ duration: 1, delay: 0.5 }}
           />
 
-          <h2 className="text-2xl max-w-5xl md:text-3xl lg:text-4xl font-light mx-auto leading-relaxed mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mx-auto leading-relaxed mb-4 md:mb-6 px-2">
             Where Bold Ideas Transform Into{" "}
             <span className="font-semibold text-emerald-400">Breakthrough Solutions</span>
           </h2>
 
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-400 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
             Join the most innovative minds in technology, design, and entrepreneurship. A 48-hour intensive where
             creativity meets execution.
           </p>
         </div>
 
-        <div className="mb-8">
-          <div className="relative h-[500px] mb-6">
+        <div className="mb-6 md:mb-8">
+          <div className="relative h-[400px] sm:h-[450px] md:h-[500px] mb-4 md:mb-6">
             <div
-              className="absolute inset-0 mx-auto w-[90%] h-full rounded-3xl border border-white/10 shadow-2xl"
+              className="absolute inset-0 mx-auto w-[95%] sm:w-[90%] h-full rounded-2xl md:rounded-3xl border border-white/10 shadow-xl md:shadow-2xl"
               style={{
                 background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
                 zIndex: 0,
@@ -107,13 +118,53 @@ export default function IdeaJamSection() {
             <div
               className="absolute inset-0 flex items-center justify-center"
               style={{
-                perspective: has3DSupport ? "2000px" : "none",
+                perspective: has3DSupport && !isMobile ? "2000px" : "none",
                 perspectiveOrigin: "center center",
                 zIndex: 10,
               }}
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 {projects.map((project, index) => {
+                  if (isMobile) {
+                    // Mobile view - simple carousel with fade effect
+                    return (
+                      <div
+                        key={project.id}
+                        className={`absolute transition-all duration-500 ease-out cursor-pointer w-[280px] ${
+                          index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                        }`}
+                        onClick={() => setCurrentIndex(index)}
+                      >
+                        <div className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg bg-white border border-gray-200/30">
+                          <img
+                            src={typeof project.image === "string" ? project.image : project.image?.src || project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement
+                              target.src = `data:image/svg+xml;base64,${btoa(`
+                                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+                                  <rect width="400" height="600" fill="#374151"/>
+                                  <text x="200" y="300" textAnchor="middle" fill="#10B981" fontFamily="Arial" fontSize="18">Phase ${project.id}</text>
+                                  <text x="200" y="330" textAnchor="middle" fill="#9CA3AF" fontFamily="Arial" fontSize="14">${project.title}</text>
+                                </svg>
+                              `)}`
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                          <div className="absolute inset-0 rounded-xl border border-white/20 pointer-events-none" />
+                        </div>
+
+                        <div className="mt-4 text-center">
+                          <div className="text-emerald-400 font-bold text-base mb-1">Phase {project.id}</div>
+                          <div className="text-white font-semibold text-sm mb-1">{project.title}</div>
+                          <div className="text-gray-400 font-medium text-xs">{project.category}</div>
+                        </div>
+                      </div>
+                    )
+                  }
+
+                  // Desktop view - 3D carousel
                   const totalCards = projects.length
                   const cardIndex = index
                   const centerIndex = (totalCards - 1) / 2
@@ -145,7 +196,7 @@ export default function IdeaJamSection() {
                       }}
                       onClick={() => setCurrentIndex(index)}
                     >
-                      <div className="relative w-72 h-96 rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-200/30">
+                      <div className="relative w-64 md:w-72 h-80 md:h-96 rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-2xl bg-white border border-gray-200/30">
                         <img
                           src={typeof project.image === "string" ? project.image : project.image?.src || project.image}
                           alt={project.title}
@@ -163,17 +214,17 @@ export default function IdeaJamSection() {
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                        <div className="absolute inset-0 rounded-2xl border border-white/20 pointer-events-none" />
+                        <div className="absolute inset-0 rounded-xl md:rounded-2xl border border-white/20 pointer-events-none" />
                         <div
-                          className="absolute inset-0 bg-white/10 backdrop-blur-lg rounded-3xl pointer-events-none"
+                          className="absolute inset-0 bg-white/10 backdrop-blur-lg rounded-2xl md:rounded-3xl pointer-events-none"
                           style={{ zIndex: -10 }}
                         />
                       </div>
 
-                      <div className="mt-6 text-center">
-                        <div className="text-emerald-400 font-bold text-lg mb-1">Phase {project.id}</div>
-                        <div className="text-white font-semibold text-base mb-1">{project.title}</div>
-                        <div className="text-gray-400 font-medium text-sm">{project.category}</div>
+                      <div className="mt-4 md:mt-6 text-center">
+                        <div className="text-emerald-400 font-bold text-base md:text-lg mb-1">Phase {project.id}</div>
+                        <div className="text-white font-semibold text-sm md:text-base mb-1">{project.title}</div>
+                        <div className="text-gray-400 font-medium text-xs md:text-sm">{project.category}</div>
                       </div>
                     </div>
                   )
@@ -181,21 +232,35 @@ export default function IdeaJamSection() {
               </div>
             </div>
           </div>
+
+          {/* Mobile dots indicator */}
+          {isMobile && (
+            <div className="flex justify-center gap-2 mb-4">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDotClick(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? 'bg-emerald-400 w-4' : 'bg-gray-600'}`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="flex flex-col items-center gap-6">
-          <div className="text-center mb-4">
-            <p className="text-gray-300 text-lg mb-2">Ready to transform your ideas?</p>
-            <div className="flex items-center justify-center gap-8 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
+        <div className="flex flex-col items-center gap-4 md:gap-6">
+          <div className="text-center mb-2 md:mb-4">
+            <p className="text-gray-300 text-base md:text-lg mb-1 md:mb-2">Ready to transform your ideas?</p>
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-gray-400">
+              <div className="flex items-center gap-1 md:gap-2">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                 <span>48 Hours</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 md:gap-2">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                 <span>Expert Mentors</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 md:gap-2">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                 <span>Real Prizes</span>
               </div>
@@ -206,13 +271,13 @@ export default function IdeaJamSection() {
             href="https://ideajam.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-12 py-2 text-xl font-semibold rounded-full transition-all duration-300 hover:scale-105 border border-emerald-500/30 inline-flex items-center group shadow-xl cursor-pointer shadow-emerald-500/20"
+            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 sm:px-12 py-2 text-lg sm:text-xl font-semibold rounded-full transition-all duration-300 hover:scale-105 border border-emerald-500/30 inline-flex items-center group shadow-lg sm:shadow-xl cursor-pointer shadow-emerald-500/20"
           >
             <span>Register Now</span>
-            <ArrowRight className="ml-3 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
 
-          <p className="text-gray-500 text-sm">Limited spots available • Early bird pricing ends soon</p>
+          <p className="text-gray-500 text-xs sm:text-sm">Limited spots available • Early bird pricing ends soon</p>
         </div>
       </div>
     </section>
