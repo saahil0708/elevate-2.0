@@ -9,6 +9,8 @@ import Footer from "@/Components/Footer";
 import CursorWaterEffect from '@/Components/ui/Cursor';
 import Loader from "@/New/Loader";
 import CursorEffect from '@/Components/cursor';
+import Timeline from '@/New/Timeline';
+import Panel from "@/New/panel";
 
 export default function Layout() {
   const scrollThumbRef = useRef(null);
@@ -96,7 +98,9 @@ export default function Layout() {
       <div className="relative z-10">
         <div className="h-screen" /> {/* Spacer */}
         <CombinedAbout />
+        <Timeline />
         <Cultural />
+        <Panel />
         <IdeaJamSection />
         <Gallery />
         <Testimonials />

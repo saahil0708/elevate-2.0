@@ -23,8 +23,8 @@ export default function EnhancedElevateAbout() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   const stats = [
-    { number: 3000, suffix: "+", label: "Attendees in 2024", icon: Users },
-    { number: 25, suffix: "+", label: "Distinguished Speakers", icon: Mic },
+    { number: 1500, suffix: "+", label: "Attendees in 2024", icon: Users },
+    { number: 15, suffix: "+", label: "Distinguished Speakers", icon: Mic },
     { number: 3, suffix: "", label: "Immersive Days", icon: Target },
     { number: 2025, suffix: "", label: "Next Edition", icon: Rocket },
   ]
@@ -164,10 +164,11 @@ export default function EnhancedElevateAbout() {
                   whileInView={{ y: 0, opacity: 1, rotateY: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  style={{ transform: `rotate(${[-6, -2, 2, 6][index]}deg)` }}
                 >
                   <GlowingCard glowIntensity="high">
                     <CardContent className="p-8 text-center relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#1cb683]/10 via-transparent to-[#00ff94]/10" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
                       <div className="relative z-10">
                         <stat.icon className="h-12 w-12 text-[#1cb683] mx-auto mb-4" />
                         <motion.div 
@@ -310,14 +311,14 @@ export default function EnhancedElevateAbout() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {highlights.map((highlight, index) => (
-                <motion.div
+                <motion.div className="bg-gradient-to-b from-black to-gray-900 rounded-2xl"
                   key={index}
                   initial={{ y: 100, opacity: 0, scale: 0.8 }}
                   whileInView={{ y: 0, opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <GlowingCard className="h-full group cursor-pointer">
+                  <GlowingCard className="h-full group cursor-pointer rounded-2xl">
                     <CardContent className="p-8 text-center h-full flex flex-col relative overflow-hidden">
                       <div className={cn(
                         "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
@@ -325,7 +326,7 @@ export default function EnhancedElevateAbout() {
                       )} />
                       <div className="relative z-10">
                         <motion.div 
-                          className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#1cb683]/30 to-[#00ff94]/30 text-[#1cb683] rounded-full mb-8 shadow-[0_0_30px_rgba(28,182,131,0.3)] backdrop-blur-sm"
+                          className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-black/30 to-gray-900/30 text-[#1cb683] rounded-full mb-8 shadow-[0_0_30px_rgba(28,182,131,0.3)] backdrop-blur-sm"
                           whileHover={{ scale: 1.2, rotate: 360 }}
                           transition={{ duration: 0.6 }}
                         >
