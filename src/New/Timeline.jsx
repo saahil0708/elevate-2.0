@@ -113,54 +113,6 @@ const AnimatedEventTimeline = () => {
           status: "confirmed",
           priority: "medium"
         },
-        // {
-        //   id: 7,
-        //   time: "13:30 - 15:00",
-        //   title: "Advanced Technical Workshop",
-        //   description: "Hands-on workshop with industry experts and practical applications",
-        //   location: "Innovation Lab",
-        //   attendees: "50 participants",
-        //   type: "workshop",
-        //   icon: <BookOpen className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "high"
-        // },
-        // {
-        //   id: 8,
-        //   time: "15:00 - 15:30",
-        //   title: "Refreshment & Connection Break",
-        //   description: "Premium coffee service and informal networking",
-        //   location: "Exhibition Hall",
-        //   attendees: "All participants",
-        //   type: "break",
-        //   icon: <Coffee className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "medium"
-        // },
-        // {
-        //   id: 9,
-        //   time: "15:30 - 17:00",
-        //   title: "Strategic Breakout Sessions",
-        //   description: "Topic-focused discussions in specialized expert groups",
-        //   location: "Multiple Conference Rooms",
-        //   attendees: "Groups of 20-30",
-        //   type: "session",
-        //   icon: <Users className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "high"
-        // },
-        // {
-        //   id: 10,
-        //   time: "17:00 - 18:00",
-        //   title: "Day One Synthesis & Preview",
-        //   description: "Key takeaways summary and strategic preview of upcoming sessions",
-        //   location: "Main Auditorium",
-        //   attendees: "All participants",
-        //   type: "ceremony",
-        //   icon: <Target className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "high"
-        // }
       ]
     },
     2: {
@@ -237,66 +189,6 @@ const AnimatedEventTimeline = () => {
           status: "confirmed",
           priority: "high"
         },
-        // {
-        //   id: 16,
-        //   time: "13:30 - 14:30",
-        //   title: "Recognition Luncheon",
-        //   description: "Awards ceremony combined with premium dining experience",
-        //   location: "Grand Ballroom",
-        //   attendees: "All participants",
-        //   type: "ceremony",
-        //   icon: <Award className="w-5 h-5" />,
-        //   status: "featured",
-        //   priority: "high"
-        // },
-        // {
-        //   id: 17,
-        //   time: "14:30 - 16:00",
-        //   title: "Innovation Laboratory Session",
-        //   description: "Creative ideation and strategic planning with expert facilitation",
-        //   location: "Innovation Hub",
-        //   attendees: "60 participants",
-        //   type: "workshop",
-        //   icon: <BookOpen className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "high"
-        // },
-        // {
-        //   id: 18,
-        //   time: "16:00 - 16:30",
-        //   title: "Premium Refreshment Break",
-        //   description: "Artisanal coffee and gourmet light fare with networking",
-        //   location: "Executive Terrace",
-        //   attendees: "All participants",
-        //   type: "break",
-        //   icon: <Coffee className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "medium"
-        // },
-        // {
-        //   id: 19,
-        //   time: "16:30 - 18:00",
-        //   title: "Expert Advisory Roundtables",
-        //   description: "Intimate discussions with subject matter experts and thought leaders",
-        //   location: "Executive Suites",
-        //   attendees: "Groups of 15",
-        //   type: "session",
-        //   icon: <Users className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "high"
-        // },
-        // {
-        //   id: 20,
-        //   time: "19:00 - 22:00",
-        //   title: "Executive Gala Dinner",
-        //   description: "Black-tie dinner event with keynote entertainment and networking",
-        //   location: "Grand Ballroom",
-        //   attendees: "All participants",
-        //   type: "social",
-        //   icon: <Users2 className="w-5 h-5" />,
-        //   status: "featured",
-        //   priority: "high"
-        // }
       ]
     },
     3: {
@@ -361,30 +253,6 @@ const AnimatedEventTimeline = () => {
           status: "confirmed",
           priority: "high"
         },
-        // {
-        //   id: 25,
-        //   time: "12:30 - 13:00",
-        //   title: "Closing Ceremony & Next Steps",
-        //   description: "Final remarks, acknowledgments, and strategic next steps presentation",
-        //   location: "Main Auditorium",
-        //   attendees: "All participants",
-        //   type: "ceremony",
-        //   icon: <Award className="w-5 h-5" />,
-        //   status: "featured",
-        //   priority: "critical"
-        // },
-        // {
-        //   id: 26,
-        //   time: "13:00 - 14:30",
-        //   title: "Executive Farewell Luncheon",
-        //   description: "Concluding meal with continued strategic discussions and departures",
-        //   location: "Grand Dining Hall",
-        //   attendees: "All participants",
-        //   type: "social",
-        //   icon: <Users2 className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "high"
-        // }
       ]
     }
   }
@@ -441,7 +309,7 @@ const AnimatedEventTimeline = () => {
   }, [activeDay])
 
   const getEventTypeStyles = (type, status, priority) => {
-    const baseStyles = "inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold border backdrop-blur-sm"
+    const baseStyles = "inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-semibold border backdrop-blur-sm"
     
     if (status === 'featured') {
       return `${baseStyles} bg-gradient-to-r from-[#1cb683]/20 to-emerald-400/20 text-[#1cb683] border-[#1cb683]/40 shadow-lg shadow-[#1cb683]/20`
@@ -476,56 +344,55 @@ const AnimatedEventTimeline = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#1cb683]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#1cb683]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#1cb683]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#1cb683]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Header Section */}
       <div className="relative z-10 border-b border-gray-800/50 backdrop-blur-xl bg-gray-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-12 text-center">
+          <div className="py-8 sm:py-12 text-center">
             <motion.div
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-white via-[#1cb683] to-emerald-400 bg-clip-text text-transparent mb-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white via-[#1cb683] to-emerald-400 bg-clip-text text-transparent mb-2 sm:mb-4 leading-tight">
                 Strategic Leadership Conference 2025
               </h1>
-              <p className="text-xl text-gray-300 mb-2">Three-Day Executive Program</p>
-              <p className="text-sm text-[#1cb683] font-medium uppercase tracking-wider">Digital Transformation • Innovation • Leadership</p>
+              <p className="text-lg sm:text-xl text-gray-300 mb-2">Three-Day Executive Program</p>
+              <p className="text-xs sm:text-sm text-[#1cb683] font-medium uppercase tracking-wider px-4">
+                Digital Transformation • Innovation • Leadership
+              </p>
             </motion.div>
           </div>
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Day Navigation & Controls */}
-        <div className="mb-12 flex justify-center">
-          <div className="inline-flex backdrop-blur-xl bg-gray-900/40 rounded-2xl border border-gray-700/50 p-2 shadow-2xl shadow-[#1cb683]/10">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+        {/* Day Navigation & Controls - FIXED */}
+        <div className="mb-8 sm:mb-12 flex justify-center">
+          <div className="inline-flex backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 p-1 sm:p-2 shadow-2xl shadow-[#1cb683]/10">
             {[1, 2, 3].map((day) => {
               const isActive = activeDay === day
-              const dayData = eventData[day]
               return (
                 <button
                   key={day}
                   onClick={() => setActiveDay(day)}
-                  className={`relative px-8 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                  className={`relative px-4 sm:px-6 py-1 rounded-lg sm:rounded-xl text-sm font-semibold transition-all duration-300 ${
                     isActive
                       ? 'bg-gradient-to-r from-[#1cb683] to-emerald-500 text-white shadow-lg shadow-[#1cb683]/30'
                       : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                   }`}
                 >
                   <div className="flex flex-col items-center">
-                    <span className="text-lg font-bold mb-1">Day {day}</span>
-                    {/* <span className="text-xs opacity-80 mb-1">{dayData.subtitle}</span>
-                    <span className="text-xs opacity-60">{dayData.events.length} sessions</span> */}
+                    <span className="text-base sm:text-lg font-bold">Day {day}</span>
                   </div>
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#1cb683]/20 to-emerald-500/20 border border-[#1cb683]/40"
+                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#1cb683]/20 to-emerald-500/20 border border-[#1cb683]/40"
                       initial={false}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
@@ -537,43 +404,22 @@ const AnimatedEventTimeline = () => {
         </div>
 
         {/* Scroll Instruction */}
-        <div className="mb-8 text-center">
+        <div className="mb-6 sm:mb-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center backdrop-blur-xl bg-gray-900/40 rounded-2xl border border-gray-700/50 px-6 py-3 shadow-xl"
+            className="inline-flex items-center backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 px-4 sm:px-6 py-2 sm:py-3 shadow-xl"
           >
             <div className="w-2 h-2 bg-[#1cb683] rounded-full mr-3 animate-pulse"></div>
-            <span className="text-sm text-gray-300">
+            <span className="text-xs sm:text-sm text-gray-300">
               <span className="text-[#1cb683] font-medium">Scroll down</span> to reveal the timeline
             </span>
           </motion.div>
         </div>
 
-        {/* Progress Indicator */}
-        <div className="mb-8 flex justify-center">
-          <div className="backdrop-blur-xl bg-gray-900/40 rounded-2xl border border-gray-700/50 p-4 shadow-xl">
-            <div className="flex items-center space-x-4">
-              <span className="text-xs text-gray-400">Timeline Progress</span>
-              <div className="w-48 h-2 bg-gray-700/50 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-[#1cb683] to-emerald-500"
-                  animate={{ width: `${scrollProgress * 100}%` }}
-                  transition={{ duration: 0.1 }}
-                />
-              </div>
-              <div className="text-sm text-gray-300 min-w-[60px]">
-                <span className="text-[#1cb683] font-bold">{visibleEvents.size}</span>
-                <span className="text-gray-500"> / </span>
-                <span>{eventData[activeDay].events.length}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 lg:gap-8">
           {/* Timeline Section */}
-          <div className="lg:col-span-3">
+          <div className="xl:col-span-3">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeDay}
@@ -584,21 +430,21 @@ const AnimatedEventTimeline = () => {
                 ref={timelineRef}
               >
                 {/* Day Header */}
-                <div className="relative overflow-hidden rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#1cb683]/30 shadow-2xl shadow-[#1cb683]/10 p-8 mb-8">
+                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#1cb683]/30 shadow-2xl shadow-[#1cb683]/10 p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#1cb683]/5 to-transparent" />
                   <div className="relative z-10">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h2 className="text-3xl font-bold text-white mb-2">{eventData[activeDay].title}</h2>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex-1">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{eventData[activeDay].title}</h2>
                         <div className="flex items-center text-gray-300 mb-2">
-                          <Calendar className="w-5 h-5 mr-2 text-[#1cb683]" />
-                          <span className="text-lg">{eventData[activeDay].date}</span>
+                          <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 text-[#1cb683] flex-shrink-0" />
+                          <span className="text-sm sm:text-base lg:text-lg">{eventData[activeDay].date}</span>
                         </div>
-                        <p className="text-[#1cb683] font-medium">{eventData[activeDay].theme}</p>
+                        <p className="text-sm sm:text-base text-[#1cb683] font-medium">{eventData[activeDay].theme}</p>
                       </div>
-                      <div className="text-right">
-                        <div className="text-sm text-gray-400 mb-1">Total Sessions</div>
-                        <div className="text-4xl font-bold bg-gradient-to-r from-[#1cb683] to-emerald-400 bg-clip-text text-transparent">
+                      <div className="text-center sm:text-right">
+                        <div className="text-xs sm:text-sm text-gray-400 mb-1">Total Sessions</div>
+                        <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#1cb683] to-emerald-400 bg-clip-text text-transparent">
                           {eventData[activeDay].events.length}
                         </div>
                       </div>
@@ -608,8 +454,8 @@ const AnimatedEventTimeline = () => {
 
                 {/* Timeline with Path */}
                 <div className="relative">
-                  {/* Animated Timeline Path */}
-                  <div className="absolute left-8 top-0 bottom-0 w-[1.5px] bg-gray-700/30 rounded-full">
+                  {/* Animated Timeline Path - Hidden on mobile, shown on sm+ */}
+                  <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-[1.5px] bg-gray-700/30 rounded-full hidden sm:block">
                     <motion.div
                       className="w-full bg-gradient-to-b from-[#1cb683] to-emerald-500 rounded-full shadow-lg shadow-[#1cb683]/50"
                       initial={{ height: 0 }}
@@ -637,7 +483,7 @@ const AnimatedEventTimeline = () => {
                   </div>
 
                   {/* Events */}
-                  <div className="space-y-8 pl-16">
+                  <div className="space-y-4 sm:space-y-6 lg:space-y-8 pl-0 sm:pl-16">
                     {eventData[activeDay].events.map((event, index) => {
                       const isVisible = visibleEvents.has(event.id)
                       const eventProgress = (index + 1) / eventData[activeDay].events.length
@@ -656,14 +502,14 @@ const AnimatedEventTimeline = () => {
                             duration: 0.8,
                             ease: "easeOut"
                           }}
-                          className={`relative overflow-hidden rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/60 to-gray-800/60 border shadow-xl transition-all duration-500 ${
+                          className={`relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/60 to-gray-800/60 border shadow-xl transition-all duration-500 ${
                             isCurrentEvent 
-                              ? 'border-[#1cb683]/60 shadow-2xl shadow-[#1cb683]/30 scale-[1.02]' 
+                              ? 'border-[#1cb683]/60 shadow-2xl shadow-[#1cb683]/30 scale-[1.01] sm:scale-[1.02]' 
                               : 'border-gray-700/50'
                           }`}
                         >
-                          {/* Timeline connector dot */}
-                          <div className="absolute -left-16 top-8 w-4 h-4 bg-gray-700/50 rounded-full border-4 border-gray-900">
+                          {/* Timeline connector dot - Hidden on mobile */}
+                          <div className="absolute -left-16 top-6 sm:top-8 w-4 h-4 bg-gray-700/50 rounded-full border-4 border-gray-900 hidden sm:block">
                             {isVisible && (
                               <motion.div
                                 className="w-full h-full bg-gradient-to-r from-[#1cb683] to-emerald-500 rounded-full"
@@ -687,13 +533,13 @@ const AnimatedEventTimeline = () => {
                             />
                           )}
                           
-                          <div className="relative z-10 p-6">
+                          <div className="relative z-10 p-4 sm:p-6">
                             {/* Event Header */}
-                            <div className="flex items-start justify-between mb-4">
-                              <div className="flex items-start space-x-4 flex-1">
+                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-4">
+                              <div className="flex items-start space-x-3 sm:space-x-4 flex-1">
                                 <div className="flex-shrink-0">
                                   <motion.div
-                                    className="w-14 h-14 bg-gradient-to-br from-[#1cb683]/20 to-emerald-500/20 rounded-xl flex items-center justify-center border border-[#1cb683]/30 backdrop-blur-sm"
+                                    className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-[#1cb683]/20 to-emerald-500/20 rounded-xl flex items-center justify-center border border-[#1cb683]/30 backdrop-blur-sm"
                                     initial={{ rotate: -180, scale: 0 }}
                                     animate={isVisible ? { rotate: 0, scale: 1 } : { rotate: -180, scale: 0 }}
                                     transition={{ duration: 0.6 }}
@@ -701,27 +547,29 @@ const AnimatedEventTimeline = () => {
                                     <span className="text-[#1cb683]">{event.icon}</span>
                                   </motion.div>
                                 </div>
-                                <div className="flex-1">
+                                <div className="flex-1 min-w-0">
                                   <motion.div
-                                    className="flex items-center space-x-3 mb-3"
+                                    className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
                                   >
-                                    <div className="flex items-center text-[#1cb683] font-bold text-lg">
-                                      <Clock className="w-5 h-5 mr-2" />
-                                      <span>{event.time}</span>
+                                    <div className="flex items-center text-[#1cb683] font-bold text-base sm:text-lg">
+                                      <Clock className="w-4 sm:w-5 h-4 sm:h-5 mr-2 flex-shrink-0" />
+                                      <span className="truncate">{event.time}</span>
                                     </div>
-                                    <span className={getEventTypeStyles(event.type, event.status, event.priority)}>
-                                      {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-                                    </span>
-                                    <div className="flex items-center">
-                                      {getPriorityIndicator(event.priority)}
+                                    <div className="flex items-center gap-2">
+                                      <span className={getEventTypeStyles(event.type, event.status, event.priority)}>
+                                        {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+                                      </span>
+                                      <div className="flex items-center">
+                                        {getPriorityIndicator(event.priority)}
+                                      </div>
                                     </div>
                                   </motion.div>
                                   
                                   <motion.h3
-                                    className="text-xl font-bold text-white mb-3"
+                                    className="text-lg sm:text-xl font-bold text-white mb-3 leading-tight"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                     transition={{ duration: 0.5, delay: 0.2 }}
@@ -740,18 +588,18 @@ const AnimatedEventTimeline = () => {
                                   
                                   {/* Event Meta Information */}
                                   <motion.div
-                                    className="flex flex-wrap items-center gap-6 text-sm text-gray-400"
+                                    className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-6 text-sm text-gray-400"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                     transition={{ duration: 0.5, delay: 0.4 }}
                                   >
                                     <div className="flex items-center">
-                                      <MapPin className="w-4 h-4 mr-2 text-[#1cb683]" />
-                                      <span>{event.location}</span>
+                                      <MapPin className="w-4 h-4 mr-2 text-[#1cb683] flex-shrink-0" />
+                                      <span className="truncate">{event.location}</span>
                                     </div>
                                     <div className="flex items-center">
-                                      <UserCheck className="w-4 h-4 mr-2 text-[#1cb683]" />
-                                      <span>{event.attendees}</span>
+                                      <UserCheck className="w-4 h-4 mr-2 text-[#1cb683] flex-shrink-0" />
+                                      <span className="truncate">{event.attendees}</span>
                                     </div>
                                   </motion.div>
                                 </div>
@@ -760,7 +608,7 @@ const AnimatedEventTimeline = () => {
                               {/* Status Indicator */}
                               {event.status === 'featured' && isVisible && (
                                 <motion.div
-                                  className="flex-shrink-0"
+                                  className="flex-shrink-0 self-start sm:self-auto"
                                   initial={{ opacity: 0, scale: 0 }}
                                   animate={{ opacity: 1, scale: 1 }}
                                   transition={{ duration: 0.5, delay: 0.5 }}
@@ -776,7 +624,7 @@ const AnimatedEventTimeline = () => {
                             {/* Current event glow effect */}
                             {isCurrentEvent && (
                               <motion.div
-                                className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#1cb683]/10 via-transparent to-[#1cb683]/10"
+                                className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#1cb683]/10 via-transparent to-[#1cb683]/10"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.3 }}
@@ -793,61 +641,61 @@ const AnimatedEventTimeline = () => {
           </div>
 
           {/* Keynote Speaker Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-8">
+          <div className="xl:col-span-1 order-first xl:order-last">
+            <div className="xl:sticky xl:top-8 space-y-6 lg:space-y-8">
               <motion.div
                 key={activeDay}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#1cb683]/30 shadow-2xl shadow-[#1cb683]/10"
+                className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#1cb683]/30 shadow-2xl shadow-[#1cb683]/10"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#1cb683]/5 to-transparent" />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#1cb683]/20 via-transparent to-[#1cb683]/20 blur-sm" />
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#1cb683]/20 via-transparent to-[#1cb683]/20 blur-sm" />
                 
-                <div className="relative z-10 p-6">
+                <div className="relative z-10 p-4 sm:p-6">
                   {/* Header */}
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#1cb683]/20 to-emerald-500/20 rounded-xl flex items-center justify-center mr-4 backdrop-blur-sm border border-[#1cb683]/30">
-                      <Mic className="w-6 h-6 text-[#1cb683]" />
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-[#1cb683]/20 to-emerald-500/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 backdrop-blur-sm border border-[#1cb683]/30">
+                      <Mic className="w-5 sm:w-6 h-5 sm:h-6 text-[#1cb683]" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white mb-1">Keynote Speaker</h3>
-                      <p className="text-sm text-[#1cb683] font-medium">{eventData[activeDay].theme}</p>
+                      <h3 className="text-base sm:text-lg font-bold text-white mb-1">Keynote Speaker</h3>
+                      <p className="text-xs sm:text-sm text-[#1cb683] font-medium">{eventData[activeDay].theme}</p>
                     </div>
                   </div>
 
                   {/* Speaker Image and Info */}
-                  <div className="flex items-start space-x-4 mb-6">
-                    <div className="relative">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4 mb-4 sm:mb-6">
+                    <div className="relative flex-shrink-0">
                       <img
                         src={eventData[activeDay].keynoteSpeaker.image}
                         alt={eventData[activeDay].keynoteSpeaker.name}
-                        className="w-20 h-20 rounded-xl object-cover border-2 border-[#1cb683]/40 shadow-lg"
+                        className="w-16 sm:w-20 h-16 sm:h-20 rounded-xl object-cover border-2 border-[#1cb683]/40 shadow-lg"
                       />
-                      <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#1cb683] rounded-full flex items-center justify-center shadow-lg shadow-[#1cb683]/50">
-                        <Star className="w-3 h-3 text-white" />
+                      <div className="absolute -bottom-1 sm:-bottom-2 -right-1 sm:-right-2 w-5 sm:w-6 h-5 sm:h-6 bg-[#1cb683] rounded-full flex items-center justify-center shadow-lg shadow-[#1cb683]/50">
+                        <Star className="w-2 sm:w-3 h-2 sm:h-3 text-white" />
                       </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-xl font-bold text-white mb-1">{eventData[activeDay].keynoteSpeaker.name}</h4>
-                      <p className="text-sm text-[#1cb683] font-medium mb-2">{eventData[activeDay].keynoteSpeaker.title}</p>
-                      <div className="flex items-center text-xs text-gray-400">
+                    <div className="flex-1 text-center sm:text-left">
+                      <h4 className="text-lg sm:text-xl font-bold text-white mb-1">{eventData[activeDay].keynoteSpeaker.name}</h4>
+                      <p className="text-xs sm:text-sm text-[#1cb683] font-medium mb-2">{eventData[activeDay].keynoteSpeaker.title}</p>
+                      <div className="flex items-center justify-center sm:justify-start text-xs text-gray-400">
                         <Clock className="w-3 h-3 mr-1" />
                         <span>{eventData[activeDay].keynoteSpeaker.duration}</span>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-300 leading-relaxed mb-6">{eventData[activeDay].keynoteSpeaker.bio}</p>
+                  <p className="text-sm text-gray-300 leading-relaxed mb-4 sm:mb-6 text-center sm:text-left">{eventData[activeDay].keynoteSpeaker.bio}</p>
 
                   {/* Topic */}
-                  <div className="relative overflow-hidden rounded-xl backdrop-blur-sm bg-gradient-to-br from-[#1cb683]/10 to-emerald-500/10 border border-[#1cb683]/30 p-4 mb-4">
+                  <div className="relative overflow-hidden rounded-xl backdrop-blur-sm bg-gradient-to-br from-[#1cb683]/10 to-emerald-500/10 border border-[#1cb683]/30 p-3 sm:p-4 mb-4">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1cb683]/5 to-transparent" />
                     <div className="relative z-10">
                       <div className="flex items-center mb-2">
-                        <div className="w-8 h-8 bg-[#1cb683]/20 rounded-lg flex items-center justify-center mr-3 backdrop-blur-sm">
-                          <Presentation className="w-4 h-4 text-[#1cb683]" />
+                        <div className="w-7 sm:w-8 h-7 sm:h-8 bg-[#1cb683]/20 rounded-lg flex items-center justify-center mr-3 backdrop-blur-sm">
+                          <Presentation className="w-3 sm:w-4 h-3 sm:h-4 text-[#1cb683]" />
                         </div>
                         <span className="text-xs font-bold text-[#1cb683] uppercase tracking-wider">Speaking Topic</span>
                       </div>
@@ -855,56 +703,14 @@ const AnimatedEventTimeline = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs text-gray-400 pt-4 border-t border-gray-700/50">
+                  <div className="flex items-center justify-between text-xs text-gray-400 pt-3 sm:pt-4 border-t border-gray-700/50">
                     <div className="flex items-center">
                       <Calendar className="w-3 h-3 mr-2" />
-                      <span>{eventData[activeDay].date}</span>
+                      <span className="truncate">{eventData[activeDay].date.split(',')[0]}</span>
                     </div>
                     <div className="flex items-center">
                       <Users className="w-3 h-3 mr-1" />
                       <span>{eventData[activeDay].events.length} sessions</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-              
-              {/* Event Statistics */}
-              <motion.div 
-                className="mt-8 relative overflow-hidden rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#1cb683]/30 shadow-2xl shadow-[#1cb683]/10 p-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1cb683]/5 to-transparent" />
-                <div className="relative z-10">
-                  <h4 className="font-bold text-white mb-6 text-lg">Event Overview</h4>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Duration</span>
-                      <span className="font-semibold text-white">3 Days</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Participants</span>
-                      <span className="font-semibold text-white">150+</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Total Sessions</span>
-                      <span className="font-semibold text-[#1cb683]">26</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Keynote Speakers</span>
-                      <span className="font-semibold text-[#1cb683]">3</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Workshops</span>
-                      <span className="font-semibold text-white">8</span>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-6 pt-4 border-t border-gray-700/50">
-                    <div className="flex items-center text-sm text-[#1cb683]">
-                      <div className="w-2 h-2 bg-[#1cb683] rounded-full mr-3 animate-pulse"></div>
-                      <span className="font-medium">Scroll to reveal events</span>
                     </div>
                   </div>
                 </div>

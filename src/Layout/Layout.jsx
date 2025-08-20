@@ -85,7 +85,7 @@ export default function Layout() {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      <CursorEffect />
+      {/* <CursorEffect /> */}
       {/* <Loader /> */}
         {/* <CursorWaterEffect /> */}
       {/* Fixed Hero with Overlay */}
