@@ -11,6 +11,7 @@ import Loader from "@/New/Loader";
 import CursorEffect from '@/Components/cursor';
 import Timeline from '@/New/Timeline';
 import Panel from "@/New/panel";
+import EnhancedSpeakerReveal from "@/Components/EnhancedSpeakerReveal";
 
 export default function Layout() {
   const scrollThumbRef = useRef(null);
@@ -102,6 +103,7 @@ export default function Layout() {
         <Cultural />
         <Panel />
         <IdeaJamSection />
+        <EnhancedSpeakerReveal />
         <Gallery />
         <Testimonials />
         <Footer />
