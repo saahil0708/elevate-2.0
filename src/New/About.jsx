@@ -97,14 +97,14 @@ export default function EnhancedElevateAbout() {
               <span className="block bg-gradient-to-r from-white via-[#1cb683] via-[#00ff94] to-white bg-clip-text text-transparent animate-pulse">
                 Inside ELEVATE
               </span>
-              <motion.span 
+              {/* <motion.span 
                 className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent font-light"
                 initial={{ x: -100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
               >
                 2025
-              </motion.span>
+              </motion.span> */}
             </motion.h1>
 
             <motion.div
