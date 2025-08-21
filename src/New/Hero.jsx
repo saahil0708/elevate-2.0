@@ -252,19 +252,31 @@ import React from "react";
 import { BackgroundBeamsWithCollision } from "../Components/ui/background-beams-with-collision";
 // import { Cover } from "../components/ui/cover";
 import { TextHoverEffect } from "../Components/ui/text-hover-effect";
-import {TypewriterEffectSmooth} from "../Components/ui/typewriter-effect"
+import {TypewriterEffectSmooth} from "../Components/ui/typewriter-effect";
+import Logo from './Images/Audience.png';
+import Image from 'next/image';
 
-export function TypewriterEffectSmoothDemo() {
+export default function TypewriterEffectSmoothDemo() {
   const words = [
     {
       text: "Relaunching Futures in 2025",
       className: "text-[#1cb683] dark:text-blue-500",
     },
-  
   ];
+  
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden" style={{backgroundImage: "url('https://67uzoom719.ufs.sh/f/YNNjoMX3eGAoghXyv6GdNDqgifrhItmpwnHACx8R4MeXOG0v')"}}>
       <BackgroundBeamsWithCollision className="h-full">
+        {/* Add the Logo image here */}
+        <div className="absolute inset-0 z-10 opacity-40"> {/* Adjust opacity as needed */}
+          <Image 
+            src={Logo} 
+            alt="Audience" 
+            fill
+            className="object-cover"
+          />
+        </div>
+        
         <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
           {/* ELEVATE with hover effect */}
           <div className="h-[40%] w-full flex items-center justify-center">
@@ -273,31 +285,10 @@ export function TypewriterEffectSmoothDemo() {
               className="text-6xl md:text-8xl lg:text-[14rem] font-bold"
             />
           </div>
-          {/* <div className="w-full flex justify-end pr-4 md:pr-8 lg:pr-80 lg:-mt-[5%]">
-            <TypewriterEffectSmooth words={words} />
-          </div>
-           */}
-          {/* 2.0 version text */}
-          {/* <div className="relative mx-auto w-max ">
-            <div className="relative bg-clip-text text-transparent bg-gradient-to-r from-transparent via-[#1cb683] to-transparent">
-              <span className="text-5xl md:text-7xl lg:text-[5rem] font-bold">
-                2.0
-              </span>
-            </div>
-          </div> */}
           
-          {/* Launching Futures text
-          <div className="mt-8 md:mt-12 text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold max-w-4xl mx-auto bg-clip-text text-transparent bg-gradient-to-b from-[#1cb683] via-[#149d6f] to-[#0d7a56]">
-              Launching Futures again <br /> in <Cover>2025</Cover>
-            </h1>
-          </div> */
-           <TypewriterEffectSmooth words={words}  />
-           }
+          <TypewriterEffectSmooth words={words} />
         </div>
       </BackgroundBeamsWithCollision>
     </div>
   );
 }
-
-export default TypewriterEffectSmoothDemo;

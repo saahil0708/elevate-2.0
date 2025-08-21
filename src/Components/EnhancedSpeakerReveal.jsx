@@ -1,8 +1,6 @@
 "use client"
 import { useRef, useEffect, useState } from "react"
 import * as THREE from "three"
-// import VantaClouds2 from "./VantaClouds"
-// import '../globals.css'
 
 const EnhancedSpeakerReveal = () => {
   const mountRef = useRef(null)
@@ -260,15 +258,16 @@ const EnhancedSpeakerReveal = () => {
           style={{ animationDelay: '1s', animationDuration: '3s' }}
         />
       </div>
+      
       {/* Fixed Three.js Canvas */}
-      <div ref={mountRef} className="fixed inset-0 z-10 pointer-events-none" />
+      <div ref={mountRef} className="fixed inset-0 pointer-events-none" />
       
       {/* Fixed Content Container - GSAP Pin Style */}
-      <div className="fixed inset-0 z-20">
+      <div className="fixed inset-0">
         <div className="relative h-full w-full">
         {featuredTextVisible && featuredTextOpacity > 0 && (
           <div 
-            className="fixed inset-0 flex items-center justify-center pointer-events-none z-30"
+            className="fixed inset-0 flex items-center justify-center pointer-events-none"
             style={{
               opacity: featuredTextOpacity,
               transition: "opacity 0.8s ease-out",
@@ -317,7 +316,7 @@ const EnhancedSpeakerReveal = () => {
         )}
 
         <div
-          className="fixed inset-0 flex items-center justify-center z-30"
+          className="fixed inset-0 flex items-center justify-center"
           style={{
             opacity: firstSpeakerActive ? 1 : 0,
             pointerEvents: firstSpeakerActive ? "auto" : "none",
@@ -395,7 +394,7 @@ const EnhancedSpeakerReveal = () => {
         </div>
 
         <div
-          className="fixed inset-0 flex items-center justify-center z-30"
+          className="fixed inset-0 flex items-center justify-center"
           style={{
             opacity: secondSpeakerActive ? 1 : 0,
             pointerEvents: secondSpeakerActive ? "auto" : "none",

@@ -103,7 +103,7 @@ export default function Layout() {
         <Cultural />
         <Panel />
         <IdeaJamSection />
-        <EnhancedSpeakerReveal />
+        {/* <EnhancedSpeakerReveal /> */}
         <Gallery />
         <Testimonials />
         <Footer />
