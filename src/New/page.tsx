@@ -1,16 +1,68 @@
-"use client"
+"use client";
 
-import React from "react"
-import EventTabs from "@/New/Cultural"
-import { motion } from "framer-motion"
+import React, { useEffect, useState, useCallback } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const [currentSection, setCurrentSection] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const goToSection = useCallback((sectionIndex: number) => {
+    if (isTransitioning || sectionIndex === currentSection) return;
+    
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSection(sectionIndex);
+      setIsTransitioning(false);
+    }, 600);
+  }, [isTransitioning, currentSection]);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (isTransitioning) {
+        e.preventDefault();
+        return;
+      }
+
+      // Only trigger on significant scroll
+      if (Math.abs(e.deltaY) < 30) return;
+      
+      const delta = e.deltaY > 0 ? 1 : -1;
+      const newSection = Math.max(0, Math.min(1, currentSection + delta));
+      
+      if (newSection !== currentSection) {
+        e.preventDefault();
+        goToSection(newSection);
+      }
+    };
+
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (isTransitioning) return;
+      
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        e.preventDefault();
+        goToSection(Math.min(1, currentSection + 1));
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        goToSection(Math.max(0, currentSection - 1));
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  }, [currentSection, isTransitioning, goToSection]);
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-slate-800 p-8 relative overflow-hidden">
+    <main className="min-h-screen  p-8 relative overflow-hidden">
       <div className="absolute inset-0">
-        {/* Animated neon orbs */}
+        {/* Animated neon orbs with brand color */}
         <motion.div
-          className="absolute top-20 left-20 w-32 h-32 rounded-full bg-[#1cb683]/20 blur-xl"
+          className="absolute top-20 left-20 w-32 h-32 rounded-full bg-[#1cb683]/20 blur-xl shadow-[0_0_40px_rgba(28,182,131,0.3)]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
@@ -22,7 +74,7 @@ export default function Home() {
           }}
         />
         <motion.div
-          className="absolute top-40 right-32 w-24 h-24 rounded-full bg-cyan-400/20 blur-lg"
+          className="absolute top-40 right-32 w-24 h-24 rounded-full bg-[#1cb683]/25 blur-lg shadow-[0_0_30px_rgba(28,182,131,0.4)]"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.5, 0.2],
@@ -35,7 +87,7 @@ export default function Home() {
           }}
         />
         <motion.div
-          className="absolute bottom-32 left-1/4 w-40 h-40 rounded-full bg-[#1cb683]/15 blur-2xl"
+          className="absolute bottom-32 left-1/4 w-40 h-40 rounded-full bg-[#1cb683]/15 blur-2xl shadow-[0_0_60px_rgba(28,182,131,0.2)]"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -48,7 +100,7 @@ export default function Home() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-20 w-28 h-28 rounded-full bg-purple-400/20 blur-lg"
+          className="absolute bottom-20 right-20 w-28 h-28 rounded-full bg-[#1cb683]/20 blur-lg shadow-[0_0_35px_rgba(28,182,131,0.35)]"
           animate={{
             scale: [1, 1.25, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -61,11 +113,11 @@ export default function Home() {
           }}
         />
 
-        {/* Floating particles */}
-        {[...Array(8)].map((_, i) => (
+        {/* Enhanced floating particles */}
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50"
+            className="absolute w-2 h-2 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/60"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -73,7 +125,8 @@ export default function Home() {
             animate={{
               y: [-20, 20, -20],
               x: [-10, 10, -10],
-              opacity: [0.3, 0.8, 0.3],
+              opacity: [0.3, 0.9, 0.3],
+              scale: [0.8, 1.2, 0.8],
             }}
             transition={{
               duration: 4 + Math.random() * 2,
@@ -84,24 +137,27 @@ export default function Home() {
           />
         ))}
 
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.02]">
+        {/* Enhanced grid pattern overlay with brand color */}
+        <div className="absolute inset-0 opacity-[0.03]">
           <div
             className="w-full h-full"
             style={{
               backgroundImage: `
-              linear-gradient(rgba(28, 182, 131, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(28, 182, 131, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(28, 182, 131, 0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(28, 182, 131, 0.15) 1px, transparent 1px)
             `,
               backgroundSize: "50px 50px",
             }}
           />
         </div>
+
+        {/* Additional ambient light effect */}
+        <div className="absolute inset-0 bg-gradient-radial from-[#1cb683]/5 via-transparent to-transparent opacity-30" />
       </div>
 
       <div className="container mx-auto relative z-10">
         <motion.div
-          className="backdrop-blur-md bg-white/[0.02] border border-white/10 rounded-3xl p-8 shadow-2xl shadow-[#1cb683]/5"
+          className="backdrop-blur-md bg-[#0a0f0d]/40 border border-[#1cb683]/20 rounded-3xl p-8 shadow-2xl shadow-[#1cb683]/10"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -113,10 +169,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              {/* <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-2 tracking-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                Upcoming
-              </h1> */}
-              <h1 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-white via-[#1cb683] to-cyan-300 bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(28,182,131,0.5)]">
+              <h1 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#ffffff] via-[#1cb683] to-[#1cb683] bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(28,182,131,0.5)]">
                 Upcoming Events
               </h1>
             </motion.div>
@@ -128,7 +181,7 @@ export default function Home() {
               transition={{ delay: 0.5, duration: 0.6 }}
             >
               <motion.div
-                className="h-1.5 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent rounded-full mx-auto relative shadow-[0_0_20px_rgba(28,182,131,0.6)]"
+                className="h-1.5 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent rounded-full mx-auto relative shadow-[0_0_25px_rgba(28,182,131,0.7)]"
                 initial={{ width: 0, scaleX: 0 }}
                 animate={{ width: "300px", scaleX: 1 }}
                 transition={{
@@ -138,20 +191,20 @@ export default function Home() {
                 }}
               />
               <motion.div
-                className="absolute top-0 left-1/2 transform -translate-x-1/2 h-1.5 bg-[#1cb683] rounded-full shadow-[0_0_30px_rgba(28,182,131,0.8)] blur-[1px]"
+                className="absolute top-0 left-1/2 transform -translate-x-1/2 h-1.5 bg-[#1cb683] rounded-full shadow-[0_0_35px_rgba(28,182,131,0.9)] blur-[1px]"
                 initial={{ width: 0, opacity: 0 }}
-                animate={{ width: "120px", opacity: 0.8 }}
+                animate={{ width: "120px", opacity: 0.9 }}
                 transition={{
                   duration: 1.0,
                   delay: 1.2,
                   ease: "easeOut",
                 }}
               />
-              {/* Additional glow layer */}
+              {/* Enhanced glow layer */}
               <motion.div
-                className="absolute top-0 left-1/2 transform -translate-x-1/2 h-3 bg-[#1cb683]/30 rounded-full blur-md"
+                className="absolute top-0 left-1/2 transform -translate-x-1/2 h-3 bg-[#1cb683]/40 rounded-full blur-md"
                 initial={{ width: 0, opacity: 0 }}
-                animate={{ width: "200px", opacity: 0.4 }}
+                animate={{ width: "200px", opacity: 0.5 }}
                 transition={{
                   duration: 1.5,
                   delay: 1.0,
@@ -161,7 +214,7 @@ export default function Home() {
             </motion.div>
 
             <motion.p
-              className="text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed drop-shadow-lg"
+              className="text-xl text-[#e5e7eb] font-light max-w-2xl mx-auto leading-relaxed drop-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
@@ -172,15 +225,325 @@ export default function Home() {
           </div>
 
           <motion.div
-            className="backdrop-blur-sm bg-white/[0.01] border border-white/5 rounded-2xl p-6 shadow-xl"
+            className="backdrop-blur-sm bg-[#0a0f0d]/20 border border-[#1cb683]/10 rounded-2xl p-6 shadow-xl shadow-[#1cb683]/5"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
           >
-            <EventTabs />
+            {/* Cultural Event Tabs Content */}
+            <div className="relative w-full h-[600px] overflow-hidden bg-transparent">
+              {/* Subtle Background Elements */}
+              <div className="absolute inset-0 overflow-hidden -z-10">
+                {/* Animated gradient mesh */}
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(28,182,131,0.1),transparent_70%)] animate-pulse-slow" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(28,182,131,0.05),transparent_70%)] animate-pulse-slower" style={{ animationDelay: '3s' }} />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(28,182,131,0.05),transparent_70%)] animate-pulse-slowest" style={{ animationDelay: '6s' }} />
+                </div>
+
+                {/* Subtle grid pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:80px_80px]" />
+                </div>
+
+                {/* Floating light orbs */}
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute rounded-full bg-[#1cb683]/10 backdrop-blur-md pointer-events-none"
+                    style={{
+                      width: `${Math.random() * 150 + 50}px`,
+                      height: `${Math.random() * 150 + 50}px`,
+                      top: `${Math.random() * 100}%`,
+                      left: `${Math.random() * 100}%`,
+                      filter: 'blur(20px)',
+                      animation: `float ${Math.random() * 15 + 10}s ease-in-out infinite alternate`,
+                      animationDelay: `${Math.random() * 5}s`,
+                      opacity: 0.15
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Sections Container */}
+              <div className="relative h-full w-full flex overflow-hidden">
+                {/* Cultural Heritage Section */}
+                <section
+                  className={`h-full w-full flex-shrink-0 absolute transition-all duration-700 ease-in-out ${
+                    currentSection === 0
+                      ? 'translate-x-0 opacity-100 z-10'
+                      : '-translate-x-full opacity-0 z-0'
+                  }`}
+                >
+                  <div className="h-full flex items-center justify-center px-4 md:px-8">
+                    <div className="max-w-6xl mx-auto w-full">
+                      <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                        {/* Text Content */}
+                        <div className="space-y-6 md:space-y-8">
+                          <div className={`overflow-hidden transform transition-all duration-700 ease-out ${
+                            currentSection === 0 ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+                          }`} style={{ transitionDelay: '200ms' }}>
+                            <p className="text-[#1cb683] text-base md:text-lg font-bold tracking-[0.3em] uppercase">
+                              EXPLORE THE CULTURE
+                            </p>
+                            <div className="h-[1px] bg-gradient-to-r from-[#1cb683]/30 via-[#1cb683] to-[#1cb683]/30 w-full mt-2" />
+                          </div>
+
+                          <div className="space-y-2">
+                            {['Cultural', 'Heritage'].map((word, i) => (
+                              <h1
+                                key={i}
+                                className={`text-4xl sm:text-5xl md:text-6xl font-extrabold leading-none bg-gradient-to-r from-white via-[#a6ffdc] to-[#1cb683] bg-clip-text text-transparent transform transition-all duration-700 ease-out ${
+                                  currentSection === 0 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                                }`}
+                                style={{ transitionDelay: `${300 + i * 150}ms` }}
+                              >
+                                {word}
+                              </h1>
+                            ))}
+                          </div>
+
+                          <p className={`text-white/80 text-sm md:text-base leading-relaxed max-w-md transform transition-all duration-700 ease-out ${
+                            currentSection === 0 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                          }`} style={{ transitionDelay: '600ms' }}>
+                            Discover the rich traditions, art, and timeless stories of our heritage. 
+                            Experience the beauty of culture passed through generations.
+                          </p>
+
+                          <div className={`relative w-fit transform transition-all duration-700 ease-out ${
+                            currentSection === 0 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                          }`} style={{ transitionDelay: '800ms' }}>
+                            <button className="px-5 py-2.5 rounded-full bg-[#1cb683]/10 border border-[#1cb683]/30 text-[#1cb683] font-medium tracking-wide hover:bg-[#1cb683]/20 hover:text-white transition-all duration-300 group relative overflow-hidden">
+                              <span className="relative z-10">Explore More</span>
+                              <span className="absolute inset-0 bg-gradient-to-r from-[#1cb683]/20 to-[#1cb683]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Image Cards */}
+                        <div className="space-y-6">
+                          {[
+                            { 
+                              title: 'Traditional Dance', 
+                              image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=600&auto=format&fit=crop', 
+                              desc: 'Experience ancient rhythms passed through generations',
+                              rotation: '-1.5deg'
+                            },
+                            { 
+                              title: 'Ancient Crafts', 
+                              image: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=600&auto=format&fit=crop', 
+                              desc: 'Discover timeless artistry of our heritage',
+                              rotation: '2deg'
+                            }
+                          ].map((card, index) => (
+                            <div
+                              key={index}
+                              className={`group relative transform transition-all duration-700 ease-out hover:scale-[1.02] ${
+                                currentSection === 0 ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+                              }`}
+                              style={{ 
+                                transitionDelay: `${500 + index * 200}ms`,
+                                transform: `rotate(${card.rotation}) translateY(${index * 8}px)`
+                              }}
+                            >
+                              <div className="relative overflow-hidden rounded-xl h-48 md:h-56 w-full border border-white/10 hover:border-[#1cb683]/50 transition-all duration-500 shadow-lg hover:shadow-xl group-hover:shadow-[#1cb683]/20">
+                                {/* Glow Effect */}
+                                <div className="absolute inset-0 bg-[#1cb683]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
+                                
+                                {/* Background Image */}
+                                <div 
+                                  className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
+                                  style={{ backgroundImage: `url('${card.image}')` }}
+                                />
+                                
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
+                                
+                                {/* Content */}
+                                <div className="relative z-10 h-full flex flex-col justify-end p-5">
+                                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#1cb683] transition-all duration-300">
+                                    {card.title}
+                                  </h3>
+                                  <p className="text-white/80 text-xs md:text-sm leading-relaxed group-hover:text-white/90 transition-all duration-300">
+                                    {card.desc}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Comedy Shows Section */}
+                <section
+                  className={`h-full w-full flex-shrink-0 absolute transition-all duration-700 ease-in-out ${
+                    currentSection === 1
+                      ? 'translate-x-0 opacity-100 z-10'
+                      : 'translate-x-full opacity-0 z-0'
+                  }`}
+                >
+                  <div className="h-full flex items-center justify-center px-4 md:px-8">
+                    <div className="max-w-6xl mx-auto w-full">
+                      <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                        {/* Image Cards */}
+                        <div className="space-y-6">
+                          {[
+                            { 
+                              title: 'Stand-Up Comedy', 
+                              image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop', 
+                              desc: 'Laugh with the best comedians in town',
+                              rotation: '2deg'
+                            },
+                            { 
+                              title: 'Comedy Club', 
+                              image: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?q=80&w=600&auto=format&fit=crop', 
+                              desc: 'Best comedy experience with friends and family',
+                              rotation: '-1.5deg'
+                            }
+                          ].map((card, index) => (
+                            <div
+                              key={index}
+                              className={`group relative transform transition-all duration-700 ease-out hover:scale-[1.02] ${
+                                currentSection === 1 ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+                              }`}
+                              style={{ 
+                                transitionDelay: `${500 + index * 200}ms`,
+                                transform: `rotate(${card.rotation}) translateY(${index * 8}px)`
+                              }}
+                            >
+                              <div className="relative overflow-hidden rounded-xl h-48 md:h-56 w-full border border-white/10 hover:border-[#1cb683]/50 transition-all duration-500 shadow-lg hover:shadow-xl group-hover:shadow-[#1cb683]/20">
+                                {/* Glow Effect */}
+                                <div className="absolute inset-0 bg-[#1cb683]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl" />
+                                
+                                {/* Background Image */}
+                                <div 
+                                  className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
+                                  style={{ backgroundImage: `url('${card.image}')` }}
+                                />
+                                
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
+                                
+                                {/* Content */}
+                                <div className="relative z-10 h-full flex flex-col justify-end p-5">
+                                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#1cb683] transition-all duration-300">
+                                    {card.title}
+                                  </h3>
+                                  <p className="text-white/80 text-xs md:text-sm leading-relaxed group-hover:text-white/90 transition-all duration-300">
+                                    {card.desc}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="space-y-6 md:space-y-8">
+                          <div className={`overflow-hidden transform transition-all duration-700 ease-out ${
+                            currentSection === 1 ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+                          }`} style={{ transitionDelay: '200ms' }}>
+                            <p className="text-[#1cb683] text-base md:text-lg font-bold tracking-[0.3em] uppercase">
+                              DISCOVER THE HUMOR
+                            </p>
+                            <div className="h-[1px] bg-gradient-to-r from-[#1cb683]/30 via-[#1cb683] to-[#1cb683]/30 w-full mt-2" />
+                          </div>
+
+                          <div className="space-y-2">
+                            {['Comedy', 'Shows'].map((word, i) => (
+                              <h1
+                                key={i}
+                                className={`text-4xl sm:text-5xl md:text-6xl font-extrabold leading-none bg-gradient-to-r from-white via-[#a6ffdc] to-[#1cb683] bg-clip-text text-transparent transform transition-all duration-700 ease-out ${
+                                  currentSection === 1 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                                }`}
+                                style={{ transitionDelay: `${300 + i * 150}ms` }}
+                              >
+                                {word}
+                              </h1>
+                            ))}
+                          </div>
+
+                          <p className={`text-white/80 text-sm md:text-base leading-relaxed max-w-md transform transition-all duration-700 ease-out ${
+                            currentSection === 1 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                          }`} style={{ transitionDelay: '600ms' }}>
+                            Enjoy laughter and unforgettable moments with top comedians. 
+                            The best comedy experience for you and your friends!
+                          </p>
+
+                          <div className={`relative w-fit transform transition-all duration-700 ease-out ${
+                            currentSection === 1 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                          }`} style={{ transitionDelay: '800ms' }}>
+                            <button className="px-5 py-2.5 rounded-full bg-[#1cb683]/10 border border-[#1cb683]/30 text-[#1cb683] font-medium tracking-wide hover:bg-[#1cb683]/20 hover:text-white transition-all duration-300 group relative overflow-hidden">
+                              <span className="relative z-10">Explore More</span>
+                              <span className="absolute inset-0 bg-gradient-to-r from-[#1cb683]/20 to-[#1cb683]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Navigation Dots */}
+      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4">
+        {[0, 1].map((index) => (
+          <button
+            key={index}
+            onClick={() => goToSection(index)}
+            className={`w-4 h-4 rounded-full transition-all duration-300 ${
+              currentSection === index 
+                ? 'bg-[#1cb683] scale-125 shadow-lg shadow-[#1cb683]/40' 
+                : 'bg-white/30 hover:bg-white/50'
+            }`}
+            aria-label={`Go to section ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      <style jsx global>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-10px) scale(1.02); }
+        }
+
+        .animate-pulse-slow {
+          animation: pulse 15s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slower {
+          animation: pulse 18s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slowest {
+          animation: pulse 20s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.3; }
+        }
+
+        .animate-marquee {
+          animation: marquee 25s linear infinite;
+        }
+        
+        @keyframes marquee {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </main>
-  )
+  );
 }

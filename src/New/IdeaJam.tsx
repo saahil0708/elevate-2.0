@@ -83,7 +83,7 @@ export default function IdeaJamSection() {
   const has3DSupport = supportsCSS3D()
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-r from-black to-gray-900 text-white py-12 md:py-20 px-4 overflow-hidden">
+    <section id="ideajam" className="relative min-h-screen  text-white py-12 md:py-20 px-4 overflow-hidden">
       <div className="relative max-w-7xl mx-auto text-center">
         <div className="mb-8 md:mb-12 relative">
           <p className="text-emerald-400 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 md:mb-8 tracking-wide">IdeaJam 2025</p>

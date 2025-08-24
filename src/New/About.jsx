@@ -58,7 +58,7 @@ export default function EnhancedElevateAbout() {
   ]
 
   return (
-    <div ref={containerRef} className="relative min-h-screen p-2 sm:p-4 md:p-6 lg:p-10 bg-black text-white overflow-hidden">
+    <div ref={containerRef} id="about" className="relative min-h-screen p-2 sm:p-4 md:p-6 lg:p-10 bg-black text-white overflow-hidden">
       <ScrollProgressBar />
       <ParticleBackground />
       <FloatingElements />

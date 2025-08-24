@@ -1,388 +1,498 @@
-"use client";
+"use client"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { cn } from "@/lib/utils"
+import Image from "next/image"
 
-import { Tabs } from "@/Components/ui/Tabs";
-import { motion } from "framer-motion";
-import { Calendar, Clock, Users, Star, MapPin, Ticket } from "lucide-react";
-
-export default function CulturalNightsDemo() {
-  const tabs = [
+export default function EventTabs() {
+  const tabsData = [
     {
       title: "Cultural Night",
       value: "cultural",
       content: (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full overflow-hidden relative min-h-[28rem] md:min-h-[40rem] lg:min-h-[45rem] rounded-3xl bg-gradient-to-br from-gray-900/95 via-black to-gray-900/95 border border-[#1cb683]/30 backdrop-blur-xl shadow-2xl"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1cb683]/5 via-transparent to-emerald-400/5"></div>
-          
-          <div className="flex flex-col lg:flex-row min-h-full relative z-10">
-            {/* Content Section */}
-            <div className="flex-1 p-6 md:p-8 lg:p-10 xl:p-12">
+        <div className="w-full overflow-hidden relative h-full rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-10 text-white bg-gradient-to-br from-[#0a0f0d]/95 via-[#0a0f0d]/90 to-[#000000]/95 backdrop-blur-xl border border-[#1cb683]/40 shadow-2xl">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#1cb683]/20 via-[#1cb683]/10 to-[#1cb683]/20 rounded-xl sm:rounded-2xl blur-xl"></div>
+
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full bg-[linear-gradient(rgba(28,182,131,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(28,182,131,0.1)_1px,transparent_1px)] bg-[size:30px_30px]"></div>
+          </div>
+
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f0d] via-[#0a0f0d]/80 to-[#0a0f0d] z-0 opacity-30"></div>
+            <div className="absolute inset-0 bg-[url('https://img.freepik.com/premium-photo/live-music-concert-stage-background_800563-6888.jpg?w=740')] bg-cover bg-center mix-blend-overlay opacity-100 z-0"></div>
+          </div>
+
+          {/* Floating Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(8)].map((_, i) => (
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-6 md:mb-8"
-              >
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-[#1cb683] to-emerald-400 flex items-center justify-center">
-                    <Star className="w-4 h-4 md:w-6 md:h-6 text-white" />
-                  </div>
-                  <div className="h-px flex-1 bg-gradient-to-r from-[#1cb683]/50 to-transparent"></div>
-                </div>
-                <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1cb683] via-emerald-400 to-[#1cb683] mb-3 md:mb-4 leading-tight">
+                key={i}
+                className={`absolute rounded-full ${
+                  i % 2 === 0 ? "w-2 h-2 bg-[#1cb683]/40" : "w-1.5 h-1.5 bg-[#1cb683]/20"
+                }`}
+                animate={{
+                  y: [0, -80, 0],
+                  x: [0, Math.sin(i) * 20, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 5 + i,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: i * 0.7,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  left: `${15 + i * 12}%`,
+                  top: `${20 + (i % 4) * 15}%`,
+                }}
+              />
+            ))}
+          </div>
+
+          <div className="relative z-10 space-y-4 sm:space-y-6">
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
+              <div className="flex-1 space-y-3 sm:space-y-4">
+                <motion.h2 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#1cb683] via-[#1cb683] to-white bg-clip-text text-transparent leading-tight drop-shadow-2xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
                   Cultural Night
-                </h2>
-                <p className="text-base md:text-lg text-emerald-300/80 font-medium">Premium Heritage Celebration</p>
-              </motion.div>
-
-              <div className="text-sm md:text-base lg:text-lg font-normal text-gray-300 space-y-4 md:space-y-6 lg:space-y-8">
-                <motion.div
+                </motion.h2>
+                <motion.h3 
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#e5e7eb] leading-relaxed drop-shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-[#1cb683]/20 hover:border-[#1cb683]/40 transition-all duration-300 group"
+                  transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="w-3 h-3 bg-gradient-to-r from-[#1cb683] to-emerald-400 rounded-full mt-2 group-hover:scale-110 transition-transform duration-300"></div>
-                    <div>
-                      <h3 className="text-[#1cb683] text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center">
-                        Experience Overview
-                      </h3>
-                      <p className="leading-relaxed text-gray-300 text-sm md:text-base">
-                        An immersive celebration of global heritage featuring authentic performances, traditional arts, and
-                        cultural exchanges. This premier event showcases the rich diversity of our community through
-                        carefully curated programming that honors ancestral traditions while fostering cross-cultural understanding.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="bg-gradient-to-br from-emerald-900/20 to-[#1cb683]/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-emerald-400/20 hover:border-emerald-400/40 transition-all duration-300 group"
-                >
-                  <div className="flex items-start space-x-4 mb-4 md:mb-6">
-                    <div className="w-3 h-3 bg-gradient-to-r from-emerald-400 to-[#1cb683] rounded-full mt-2 group-hover:scale-110 transition-transform duration-300"></div>
-                    <h3 className="text-emerald-400 text-lg md:text-xl font-bold">Featured Experiences</h3>
-                  </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4">
-                    {[
-                      "Traditional dance performances from 12+ communities",
-                      "Live music with authentic indigenous instruments",
-                      "Interactive cultural art workshops & demonstrations",
-                      "Gourmet international cuisine stations"
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                        className="flex items-start space-x-3 group/item hover:bg-white/5 p-2 rounded-lg transition-all duration-300"
-                      >
-                        <div className="w-2 h-2 bg-gradient-to-r from-[#1cb683] to-emerald-400 rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-300"></div>
-                        <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300 text-sm md:text-base">{item}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1 }}
-                  className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
-                >
-                  {[
-                    { icon: Clock, label: "Duration", value: "6:00 PM - 11:00 PM" },
-                    { icon: Users, label: "Capacity", value: "500 Guests" },
-                    { icon: MapPin, label: "Venue", value: "Grand Cultural Hall" },
-                    { icon: Ticket, label: "Dress Code", value: "Traditional/Formal" }
-                  ].map(({ icon: Icon, label, value }, index) => (
-                    <div
-                      key={index}
-                      className="bg-gradient-to-br from-gray-800/30 to-gray-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 border border-gray-700/30 hover:border-[#1cb683]/30 transition-all duration-300 group"
-                    >
-                      <Icon className="w-4 h-4 md:w-5 md:h-5 text-[#1cb683] mb-2 group-hover:scale-110 transition-transform duration-300" />
-                      <p className="text-[#1cb683] text-xs md:text-sm font-semibold">{label}</p>
-                      <p className="text-gray-300 text-xs md:text-sm">{value}</p>
-                    </div>
-                  ))}
-                </motion.div>
+                  Join us for an amazing evening of cultural performances celebrating diversity and talent!
+                </motion.h3>
               </div>
+              <motion.div
+                className="w-full sm:w-72 md:w-80 h-40 sm:h-48 rounded-lg sm:rounded-xl overflow-hidden border-2 border-[#1cb683]/60 shadow-2xl relative group"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#1cb683]/30 to-[#1cb683]/20 rounded-lg sm:rounded-xl blur-sm group-hover:blur-md transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f0d] to-transparent opacity-70"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
+                  <span className="text-white font-medium text-sm">Traditional Dance Performance</span>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Image Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 text-sm sm:text-base md:text-lg">
+              <motion.div
+                className="space-y-3 sm:space-y-4 p-3 sm:p-4 bg-gradient-to-r from-[#1cb683]/10 to-transparent rounded-lg sm:rounded-xl backdrop-blur-md border border-[#1cb683]/30 shadow-lg hover:shadow-[#1cb683]/20 transition-all duration-300"
+                whileHover={{ scale: 1.01, y: -2 }}
+                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <h4 className="text-[#1cb683] font-semibold text-base sm:text-lg mb-2 sm:mb-3 drop-shadow-lg flex items-center gap-2">
+                  <span className="w-2 h-2 bg-[#1cb683] rounded-full"></span>
+                  Performances
+                </h4>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Traditional Dance Performances
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Live Music & Singing
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Art Exhibitions
+                </p>
+              </motion.div>
+              <motion.div
+                className="space-y-3 sm:space-y-4 p-3 sm:p-4 bg-gradient-to-l from-[#1cb683]/10 to-transparent rounded-lg sm:rounded-xl backdrop-blur-md border border-[#1cb683]/30 shadow-lg hover:shadow-[#1cb683]/20 transition-all duration-300"
+                whileHover={{ scale: 1.01, y: -2 }}
+                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <h4 className="text-[#1cb683] font-semibold text-base sm:text-lg mb-2 sm:mb-3 drop-shadow-lg flex items-center gap-2">
+                  <span className="w-2 h-2 bg-[#1cb683] rounded-full"></span>
+                  Activities
+                </h4>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Poetry Recitations
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Drama & Theater
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Cultural Competitions
+                </p>
+              </motion.div>
+            </div>
+
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="lg:w-2/5 relative overflow-hidden rounded-b-3xl lg:rounded-b-none lg:rounded-r-3xl min-h-[250px] md:min-h-[300px] lg:min-h-full"
+              className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gradient-to-r from-[#0a0f0d]/50 via-[#1cb683]/10 to-[#0a0f0d]/50 rounded-lg sm:rounded-xl backdrop-blur-lg border border-[#1cb683]/30 shadow-2xl"
+              whileHover={{ scale: 1.005 }}
+              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <img
-                src="https://images.pexels.com/photos/3618568/pexels-photo-3618568.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Cultural night celebration with traditional dancers"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#1cb683]/10 via-transparent to-emerald-400/10"></div>
-              
-              <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.2 }}
-                  className="bg-black/40 backdrop-blur-md rounded-lg md:rounded-xl p-3 md:p-4 border border-white/20"
-                >
-                  <p className="text-white text-base md:text-lg font-bold mb-1">Traditional Performances</p>
-                  <p className="text-gray-300 text-xs md:text-sm">Celebrating Global Heritage & Unity</p>
-                  <div className="flex items-center mt-2 space-x-2">
-                    <div className="flex space-x-1">
-                      {[1,2,3,4,5].map((star) => (
-                        <Star key={star} className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 fill-yellow-400" />
-                      ))}
-                    </div>
-                    <span className="text-yellow-400 text-xs md:text-sm font-medium">Premium Event</span>
-                  </div>
-                </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 text-sm sm:text-base md:text-lg">
+                <div className="space-y-2 sm:space-y-3">
+                  <p className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-[#1cb683] font-bold text-lg sm:text-xl drop-shadow-lg">📅</span>
+                    <span className="text-[#e5e7eb] text-xs sm:text-sm md:text-base">
+                      <span className="text-[#1cb683] font-semibold">Date:</span> Saturday, March 15th
+                    </span>
+                  </p>
+                  <p className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-[#1cb683] font-bold text-lg sm:text-xl drop-shadow-lg">⏰</span>
+                    <span className="text-[#e5e7eb] text-xs sm:text-sm md:text-base">
+                      <span className="text-[#1cb683] font-semibold">Time:</span> 6:00 PM - 10:00 PM
+                    </span>
+                  </p>
+                </div>
+                <div className="space-y-2 sm:space-y-3">
+                  <p className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-[#1cb683] font-bold text-lg sm:text-xl drop-shadow-lg">📍</span>
+                    <span className="text-[#e5e7eb] text-xs sm:text-sm md:text-base">
+                      <span className="text-[#1cb683] font-semibold">Location:</span> Main Auditorium
+                    </span>
+                  </p>
+                  <p className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[#1cb683] to-[#1cb683] bg-clip-text text-transparent">
+                    ✨ FREE ENTRY ✨
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       ),
     },
     {
-      title: "Comedy Show",
+      title: "Comedy Night",
       value: "comedy",
       content: (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full overflow-hidden relative min-h-[28rem] md:min-h-[40rem] lg:min-h-[45rem] rounded-3xl bg-gradient-to-br from-gray-900/95 via-black to-gray-900/95 border border-yellow-500/30 backdrop-blur-xl shadow-2xl"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 via-transparent to-orange-400/5"></div>
-          
-          <div className="flex flex-col lg:flex-row min-h-full relative z-10">
-            {/* Content Section */}
-            <div className="flex-1 p-6 md:p-8 lg:p-10 xl:p-12">
+        <div className="w-full overflow-hidden relative h-full rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-10 text-white bg-gradient-to-br from-[#0a0f0d]/95 via-[#0a0f0d]/90 to-[#000000]/95 backdrop-blur-xl border border-[#1cb683]/40 shadow-2xl">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#1cb683]/20 via-[#1cb683]/10 to-[#1cb683]/20 rounded-xl sm:rounded-2xl blur-xl"></div>
+
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full bg-[linear-gradient(rgba(28,182,131,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(28,182,131,0.1)_1px,transparent_1px)] bg-[size:30px_30px]"></div>
+          </div>
+
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f0d] via-[#0a0f0d]/80 to-[#0a0f0d] z-0 opacity-30"></div>
+            <div className="absolute inset-0 bg-[url('https://img.freepik.com/premium-photo/photo-music-stage_931878-23981.jpg')] bg-cover bg-center mix-blend-overlay opacity-100 z-0"></div>
+          </div>
+
+          {/* Floating Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(8)].map((_, i) => (
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-6 md:mb-8"
-              >
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-yellow-500 to-orange-400 flex items-center justify-center">
-                    <Star className="w-4 h-4 md:w-6 md:h-6 text-white" />
-                  </div>
-                  <div className="h-px flex-1 bg-gradient-to-r from-yellow-500/50 to-transparent"></div>
-                </div>
-                <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-orange-400 to-yellow-500 mb-3 md:mb-4 leading-tight">
-                  Comedy Show
-                </h2>
-                <p className="text-base md:text-lg text-yellow-300/80 font-medium">World-Class Stand-Up Entertainment</p>
-              </motion.div>
+                key={i}
+                className={`absolute rounded-full ${
+                  i % 2 === 0 ? "w-2 h-2 bg-[#1cb683]/40" : "w-1.5 h-1.5 bg-[#1cb683]/20"
+                }`}
+                animate={{
+                  y: [0, 80, 0],
+                  x: [0, Math.cos(i) * 20, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 5 + i,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: i * 0.7,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  right: `${15 + i * 12}%`,
+                  top: `${20 + (i % 4) * 15}%`,
+                }}
+              />
+            ))}
+          </div>
 
-              <div className="text-sm md:text-base lg:text-lg font-normal text-gray-300 space-y-4 md:space-y-6 lg:space-y-8">
-                <motion.div
+          <div className="relative z-10 space-y-4 sm:space-y-6">
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
+              <div className="flex-1 space-y-3 sm:space-y-4">
+                <motion.h2 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#1cb683] via-[#1cb683] to-white bg-clip-text text-transparent leading-tight drop-shadow-2xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-300 group"
+                  transition={{ duration: 0.6 }}
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="w-3 h-3 bg-gradient-to-r from-yellow-500 to-orange-400 rounded-full mt-2 group-hover:scale-110 transition-transform duration-300"></div>
-                    <div>
-                      <h3 className="text-yellow-500 text-lg md:text-xl font-bold mb-3 md:mb-4">Premium Comedy Experience</h3>
-                      <p className="leading-relaxed text-gray-300 text-sm md:text-base">
-                        A sophisticated comedy showcase featuring internationally acclaimed headliners and emerging talent. 
-                        Our curated lineup delivers intelligent humor, observational comedy, and interactive performances 
-                        for an unforgettable evening of premium entertainment in an intimate venue setting.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
+                  Comedy Night
+                </motion.h2>
+                <motion.h3 
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#e5e7eb] leading-relaxed drop-shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="bg-gradient-to-br from-orange-900/20 to-yellow-500/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-orange-400/20 hover:border-orange-400/40 transition-all duration-300 group"
+                  transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <div className="flex items-start space-x-4 mb-4 md:mb-6">
-                    <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-yellow-500 rounded-full mt-2 group-hover:scale-110 transition-transform duration-300"></div>
-                    <h3 className="text-orange-400 text-lg md:text-xl font-bold">Performance Lineup</h3>
-                  </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4">
-                    {[
-                      "Internationally acclaimed headliner comedian",
-                      "3 professional featured acts with TV credits",
-                      "Rising local talent showcase segment",
-                      "Interactive audience participation moments"
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                        className="flex items-start space-x-3 group/item hover:bg-white/5 p-2 rounded-lg transition-all duration-300"
-                      >
-                        <div className="w-2 h-2 bg-gradient-to-r from-yellow-500 to-orange-400 rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-300"></div>
-                        <span className="text-gray-300 group-hover/item:text-white transition-colors duration-300 text-sm md:text-base">{item}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1 }}
-                  className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
-                >
-                  {[
-                    { icon: Clock, label: "Duration", value: "8:00 PM - 10:30 PM" },
-                    { icon: Users, label: "Capacity", value: "300 Guests" },
-                    { icon: MapPin, label: "Venue", value: "Intimate Comedy Club" },
-                    { icon: Ticket, label: "Age Limit", value: "18+ Only" }
-                  ].map(({ icon: Icon, label, value }, index) => (
-                    <div
-                      key={index}
-                      className="bg-gradient-to-br from-gray-800/30 to-gray-900/50 backdrop-blur-sm rounded-lg md:rounded-xl p-3 md:p-4 border border-gray-700/30 hover:border-yellow-500/30 transition-all duration-300 group"
-                    >
-                      <Icon className="w-4 h-4 md:w-5 md:h-5 text-yellow-500 mb-2 group-hover:scale-110 transition-transform duration-300" />
-                      <p className="text-yellow-500 text-xs md:text-sm font-semibold">{label}</p>
-                      <p className="text-gray-300 text-xs md:text-sm">{value}</p>
-                    </div>
-                  ))}
-                </motion.div>
+                  Get ready to laugh until your sides hurt with our hilarious lineup!
+                </motion.h3>
               </div>
+              <motion.div
+                className="w-full sm:w-72 md:w-80 h-40 sm:h-48 rounded-lg sm:rounded-xl overflow-hidden border-2 border-[#1cb683]/60 shadow-2xl relative group"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#1cb683]/30 to-[#1cb683]/20 rounded-lg sm:rounded-xl blur-sm group-hover:blur-md transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-[url('https://img.freepik.com/premium-photo/live-music-concert-stage-background_800563-6888.jpg?w=740')] bg-cover bg-center"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f0d] to-transparent opacity-70"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
+                  <span className="text-white font-medium text-sm">Stand-up Comedy</span>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Image Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 text-sm sm:text-base md:text-lg">
+              <motion.div
+                className="space-y-3 sm:space-y-4 p-3 sm:p-4 bg-gradient-to-r from-[#1cb683]/10 to-transparent rounded-lg sm:rounded-xl backdrop-blur-md border border-[#1cb683]/30 shadow-lg hover:shadow-[#1cb683]/20 transition-all duration-300"
+                whileHover={{ scale: 1.01, y: -2 }}
+                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <h4 className="text-[#1cb683] font-semibold text-base sm:text-lg mb-2 sm:mb-3 drop-shadow-lg flex items-center gap-2">
+                  <span className="w-2 h-2 bg-[#1cb683] rounded-full"></span>
+                  Comedy Shows
+                </h4>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Stand-up Comedy
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Improv Performances
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Comedy Skits
+                </p>
+              </motion.div>
+              <motion.div
+                className="space-y-3 sm:space-y-4 p-3 sm:p-4 bg-gradient-to-l from-[#1cb683]/10 to-transparent rounded-lg sm:rounded-xl backdrop-blur-md border border-[#1cb683]/30 shadow-lg hover:shadow-[#1cb683]/20 transition-all duration-300"
+                whileHover={{ scale: 1.01, y: -2 }}
+                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <h4 className="text-[#1cb683] font-semibold text-base sm:text-lg mb-2 sm:mb-3 drop-shadow-lg flex items-center gap-2">
+                  <span className="w-2 h-2 bg-[#1cb683] rounded-full"></span>
+                  Interactive Fun
+                </h4>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Open Mic Sessions
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Comedy Competition
+                </p>
+                <p className="flex items-center gap-2 sm:gap-3 text-[#e5e7eb]">
+                  <span className="w-2 h-2 sm:w-3 sm:h-3 bg-[#1cb683] rounded-full shadow-lg shadow-[#1cb683]/50 flex-shrink-0"></span>
+                  Interactive Games
+                </p>
+              </motion.div>
+            </div>
+
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="lg:w-2/5 relative overflow-hidden rounded-b-3xl lg:rounded-b-none lg:rounded-r-3xl min-h-[250px] md:min-h-[300px] lg:min-h-full"
+              className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gradient-to-r from-[#0a0f0d]/50 via-[#1cb683]/10 to-[#0a0f0d]/50 rounded-lg sm:rounded-xl backdrop-blur-lg border border-[#1cb683]/30 shadow-2xl"
+              whileHover={{ scale: 1.005 }}
+              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <img
-                src="https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Professional comedy show stage with spotlight"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-transparent to-orange-400/10"></div>
-              
-              <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.2 }}
-                  className="bg-black/40 backdrop-blur-md rounded-lg md:rounded-xl p-3 md:p-4 border border-white/20"
-                >
-                  <p className="text-white text-base md:text-lg font-bold mb-1">Stand-Up Comedy</p>
-                  <p className="text-gray-300 text-xs md:text-sm">Premium Entertainment & Laughs</p>
-                  <div className="flex items-center mt-2 space-x-2">
-                    <div className="flex space-x-1">
-                      {[1,2,3,4,5].map((star) => (
-                        <Star key={star} className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 fill-yellow-400" />
-                      ))}
-                    </div>
-                    <span className="text-yellow-400 text-xs md:text-sm font-medium">Top Rated Show</span>
-                  </div>
-                </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 text-sm sm:text-base md:text-lg">
+                <div className="space-y-2 sm:space-y-3">
+                  <p className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-[#1cb683] font-bold text-lg sm:text-xl drop-shadow-lg">📅</span>
+                    <span className="text-[#e5e7eb] text-xs sm:text-sm md:text-base">
+                      <span className="text-[#1cb683] font-semibold">Date:</span> Friday, March 22nd
+                    </span>
+                  </p>
+                  <p className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-[#1cb683] font-bold text-lg sm:text-xl drop-shadow-lg">⏰</span>
+                    <span className="text-[#e5e7eb] text-xs sm:text-sm md:text-base">
+                      <span className="text-[#1cb683] font-semibold">Time:</span> 7:00 PM - 10:00 PM
+                    </span>
+                  </p>
+                </div>
+                <div className="space-y-2 sm:space-y-3">
+                  <p className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-[#1cb683] font-bold text-lg sm:text-xl drop-shadow-lg">📍</span>
+                    <span className="text-[#e5e7eb] text-xs sm:text-sm md:text-base">
+                      <span className="text-[#1cb683] font-semibold">Location:</span> Student Center Hall
+                    </span>
+                  </p>
+                  <p className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[#1cb683] to-[#1cb683] bg-clip-text text-transparent">
+                    ✨ FREE ENTRY ✨
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       ),
     },
-  ];
+  ]
+
+  const [active, setActive] = useState(tabsData[0])
+  const [tabs, setTabs] = useState(tabsData)
+  const [direction, setDirection] = useState(0)
+
+  const moveSelectedTabToTop = (idx) => {
+    const currentIndex = tabsData.findIndex((tab) => tab.value === active.value)
+    setDirection(idx > currentIndex ? 1 : -1)
+
+    const newTabs = [...tabsData]
+    const selectedTab = newTabs.splice(idx, 1)
+    newTabs.unshift(selectedTab[0])
+    setTabs(newTabs)
+    setActive(newTabs[0])
+  }
+
+  const [hovering, setHovering] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#1cb683]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#1cb683]/5 to-emerald-400/5 rounded-full blur-3xl"></div>
+    <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 mt-8">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-8">
+        {tabsData.map((tab, idx) => (
+          <motion.button
+            key={tab.title}
+            onClick={() => moveSelectedTabToTop(idx)}
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+            className="relative w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-2 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 backdrop-blur-lg border border-[#1cb683]/30 hover:scale-105 transform min-h-[48px] touch-manipulation"
+            style={{
+              transformStyle: "preserve-3d",
+            }}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            {active.value === tab.value && (
+              <motion.div
+                layoutId="clickedbutton"
+                transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                className="absolute inset-0 bg-gradient-to-r from-[#1cb683]/30 to-[#1cb683]/20 backdrop-blur-lg rounded-full border border-[#1cb683]/50 shadow-lg"
+              />
+            )}
+            <span
+              className={cn(
+                "relative block transition-colors duration-300",
+                active.value === tab.value
+                  ? "bg-gradient-to-r from-[#1cb683] to-[#1cb683] bg-clip-text text-transparent font-bold"
+                  : "text-[#e5e7eb]/70 hover:text-[#e5e7eb]",
+              )}
+            >
+              {tab.title}
+            </span>
+          </motion.button>
+        ))}
       </div>
 
-      <div className="relative z-10 py-20 pb-80">
-        <div className="text-center mb-20 px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
-          >
-            <motion.h1 
-              className="text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1cb683] via-emerald-400 to-[#1cb683] mb-6 leading-tight"
-              animate={{ 
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              style={{ backgroundSize: "200% 200%" }}
-            >
-              Cultural Nights
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-emerald-300/60 text-xl font-medium tracking-wide"
-            >
-              Premium Event Series
-            </motion.p>
-          </motion.div>
-          
-          <motion.div
-            className="w-80 h-1 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent mx-auto mb-12 relative"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1.2, delay: 0.6 }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400 to-transparent blur-sm"></div>
-          </motion.div>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-xl md:text-2xl text-gray-300 max-w-5xl mx-auto leading-relaxed font-light"
-          >
-            Experience exceptional entertainment through our signature event series. From celebrating global heritage to
-            delivering world-class comedy, we create{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1cb683] to-emerald-400 font-medium">
-              memorable experiences
-            </span>{" "}
-            that bring communities together.
-          </motion.p>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="min-h-[32rem] md:min-h-[50rem] lg:min-h-[55rem] [perspective:1000px] relative flex flex-col max-w-7xl mx-auto w-full items-start justify-start px-4"
-        >
-          <Tabs tabs={tabs} />
-        </motion.div>
+      <div className="relative w-full h-[600px] sm:h-[650px] md:h-[600px] overflow-hidden">
+        <FadeInDiv tabs={tabs} active={active} hovering={hovering} direction={direction} />
       </div>
-
-      {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
     </div>
-  );
+  )
+}
+
+const FadeInDiv = ({ tabs, hovering, direction, className }) => {
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 800 : -800,
+      opacity: 0,
+      scale: 0.9,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 800 : -800,
+      opacity: 0,
+      scale: 0.9,
+    }),
+  }
+
+  return (
+    <div className="relative w-full h-full">
+      <AnimatePresence initial={false} custom={direction} mode="wait">
+        <motion.div
+          key={tabs[0].value}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 400, damping: 40 },
+            opacity: { duration: 0.3 },
+            scale: { duration: 0.3 },
+          }}
+          className={cn("w-full h-full absolute top-0 left-0", className)}
+        >
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              delay: 0.1,
+              duration: 0.4,
+              ease: "easeOut",
+            }}
+            className="w-full h-full"
+          >
+            {tabs[0].content}
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+
+      {tabs.slice(1).map((tab, idx) => (
+        <motion.div
+          key={`bg-${tab.value}`}
+          style={{
+            scale: 1 - (idx + 1) * 0.05,
+            top: hovering ? (idx + 1) * -15 : 0,
+            zIndex: -(idx + 1),
+            opacity: idx < 2 ? 1 - (idx + 1) * 0.3 : 0,
+          }}
+          animate={{
+            scale: hovering ? 1 - (idx + 1) * 0.03 : 1 - (idx + 1) * 0.05,
+          }}
+          transition={{
+            duration: 0.2,
+            ease: "easeOut",
+          }}
+          className={cn("w-full h-full absolute top-0 left-0", className)}
+        >
+          {tab.content}
+        </motion.div>
+      ))}
+    </div>
+  )
 }
