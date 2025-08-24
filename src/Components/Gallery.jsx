@@ -27,12 +27,12 @@ const IMGS = [
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="text-white py-20">
+    <section id="gallery" className="text-white py-20 bg-transparent">
       {/* Heading */}
-      <div className="text-center max-w-3xl mx-auto px-4">
-        <h2 className="text-5xl font-bold mb-4 tracking-wide">
+      <div className="text-center max-w-5xl mx-auto px-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 tracking-wide">
           GLIMPSES <span className="text-[#1cb683]">2024</span>
-        </h2>
+        </h1>
         <div className="w-40 h-1 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent mx-auto mb-6" />
         <p className="text-lg text-gray-300">
           A glimpse into the unforgettable experiences we've created
