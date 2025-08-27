@@ -412,10 +412,10 @@ export default function ElevateHeroLuminousFlow() {
                 {/* Call-to-Action Buttons */}
                 <div ref={ctaRef} className="mt-16 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                     <button className="px-10 py-4 text-xl font-bold text-white bg-[#0c5352] rounded-full shadow-2xl hover:shadow-glow-pulse hover:scale-105 transition-all duration-300 ease-out transform active:scale-95 button-hover-shimmer">
-                        🎟 Register Now
+                        Register Now
                     </button>
-                    <button className="px-10 py-4 text-xl font-bold text-white border-2 border-[#0c5352] rounded-full hover:bg-[#0c5352]/50 transition-all duration-300 ease-out hover:scale-105 active:scale-95 button-border-gradient-hover">
-                        📅 View Schedule
+                    <button className="px-10 py-4 text-xl font-bold text-white border-2 border-[#0c5352] rounded-full hover:bg-[#0c5352]/50 transition-all duration-300 ease-out hover:scale-105 active:scale-95 ">
+                        View Schedule
                     </button>
                 </div>
             </div>
