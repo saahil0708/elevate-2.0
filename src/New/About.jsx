@@ -96,7 +96,7 @@ const ElevatePage = () => {
             {/* Left: Video & Year Selector */}
             <div className="space-y-10">
               <div className="text-center lg:text-left">
-                <h2 className="text-5xl font-black text-[#0c7372] mb-8 tracking-wider relative">
+                <h2 className="text-5xl font-black bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-8 tracking-wider relative">
                   AFTERMOVIES
                 </h2>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6 mb-10">
@@ -164,7 +164,7 @@ const ElevatePage = () => {
             {/* Right: About & Stats */}
             <div className={`space-y-10 transition-all duration-700 ${isLoading ? "opacity-30 scale-95" : "opacity-100 scale-100"}`}>
               <div>
-                <h2 className="text-5xl font-black text-[#0c7372] mb-10 text-center lg:text-left tracking-wider relative">
+                <h2 className="text-5xl font-black bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-10 text-center lg:text-left tracking-wider relative">
                   ABOUT ELEVATE
                 </h2>
                 <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-[#0c5352]/20">
