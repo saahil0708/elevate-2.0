@@ -23,7 +23,7 @@ export default function Layout() {
       </section>
 
       {/* Make sure each section uses w-full */}
-      {/* <section id="about" className="w-full"><CombinedAbout /></section>*/}
+      <section id="about" className="w-full"><CombinedAbout /></section>
       <section id="cultural" className="w-full"><Cultural /></section>
       <section id="speakers" className="w-full"><Speakers /></section>
       <section id="timeline" className="w-full"><Timeline /></section>
