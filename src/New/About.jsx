@@ -97,7 +97,7 @@ const ElevatePage = () => {
             <div className="space-y-10">
               <div className="text-center lg:text-left">
                 <h2 className="text-5xl font-black bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-8 tracking-wider relative">
-                  AFTERMOVIES
+                  PREVIOUS YEAR
                 </h2>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6 mb-10">
                   {years.map((year) => (
