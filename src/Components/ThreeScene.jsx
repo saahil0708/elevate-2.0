@@ -241,7 +241,7 @@ const SpeakersCarousel = () => {
   return (
     <section id="speakers" className="relative py-16 md:py-24 overflow-hidden">
       {/* Background with reduced opacity */}
-      <div className="absolute inset-0 bg-black/90"></div>
+      <div className="absolute inset-0 bg-transparent"></div>
       
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.02]"

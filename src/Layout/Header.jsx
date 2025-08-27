@@ -99,16 +99,8 @@ export default function Header() {
           : "bg-gradient-to-b from-black/90 to-transparent backdrop-blur-lg py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
-        {/* Logo */}
-        <div className="flex items-center">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#1cb683] to-[#0ea5e9] rounded-lg blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-            <h1 className="text-2xl font-bold text-white relative px-4 py-2 rounded-lg bg-black">
-              ELEVATE <span className="text-[#1cb683]">2.0</span>
-            </h1>
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto flex items-center justify-center px-6">
+      
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
@@ -126,12 +118,12 @@ export default function Header() {
                   className="relative px-4 py-2 text-white/90 hover:text-white transition-colors duration-300 group"
                 >
                   <span className="relative z-10">{item.name}</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-[#1cb683] to-[#1cb683]/70 rounded-full transform scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
+                  <span className="absolute inset-0 bg-[#0c5352] rounded-full transform scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
                 </a>
               </li>
             ))}
             <li>
-              <button className="ml-2 bg-gradient-to-r from-[#1cb683] to-[#0ea5e9] text-white font-medium px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#1cb683]/30 transition-all duration-300 transform hover:-translate-y-0.5">
+              <button className="ml-2 bg-[#0c5352] text-white font-medium px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#1cb683]/30 transition-all duration-300 transform hover:-translate-y-0.5">
                 Register
               </button>
             </li>
