@@ -1,5 +1,4 @@
 "use client";
-
 import { ThreeDMarquee } from "../Components/ui/3d-marquee";
 
 export function ThreeDMarqueeDemo() {
@@ -16,31 +15,31 @@ export function ThreeDMarqueeDemo() {
     "https://assets.aceternity.com/carousel.webp",
     "https://assets.aceternity.com/placeholders-and-vanish-input.png",
     "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
+    "https://assets.aceternity.com/signup-form.png",
+    "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
+    "https://assets.aceternity.com/spotlight-new.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
+    "https://assets.aceternity.com/tabs.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
+    "https://assets.aceternity.com/cloudinary_bkp/typewriter-effect.png",
+    "https://assets.aceternity.com/glowing-effect.webp",
+    "https://assets.aceternity.com/hover-border-gradient.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Infinite_Moving_Cards_evhzur.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Lamp_hlq3ln.png",
+    "https://assets.aceternity.com/macbook-scroll.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
+    "https://assets.aceternity.com/multi-step-loader.png",
+    "https://assets.aceternity.com/vortex.png",
+    "https://assets.aceternity.com/wobble-card.png",
+    "https://assets.aceternity.com/world-map.webp",
   ];
-
   return (
-    <section
-      id="gallery"
-      className="mx-auto my-40 max-w-7xl rounded-3xl bg-transparent p-8 ring-1 ring-[#0c5352]/30 shadow-lg"
-    >
-      <div className="text-center mb-16">
-        <h1 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-4">
-          Our Gallery
-        </h1>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-          Explore our collection of stunning designs and creative projects
-        </p>
-      </div>
-      
+    <div
+      className="mx-auto my-10 max-w- rounded-3xl bg-[#020617] p-2 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
       <ThreeDMarquee images={images} />
-      
-      <div className="text-center mt-16">
-        <button className="px-6 py-3 bg-gradient-to-r from-[#0c5352] to-[#138b89] text-white rounded-full font-medium hover:from-[#0a4544] hover:to-[#0c5352] transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg">
-          View All Projects
-        </button>
-      </div>
-    </section>
+    </div>
   );
 }
-
 export default ThreeDMarqueeDemo;
