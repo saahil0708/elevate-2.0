@@ -412,6 +412,7 @@ import { useState, useEffect } from "react"
 
 const coaches = [
   {
+<<<<<<< HEAD
     id: "bubba",
     name: "AMAN GUPTA",
     designation: "CEO, BOAT",
@@ -436,6 +437,72 @@ const coaches = [
     description: "Performance coaching unlocks your highest potential through strategic goal-setting and accountability. I work with leaders to optimize their effectiveness, overcome limiting beliefs, and achieve breakthrough results in both personal and professional domains.",
   },
 ]
+=======
+    id: 1,
+    name: "Akshay Kumar",
+    role: "Bollywood Superstar",
+    bio: "With over 30 years in the Indian film industry, Akshay Kumar is one of the most prolific actors and influential personalities in Indian cinema.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    rating: 4.8,
+    topic: "Journey from Action Hero to Social Advocate",
+    color: "#0c5352",
+    gradient: "from-emerald-500 to-emerald-600",
+    social: {
+      twitter: "@akshaykumar",
+      instagram: "@akshaykumar",
+      linkedin: "akshay-kumar"
+    }
+  },
+  {
+    id: 2,
+    name: "Raima Sen",
+    role: "Award-Winning Actress",
+    bio: "Known for her work in independent cinema and mainstream Bollywood, Raima has been a vocal advocate for women's rights in the entertainment industry.",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    rating: 4.5,
+    topic: "Breaking Stereotypes in Indian Cinema",
+    color: "#0c5352",
+    gradient: "from-emerald-500 to-emerald-600",
+    social: {
+      twitter: "@raimasen",
+      instagram: "@raimasen",
+      linkedin: "raima-sen"
+    }
+  },
+  {
+    id: 3,
+    name: "Arjun Kapur",
+    role: "Tech Entrepreneur",
+    bio: "Founder of multiple successful startups, Arjun is known for his inspiring talks on innovation, leadership, and the future of technology in India.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    rating: 4.9,
+    topic: "Innovation at the Intersection of Technology and Creativity",
+    color: "#0c5352",
+    gradient: "from-emerald-500 to-emerald-600",
+    social: {
+      twitter: "@arjunkapur",
+      instagram: "@arjunkapur",
+      linkedin: "arjun-kapur"
+    }
+  },
+  {
+    id: 4,
+    name: "Priya Sharma",
+    role: "Environmental Scientist",
+    bio: "Leading researcher in sustainable development with numerous publications and a powerful voice in the climate change conversation.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    rating: 4.7,
+    topic: "Sustainable Futures: Our Collective Responsibility",
+    color: "#0c5352",
+    gradient: "from-emerald-500 to-emerald-600",
+    social: {
+      twitter: "@priyasharma",
+      instagram: "@priyasharma",
+      linkedin: "priya-sharma"
+    }
+  },
+];
+>>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("bubba")
@@ -449,8 +516,24 @@ export default function Home() {
   }, [activeTab])
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen bg-black text-white relative overflow-hidden flex flex-col">
       {/* Animated Background */}
+=======
+    <section id="speakers" className="relative py-16 md:py-24 overflow-hidden">
+      {/* Background with reduced opacity */}
+      <div className="absolute inset-0 bg-transparent"></div>
+      
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px',
+        }}
+      />
+
+>>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
       <div className="absolute inset-0">
         <div
           className="absolute grayscale inset-0 bg-cover bg-center bg-no-repeat opacity-40 transition-all duration-1000"
@@ -468,6 +551,47 @@ export default function Home() {
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#10B981]/5 rounded-full filter blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-500/3 rounded-full filter blur-3xl animate-pulse-medium" />
       </div>
+<<<<<<< HEAD
+=======
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.h2 
+            className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-6"
+            // style={{
+            //   background: `linear-gradient(135deg, #ffffff 0%, ${currentSpeaker.color} 100%)`,
+            //   WebkitBackgroundClip: 'text',
+            //   WebkitTextFillColor: 'transparent',
+            //   backgroundClip: 'text',
+            // }}
+          >
+            Celebrity Speakers
+          </motion.h2>
+          
+          <motion.div
+            className="relative mb-8"
+            initial={{ width: 0 }}
+            animate={{ width: "300px" }}
+            transition={{ delay: 0.5, duration: 1.2 }}
+          >
+            <div 
+              className="h-2 mx-auto rounded-full"
+              style={{
+                background: `linear-gradient(90deg, transparent, ${currentSpeaker.color}, transparent)`
+              }}
+            />
+          </motion.div>
+          
+          <p className="text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
+            Get inspired by our lineup of distinguished speakers
+          </p>
+        </motion.div>
+>>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
 
       {/* Content */}
       <div className="relative z-10 flex flex-col flex-1">

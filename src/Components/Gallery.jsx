@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // "use client"
 
 // import RollingGallery from "./RollingGallery"
@@ -134,6 +135,11 @@
 "use client";
 import { ThreeDMarquee } from "../Components/ui/3d-marquee";
 
+=======
+"use client";
+import { ThreeDMarquee } from "../Components/ui/3d-marquee";
+
+>>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
 export function ThreeDMarqueeDemo() {
   const images = [
     "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",

@@ -193,6 +193,7 @@ export default function Header() {
   ]
 
   return (
+<<<<<<< HEAD
     <>
       {/* Desktop Floating Navbar */}
       <header
@@ -233,6 +234,44 @@ export default function Header() {
               ))}
             </ul>
           </div>
+=======
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled
+          ? "bg-black/95 backdrop-blur-xl py-2 shadow-2xl"
+          : "bg-gradient-to-b from-black/90 to-transparent backdrop-blur-lg py-4"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-center px-6">
+      
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:block">
+          <ul className="flex items-center gap-2 bg-black/70 backdrop-blur-md rounded-full border border-white/10 px-2 py-2 shadow-2xl">
+            {[
+              { name: "Home", href: "#home" },
+              { name: "About", href: "#about" },
+              { name: "IdeaJam", href: "#ideajam" },
+              { name: "Gallery", href: "#gallery" },
+              { name: "Contact", href: "#footer" },
+            ].map((item) => (
+              <li key={item.name}>
+                <a
+                  href={item.href}
+                  className="relative px-4 py-2 text-white/90 hover:text-white transition-colors duration-300 group"
+                >
+                  <span className="relative z-10">{item.name}</span>
+                  <span className="absolute inset-0 bg-[#0c5352] rounded-full transform scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
+                </a>
+              </li>
+            ))}
+            <li>
+              <button className="ml-2 bg-[#0c5352] text-white font-medium px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#1cb683]/30 transition-all duration-300 transform hover:-translate-y-0.5">
+                Register
+              </button>
+            </li>
+          </ul>
+>>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
         </nav>
       </header>
 
