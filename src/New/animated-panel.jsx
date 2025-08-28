@@ -42,12 +42,11 @@ export const CommunityPanelist = ({ communities, autoplay = false }) => {
     <div className="w-full bg-gradient-to-r from-black to-gray-900 py-10 pb-40">
       <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-6xl md:px-8 lg:px-12">
         <div className="text-center mb-12">
-          <h1 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent">
-            COMMUNITY
-            PANELIST
-          </h1>
+              <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
+                Community <span className="text-[#20A97B]">Panelist</span>
+              </h1>
           <motion.div
-            className="w-60 mt-5 h-1 bg-gradient-to-r from-transparent via-[#0c5352] to-transparent mx-auto mb-6"
+            className="w-60 mt-5 h-1 bg-gradient-to-r from-transparent via-[#20A97B] to-transparent mx-auto mb-6"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
@@ -61,8 +60,8 @@ export const CommunityPanelist = ({ communities, autoplay = false }) => {
                 key={community.name}
                 onClick={() => setActiveTab(index)}
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === index
-                  ? "bg-[#0c5352] text-black shadow-lg neon-glow font-semibold"
-                  : "glass-dark text-gray-300 hover:bg-[#0c5352]/20 hover:text-[#0c5352] hover:border-[#0c5352]/40"
+                  ? "bg-[#20A97B] text-black shadow-lg neon-glow font-semibold"
+                  : "glass-dark text-gray-300 hover:bg-[#20A97B]/20 hover:text-[#20A97B] hover:border-[#20A97B]/40"
                   }`}
               >
                 {community.name}
@@ -111,7 +110,7 @@ export const CommunityPanelist = ({ communities, autoplay = false }) => {
                         width={500}
                         height={500}
                         draggable={false}
-                        className={`h-full w-full rounded-3xl object-cover object-center ${isActive(index) ? "ring-2 ring-[#0c5352] neon-glow" : ""
+                        className={`h-full w-full rounded-3xl object-cover object-center ${isActive(index) ? "ring-2 ring-[#20A97B] neon-glow" : ""
                           }`}
                       />
                     </motion.div>
@@ -140,7 +139,7 @@ export const CommunityPanelist = ({ communities, autoplay = false }) => {
                 }}
               >
                 <h3 className="text-2xl font-bold text-white">{speakers[activeSpeaker]?.name}</h3>
-                <p className="text-sm text-[#0c5352]">{speakers[activeSpeaker]?.designation}</p>
+                <p className="text-sm text-[#20A97B]">{speakers[activeSpeaker]?.designation}</p>
 
                 <div className="flex gap-3 mt-4">
                   {speakers[activeSpeaker]?.instagram && (
@@ -148,7 +147,7 @@ export const CommunityPanelist = ({ communities, autoplay = false }) => {
                       href={speakers[activeSpeaker].instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center w-8 h-8 rounded-full glass-dark text-[#0c5352] hover:scale-110 hover:neon-glow transition-all duration-200 border border-[#0c5352]/30"
+                      className="flex items-center justify-center w-8 h-8 rounded-full glass-dark text-[#20A97B] hover:scale-110 hover:neon-glow transition-all duration-200 border border-[#20A97B]/30"
                     >
                       <IconBrandInstagram className="w-4 h-4" />
                     </a>
@@ -158,7 +157,7 @@ export const CommunityPanelist = ({ communities, autoplay = false }) => {
                       href={speakers[activeSpeaker].linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center w-8 h-8 rounded-full glass-dark text-[#0c5352] hover:scale-110 hover:neon-glow transition-all duration-200 border border-[#0c5352]/30"
+                      className="flex items-center justify-center w-8 h-8 rounded-full glass-dark text-[#20A97B] hover:scale-110 hover:neon-glow transition-all duration-200 border border-[#20A97B]/30"
                     >
                       <IconBrandLinkedin className="w-4 h-4" />
                     </a>
@@ -196,15 +195,15 @@ export const CommunityPanelist = ({ communities, autoplay = false }) => {
                 <div className="flex gap-4 pt-12 md:pt-0">
                   <button
                     onClick={handlePrev}
-                    className="group/button flex h-7 w-7 items-center justify-center rounded-full glass-dark hover:bg-[#0c5352]/20 hover:neon-glow transition-all duration-300"
+                    className="group/button flex h-7 w-7 items-center justify-center rounded-full glass-dark hover:bg-[#20A97B]/20 hover:neon-glow transition-all duration-300"
                   >
-                    <IconArrowLeft className="h-5 w-5 text-[#0c5352] transition-transform duration-300 group-hover/button:rotate-12" />
+                    <IconArrowLeft className="h-5 w-5 text-[#20A97B] transition-transform duration-300 group-hover/button:rotate-12" />
                   </button>
                   <button
                     onClick={handleNext}
-                    className="group/button flex h-7 w-7 items-center justify-center rounded-full glass-dark hover:bg-[#0c5352]/20 hover:neon-glow transition-all duration-300"
+                    className="group/button flex h-7 w-7 items-center justify-center rounded-full glass-dark hover:bg-[#20A97B]/20 hover:neon-glow transition-all duration-300"
                   >
-                    <IconArrowRight className="h-5 w-5 text-[#0c5352] transition-transform duration-300 group-hover/button:-rotate-12" />
+                    <IconArrowRight className="h-5 w-5 text-[#20A97B] transition-transform duration-300 group-hover/button:-rotate-12" />
                   </button>
                 </div>
               )}

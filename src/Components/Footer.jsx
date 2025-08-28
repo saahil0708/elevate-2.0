@@ -33,8 +33,8 @@ export default function Footer() {
     <footer className="relative bg-gradient-to-b from-black via-gray-900 to-black text-white overflow-hidden">
       {/* Reduced background glow effects */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-24 h-24 bg-[#0c5352] rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-32 w-28 h-28 bg-[#0c5352] rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-24 h-24 bg-[#20A97B] rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-32 w-28 h-28 bg-[#20A97B] rounded-full blur-2xl animate-pulse delay-1000"></div>
       </div>
 
       {/* Main Footer Content */}
@@ -46,7 +46,7 @@ export default function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-1">
               <h3
-                className="text-lg font-bold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-4"
+                className="text-lg font-bold bg-[#20A97B] bg-clip-text text-transparent mb-4"
                 style={{ textShadow: "0 0 15px rgba(12, 83, 82, 0.3)" }}
               >
                 LUSION
@@ -62,7 +62,7 @@ export default function Footer() {
             {/* Contact */}
             <div className="lg:col-span-1">
               <h3
-                className="text-lg font-bold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-4"
+                className="text-lg font-bold bg-[#20A97B] bg-clip-text text-transparent mb-4"
                 style={{ textShadow: "0 0 25px rgba(12, 83, 82, 0.3)" }}
               >
                 Contact
@@ -86,7 +86,7 @@ export default function Footer() {
             {/* Social Links */}
             <div className="lg:col-span-1">
               <h3
-                className="text-lg font-bold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-4"
+                className="text-lg font-bold bg-[#20A97B] bg-clip-text text-transparent mb-4"
                 style={{ textShadow: "0 0 25px rgba(12, 83, 82, 0.3)" }}
               >
                 Follow Us
@@ -116,7 +116,7 @@ export default function Footer() {
             {/* Additional Links */}
             <div className="lg:col-span-1">
               <h3
-                className="text-lg font-bold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-4"
+                className="text-lg font-bold bg-[#20A97B] bg-clip-text text-transparent mb-4"
                 style={{ textShadow: "0 0 25px rgba(12, 83, 82, 0.3)" }}
               >
                 Resources
@@ -151,7 +151,7 @@ export default function Footer() {
                 &copy; {new Date().getFullYear()} The Uniques Community. All rights reserved.
               </p>
               <p className="flex items-center">
-                Built with <Heart className="h-4 w-4 mx-1 text-[#0c5352] fill-[#0c5352]" /> by Tech Team (Uniques 3.0)
+                Built with <Heart className="h-4 w-4 mx-1 text-[#20A97B] fill-[#20A97B]" /> by Tech Team (Uniques 3.0)
               </p>
             </div>
           </div>
@@ -162,7 +162,7 @@ export default function Footer() {
       {showScrollToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-[#0c5352] hover:bg-[#107372] text-white rounded-full p-3 shadow-lg hover:shadow-[0_0_15px_rgba(12,83,82,0.3)] transition-all duration-300 z-50"
+          className="fixed bottom-6 right-6 bg-[#20A97B] hover:bg-[#107372] text-white rounded-full p-3 shadow-lg hover:shadow-[0_0_15px_rgba(12,83,82,0.3)] transition-all duration-300 z-50"
           aria-label="Scroll to top"
         >
           <ArrowUp className="h-5 w-5" />

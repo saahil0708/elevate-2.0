@@ -1,12 +1,11 @@
-<<<<<<< HEAD
-"use client"
-import { useEffect, useRef, useState } from "react"
-=======
+
+// "use client"
+// import { useEffect, useRef, useState } from "react"
+
 // "use client"
 // import { useEffect, useRef } from "react"
 // import { gsap } from "gsap"
 
->>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
 
 // export default function Hero() {
 //   const titleRef = useRef(null)
@@ -659,7 +658,7 @@ export default function Hero() {
         <div ref={badgeRef} className="mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-[#20A97B]/30 bg-black/30 backdrop-blur-sm">
             <div className="w-2 h-2 bg-[#20A97B] rounded-full animate-pulse"></div>
-            <span className="text-xs sm:text-sm text-gray-300 font-medium">Zero Style Stress</span>
+            <span className="text-xs sm:text-sm text-gray-300 font-medium">Join Us</span>
             <svg className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

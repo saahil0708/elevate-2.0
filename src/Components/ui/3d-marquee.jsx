@@ -1,31 +1,49 @@
 "use client";
 
-<<<<<<< HEAD
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
-export const ThreeDMarquee = ({
-  images,
-  className
-}) => {
+
+// Assuming GridLineVertical and GridLineHorizontal are defined somewhere else
+// or imported from your components library
+
+// Simple grid line components
+const GridLineVertical = ({ className = "", offset = "0px" }) => (
+  <div
+    className={`absolute h-full w-px bg-gray-300 ${className}`}
+    style={{ left: offset }}
+  />
+);
+
+const GridLineHorizontal = ({ className = "", offset = "0px" }) => (
+  <div
+    className={`absolute w-full h-px bg-gray-300 ${className}`}
+    style={{ top: offset }}
+  />
+);
+
+export const ThreeDMarquee = ({ images, className }) => {
   // Split the images array into 4 equal parts
   const chunkSize = Math.ceil(images.length / 4);
   const chunks = Array.from({ length: 4 }, (_, colIndex) => {
     const start = colIndex * chunkSize;
     return images.slice(start, start + chunkSize);
   });
+
   return (
     <div
       className={cn(
         "mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100",
         className
-      )}>
+      )}
+    >
       <div className="flex size-full items-center justify-center">
         <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
           <div
             style={{
               transform: "rotateX(55deg) rotateY(0deg) rotateZ(-45deg)",
             }}
-            className="relative top-96 right-[50%] grid size-full origin-top-left grid-cols-4 gap-8 transform-3d">
+            className="relative top-96 right-[50%] grid size-full origin-top-left grid-cols-4 gap-8 transform-3d"
+          >
             {chunks.map((subarray, colIndex) => (
               <motion.div
                 animate={{ y: colIndex % 2 === 0 ? 100 : -100 }}
@@ -35,83 +53,22 @@ export const ThreeDMarquee = ({
                   repeatType: "reverse",
                 }}
                 key={colIndex + "marquee"}
-                className="flex flex-col items-start gap-8">
+                className="flex flex-col items-start gap-8"
+              >
                 <GridLineVertical className="-left-4" offset="80px" />
                 {subarray.map((image, imageIndex) => (
                   <div className="relative" key={imageIndex + image}>
                     <GridLineHorizontal className="-top-4" offset="20px" />
                     <motion.img
-                      whileHover={{
-                        y: -10,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                      }}
-                      key={imageIndex + image}
+                      whileHover={{ y: -10 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
                       className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
                       width={970}
-                      height={700} />
+                      height={700}
+                    />
                   </div>
-=======
-import { motion } from "framer-motion";
-import { cn } from "../../lib/utils";
-
-export const ThreeDMarquee = ({ images, className }) => {
-  // Reduce images to first 12 for better layout
-  const reducedImages = images.slice(0, 12);
-
-  // Split images into 3 columns
-  const chunkSize = Math.ceil(reducedImages.length / 3);
-  const chunks = Array.from({ length: 3 }, (_, colIndex) =>
-    reducedImages.slice(colIndex * chunkSize, colIndex * chunkSize + chunkSize)
-  );
-
-  return (
-    <div
-      className={cn(
-        "mx-auto block h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl perspective-1000",
-        className
-      )}
-    >
-      <div className="flex w-full h-full items-center justify-center">
-        <div className="w-full lg:w-[1200px] h-full">
-          <div
-            style={{ transform: "rotateX(40deg) rotateY(0deg) rotateZ(-30deg)" }}
-            className="grid w-full h-full grid-cols-3 gap-6 origin-center"
-          >
-            {chunks.map((subarray, colIndex) => (
-              <motion.div
-                key={colIndex + "marquee"}
-                animate={{ y: colIndex % 2 === 0 ? 40 : -40 }}
-                transition={{
-                  duration: colIndex % 2 === 0 ? 12 : 18,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut"
-                }}
-                className="flex flex-col items-start gap-6"
-              >
-                {subarray.map((image, imageIndex) => (
-                  <motion.div
-                    key={imageIndex + image}
-                    className="relative group w-full"
-                    whileHover={{ y: -12 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  >
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0c5352]/80 opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300 z-10"
-                    />
-                    <motion.img
-                      src={image}
-                      alt={`Image ${imageIndex + 1}`}
-                      className="aspect-[970/700] rounded-lg object-cover ring-1 ring-white/20 hover:ring-2 hover:ring-white/40 shadow-lg hover:shadow-xl w-full transition-all duration-300"
-                      loading="lazy"
-                    />
-                  </motion.div>
->>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
                 ))}
               </motion.div>
             ))}
@@ -120,76 +77,4 @@ export const ThreeDMarquee = ({ images, className }) => {
       </div>
     </div>
   );
-<<<<<<< HEAD
 };
-
-const GridLineHorizontal = ({
-  className,
-  offset
-}) => {
-  return (
-    <div
-      style={
-        {
-          "--background": "#ffffff",
-          "--color": "rgba(0, 0, 0, 0.2)",
-          "--height": "1px",
-          "--width": "5px",
-          "--fade-stop": "90%",
-
-          //-100px if you want to keep the line inside
-          "--offset": offset || "200px",
-
-          "--color-dark": "rgba(255, 255, 255, 0.2)",
-          maskComposite: "exclude"
-        }
-      }
-      className={cn(
-        "absolute left-[calc(var(--offset)/2*-1)] h-[var(--height)] w-[calc(100%+var(--offset))]",
-        "bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)]",
-        "[background-size:var(--width)_var(--height)]",
-        "[mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-        "[mask-composite:exclude]",
-        "z-30",
-        "dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-        className
-      )}></div>
-  );
-};
-
-const GridLineVertical = ({
-  className,
-  offset
-}) => {
-  return (
-    <div
-      style={
-        {
-          "--background": "#ffffff",
-          "--color": "rgba(0, 0, 0, 0.2)",
-          "--height": "5px",
-          "--width": "1px",
-          "--fade-stop": "90%",
-
-          //-100px if you want to keep the line inside
-          "--offset": offset || "150px",
-
-          "--color-dark": "rgba(255, 255, 255, 0.2)",
-          maskComposite: "exclude"
-        }
-      }
-      className={cn(
-        "absolute top-[calc(var(--offset)/2*-1)] h-[calc(100%+var(--offset))] w-[var(--width)]",
-        "bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)]",
-        "[background-size:var(--width)_var(--height)]",
-        "[mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-        "[mask-composite:exclude]",
-        "z-30",
-        "dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-        className
-      )}></div>
-  );
-};
-=======
-};
->>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7

@@ -74,7 +74,7 @@ const GlowingCarousel = () => {
     return [...Array(5)].map((_, i) => (
       <svg
         key={i}
-        className={`w-4 h-4 ${i < rating ? "text-[#0c5352]" : "text-gray-600"}`}
+        className={`w-4 h-4 ${i < rating ? "text-[#20A97B]" : "text-gray-600"}`}
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -111,7 +111,7 @@ const GlowingCarousel = () => {
       transform: `translate(-50%, -50%) scale(${pos.scale})`,
       width: "320px",
       height: "420px",
-      border: isActive ? "2px solid #0c5352" : "1px solid #2a3441",
+      border: isActive ? "2px solid #20A97B" : "1px solid #2a3441",
       borderRadius: "24px",
       opacity: pos.opacity,
       transition: isAnimating ? "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "all 0.3s ease-out",
@@ -120,7 +120,7 @@ const GlowingCarousel = () => {
       filter: `blur(${pos.blur}px) ${isAnimating && isActive ? "brightness(1.3) saturate(1.2)" : "brightness(1)"}`,
       boxShadow: isActive
         ? `
-          0 0 12px #0c5352,
+          0 0 12px #20A97B,
           0 0 30px rgba(12, 83, 82, 0.5),
           0 0 45px rgba(12, 83, 82, 0.3),
           0 0 80px rgba(12, 83, 82, 0.2),
@@ -157,14 +157,14 @@ const GlowingCarousel = () => {
 
       <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-center z-30">
         <div className="flex items-center justify-center mb-4">
-          <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-[#0c5352] mr-4"></div>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-[#20A97B] mr-4"></div>
           <h1
             className="text-4xl md:text-5xl font-bold text-white tracking-wide"
             style={{ animation: "glow 3s ease-in-out infinite" }}
           >
             TESTIMONIALS
           </h1>
-          <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-[#0c5352] ml-4"></div>
+          <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-[#20A97B] ml-4"></div>
         </div>
         <p className="text-gray-300 text-lg md:text-xl max-w-2xl leading-relaxed">
           Discover what our valued clients say about their transformative experiences with our innovative solutions
@@ -172,14 +172,14 @@ const GlowingCarousel = () => {
       </div>
 
       {/* Card counter */}
-      <div className="absolute top-8 right-8 text-[#0c5352] text-sm font-medium px-3 py-1 rounded-full backdrop-blur-sm border border-[#0c5352]/20">
+      <div className="absolute top-8 right-8 text-[#20A97B] text-sm font-medium px-3 py-1 rounded-full backdrop-blur-sm border border-[#20A97B]/20">
         {currentIndex + 1} / {totalCards}
       </div>
 
       <button
         onClick={goToPrevious}
         disabled={isAnimating}
-        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#0c5352]/20 border border-[#0c5352]/40 flex items-center justify-center text-[#0c5352] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
+        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#20A97B]/20 border border-[#20A97B]/40 flex items-center justify-center text-[#20A97B] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
       >
         <ChevronLeft size={24} />
       </button>
@@ -187,7 +187,7 @@ const GlowingCarousel = () => {
       <button
         onClick={goToNext}
         disabled={isAnimating}
-        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#0c5352]/20 border border-[#0c5352]/40 flex items-center justify-center text-[#0c5352] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
+        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#20A97B]/20 border border-[#20A97B]/40 flex items-center justify-center text-[#20A97B] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
       >
         <ChevronRight size={24} />
       </button>
@@ -210,7 +210,7 @@ const GlowingCarousel = () => {
               style={{ opacity: index === currentIndex ? 1 : 0.7 }}
             >
               <div className="absolute top-6 left-6 opacity-20">
-                <Quote size={32} className="text-[#0c5352]" />
+                <Quote size={32} className="text-[#20A97B]" />
               </div>
 
               <div className="flex justify-center mb-6 relative z-10">
@@ -234,12 +234,12 @@ const GlowingCarousel = () => {
                     alt={testimonial.name}
                     className={`w-14 h-14 rounded-full object-cover transition-all duration-300 ${
                       index === currentIndex
-                        ? "ring-2 ring-[#0c5352] shadow-lg shadow-[#0c5352]/40"
+                        ? "ring-2 ring-[#20A97B] shadow-lg shadow-[#20A97B]/40"
                         : "ring-1 ring-gray-600"
                     }`}
                   />
                   {index === currentIndex && (
-                    <div className="absolute inset-0 rounded-full bg-[#0c5352]/20 animate-pulse"></div>
+                    <div className="absolute inset-0 rounded-full bg-[#20A97B]/20 animate-pulse"></div>
                   )}
                 </div>
                 <div className="text-left">
@@ -251,7 +251,7 @@ const GlowingCarousel = () => {
                     {testimonial.name}
                   </div>
                   <div
-                    className={`text-[#0c5352] transition-all duration-300 font-medium ${
+                    className={`text-[#20A97B] transition-all duration-300 font-medium ${
                       index === currentIndex ? "text-sm" : "text-xs"
                     }`}
                   >

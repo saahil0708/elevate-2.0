@@ -312,7 +312,7 @@ const AnimatedEventTimeline = () => {
     const baseStyles = "inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-semibold border backdrop-blur-sm"
     
     if (status === 'featured') {
-      return `${baseStyles} bg-gradient-to-r from-[#0c5352]/20 to-teal-400/20 text-[#0c5352] border-[#0c5352]/40 shadow-lg shadow-[#0c5352]/20`
+      return `${baseStyles} bg-gradient-to-r from-[#20A97B]/20 to-teal-400/20 text-[#20A97B] border-[#20A97B]/40 shadow-lg shadow-[#20A97B]/20`
     }
     
     const typeStyles = {
@@ -334,7 +334,7 @@ const AnimatedEventTimeline = () => {
   const getPriorityIndicator = (priority) => {
     const indicators = {
       critical: <Zap className="w-3 h-3 text-red-400" />,
-      high: <Star className="w-3 h-3 text-[#0c5352]" />,
+      high: <Star className="w-3 h-3 text-[#20A97B]" />,
       medium: <Target className="w-3 h-3 text-blue-400" />
     }
     return indicators[priority] || indicators.medium
@@ -344,9 +344,9 @@ const AnimatedEventTimeline = () => {
     <div className="min-h-screen bg-transparent relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#0c5352]/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#20A97B]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#0c5352]/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#20A97B]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Header Section */}
@@ -358,11 +358,11 @@ const AnimatedEventTimeline = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white via-[#0c5352] to-teal-400 bg-clip-text text-transparent mb-2 sm:mb-4 leading-tight">
-                Strategic Leadership Conference 2025
+              <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
+                Time<span className="text-[#20A97B]">Line</span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-300 mb-2">Three-Day Executive Program</p>
-              <p className="text-xs sm:text-sm text-[#0c5352] font-medium uppercase tracking-wider px-4">
+              <p className="text-xs sm:text-sm text-[#20A97B] font-medium uppercase tracking-wider px-4">
                 Digital Transformation • Innovation • Leadership
               </p>
             </motion.div>
@@ -373,7 +373,7 @@ const AnimatedEventTimeline = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         {/* Day Navigation & Controls - FIXED */}
         <div className="mb-8 sm:mb-12 flex justify-center">
-          <div className="inline-flex backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 p-1 sm:p-2 shadow-2xl shadow-[#0c5352]/10">
+          <div className="inline-flex backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 p-1 sm:p-2 shadow-2xl shadow-[#20A97B]/10">
             {[1, 2, 3].map((day) => {
               const isActive = activeDay === day
               return (
@@ -382,7 +382,7 @@ const AnimatedEventTimeline = () => {
                   onClick={() => setActiveDay(day)}
                   className={`relative px-4 sm:px-6 py-1 rounded-lg sm:rounded-xl text-sm font-semibold transition-all duration-300 ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#0c5352] to-teal-500 text-white shadow-lg shadow-[#0c5352]/30'
+                      ? 'bg-gradient-to-r from-[#20A97B] to-teal-500 text-white shadow-lg shadow-[#20A97B]/30'
                       : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                   }`}
                 >
@@ -392,7 +392,7 @@ const AnimatedEventTimeline = () => {
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#0c5352]/20 to-teal-500/20 border border-[#0c5352]/40"
+                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#20A97B]/20 to-teal-500/20 border border-[#20A97B]/40"
                       initial={false}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
@@ -410,9 +410,9 @@ const AnimatedEventTimeline = () => {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 px-4 sm:px-6 py-2 sm:py-3 shadow-xl"
           >
-            <div className="w-2 h-2 bg-[#0c5352] rounded-full mr-3 animate-pulse"></div>
+            <div className="w-2 h-2 bg-[#20A97B] rounded-full mr-3 animate-pulse"></div>
             <span className="text-xs sm:text-sm text-gray-300">
-              <span className="text-[#0c5352] font-medium">Scroll down</span> to reveal the timeline
+              <span className="text-[#20A97B] font-medium">Scroll down</span> to reveal the timeline
             </span>
           </motion.div>
         </div>
@@ -430,21 +430,21 @@ const AnimatedEventTimeline = () => {
                 ref={timelineRef}
               >
                 {/* Day Header */}
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#0c5352]/30 shadow-2xl shadow-[#0c5352]/10 p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0c5352]/5 to-transparent" />
+                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#20A97B]/30 shadow-2xl shadow-[#20A97B]/10 p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#20A97B]/5 to-transparent" />
                   <div className="relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex-1">
                         <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{eventData[activeDay].title}</h2>
                         <div className="flex items-center text-gray-300 mb-2">
-                          <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 text-[#0c5352] flex-shrink-0" />
+                          <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 text-[#20A97B] flex-shrink-0" />
                           <span className="text-sm sm:text-base lg:text-lg">{eventData[activeDay].date}</span>
                         </div>
-                        <p className="text-sm sm:text-base text-[#0c5352] font-medium">{eventData[activeDay].theme}</p>
+                        <p className="text-sm sm:text-base text-[#20A97B] font-medium">{eventData[activeDay].theme}</p>
                       </div>
                       <div className="text-center sm:text-right">
                         <div className="text-xs sm:text-sm text-gray-400 mb-1">Total Sessions</div>
-                        <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#0c5352] to-teal-400 bg-clip-text text-transparent">
+                        <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#20A97B] to-teal-400 bg-clip-text text-transparent">
                           {eventData[activeDay].events.length}
                         </div>
                       </div>
@@ -457,7 +457,7 @@ const AnimatedEventTimeline = () => {
                   {/* Animated Timeline Path - Hidden on mobile, shown on sm+ */}
                   <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-[1.5px] bg-gray-700/30 rounded-full hidden sm:block">
                     <motion.div
-                      className="w-full bg-gradient-to-b from-[#0c5352] to-teal-500 rounded-full shadow-lg shadow-[#0c5352]/50"
+                      className="w-full bg-gradient-to-b from-[#20A97B] to-teal-500 rounded-full shadow-lg shadow-[#20A97B]/50"
                       initial={{ height: 0 }}
                       animate={{ 
                         height: `${scrollProgress * 100}%`
@@ -468,7 +468,7 @@ const AnimatedEventTimeline = () => {
                     {/* Glowing orb at the end of the path */}
                     {scrollProgress > 0 && (
                       <motion.div
-                        className="absolute -right-[7px] w-4 h-4 bg-gradient-to-r from-[#0c5352] to-teal-500 rounded-full shadow-lg shadow-[#0c5352]/50"
+                        className="absolute -right-[7px] w-4 h-4 bg-gradient-to-r from-[#20A97B] to-teal-500 rounded-full shadow-lg shadow-[#20A97B]/50"
                         style={{ 
                           top: `${scrollProgress * 100}%`,
                           transform: 'translateY(-50%)'
@@ -477,7 +477,7 @@ const AnimatedEventTimeline = () => {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="absolute inset-0 bg-[#0c5352] rounded-full animate-ping opacity-75" />
+                        <div className="absolute inset-0 bg-[#20A97B] rounded-full animate-ping opacity-75" />
                       </motion.div>
                     )}
                   </div>
@@ -504,7 +504,7 @@ const AnimatedEventTimeline = () => {
                           }}
                           className={`relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/60 to-gray-800/60 border shadow-xl transition-all duration-500 ${
                             isCurrentEvent 
-                              ? 'border-[#0c5352]/60 shadow-2xl shadow-[#0c5352]/30 scale-[1.01] sm:scale-[1.02]' 
+                              ? 'border-[#20A97B]/60 shadow-2xl shadow-[#20A97B]/30 scale-[1.01] sm:scale-[1.02]' 
                               : 'border-gray-700/50'
                           }`}
                         >
@@ -512,7 +512,7 @@ const AnimatedEventTimeline = () => {
                           <div className="absolute -left-16 top-6 sm:top-8 w-4 h-4 bg-gray-700/50 rounded-full border-4 border-gray-900 hidden sm:block">
                             {isVisible && (
                               <motion.div
-                                className="w-full h-full bg-gradient-to-r from-[#0c5352] to-teal-500 rounded-full"
+                                className="w-full h-full bg-gradient-to-r from-[#20A97B] to-teal-500 rounded-full"
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 transition={{ duration: 0.4 }}
@@ -526,7 +526,7 @@ const AnimatedEventTimeline = () => {
                           {/* Priority indicator */}
                           {event.status === 'featured' && isVisible && (
                             <motion.div
-                              className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0c5352] via-teal-400 to-[#0c5352]"
+                              className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#20A97B] via-teal-400 to-[#20A97B]"
                               initial={{ scaleX: 0 }}
                               animate={{ scaleX: 1 }}
                               transition={{ duration: 0.6 }}
@@ -539,12 +539,12 @@ const AnimatedEventTimeline = () => {
                               <div className="flex items-start space-x-3 sm:space-x-4 flex-1">
                                 <div className="flex-shrink-0">
                                   <motion.div
-                                    className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-[#0c5352]/20 to-teal-500/20 rounded-xl flex items-center justify-center border border-[#0c5352]/30 backdrop-blur-sm"
+                                    className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-[#20A97B]/20 to-teal-500/20 rounded-xl flex items-center justify-center border border-[#20A97B]/30 backdrop-blur-sm"
                                     initial={{ rotate: -180, scale: 0 }}
                                     animate={isVisible ? { rotate: 0, scale: 1 } : { rotate: -180, scale: 0 }}
                                     transition={{ duration: 0.6 }}
                                   >
-                                    <span className="text-[#0c5352]">{event.icon}</span>
+                                    <span className="text-[#20A97B]">{event.icon}</span>
                                   </motion.div>
                                 </div>
                                 <div className="flex-1 min-w-0">
@@ -554,7 +554,7 @@ const AnimatedEventTimeline = () => {
                                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
                                   >
-                                    <div className="flex items-center text-[#0c5352] font-bold text-base sm:text-lg">
+                                    <div className="flex items-center text-[#20A97B] font-bold text-base sm:text-lg">
                                       <Clock className="w-4 sm:w-5 h-4 sm:h-5 mr-2 flex-shrink-0" />
                                       <span className="truncate">{event.time}</span>
                                     </div>
@@ -594,11 +594,11 @@ const AnimatedEventTimeline = () => {
                                     transition={{ duration: 0.5, delay: 0.4 }}
                                   >
                                     <div className="flex items-center">
-                                      <MapPin className="w-4 h-4 mr-2 text-[#0c5352] flex-shrink-0" />
+                                      <MapPin className="w-4 h-4 mr-2 text-[#20A97B] flex-shrink-0" />
                                       <span className="truncate">{event.location}</span>
                                     </div>
                                     <div className="flex items-center">
-                                      <UserCheck className="w-4 h-4 mr-2 text-[#0c5352] flex-shrink-0" />
+                                      <UserCheck className="w-4 h-4 mr-2 text-[#20A97B] flex-shrink-0" />
                                       <span className="truncate">{event.attendees}</span>
                                     </div>
                                   </motion.div>
@@ -613,9 +613,9 @@ const AnimatedEventTimeline = () => {
                                   animate={{ opacity: 1, scale: 1 }}
                                   transition={{ duration: 0.5, delay: 0.5 }}
                                 >
-                                  <div className="flex items-center bg-gradient-to-r from-[#0c5352]/20 to-teal-500/20 border border-[#0c5352]/40 rounded-lg px-3 py-1.5 backdrop-blur-sm">
-                                    <Star className="w-4 h-4 text-[#0c5352] mr-2" />
-                                    <span className="text-xs font-bold text-[#0c5352] uppercase tracking-wide">Featured</span>
+                                  <div className="flex items-center bg-gradient-to-r from-[#20A97B]/20 to-teal-500/20 border border-[#20A97B]/40 rounded-lg px-3 py-1.5 backdrop-blur-sm">
+                                    <Star className="w-4 h-4 text-[#20A97B] mr-2" />
+                                    <span className="text-xs font-bold text-[#20A97B] uppercase tracking-wide">Featured</span>
                                   </div>
                                 </motion.div>
                               )}
@@ -624,7 +624,7 @@ const AnimatedEventTimeline = () => {
                             {/* Current event glow effect */}
                             {isCurrentEvent && (
                               <motion.div
-                                className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#0c5352]/10 via-transparent to-[#0c5352]/10"
+                                className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#20A97B]/10 via-transparent to-[#20A97B]/10"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.3 }}
@@ -648,20 +648,20 @@ const AnimatedEventTimeline = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#0c5352]/30 shadow-2xl shadow-[#0c5352]/10"
+                className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#20A97B]/30 shadow-2xl shadow-[#20A97B]/10"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0c5352]/5 to-transparent" />
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#0c5352]/20 via-transparent to-[#0c5352]/20 blur-sm" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#20A97B]/5 to-transparent" />
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#20A97B]/20 via-transparent to-[#20A97B]/20 blur-sm" />
                 
                 <div className="relative z-10 p-4 sm:p-6">
                   {/* Header */}
                   <div className="flex items-center mb-4 sm:mb-6">
-                    <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-[#0c5352]/20 to-teal-500/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 backdrop-blur-sm border border-[#0c5352]/30">
-                      <Mic className="w-5 sm:w-6 h-5 sm:h-6 text-[#0c5352]" />
+                    <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-[#20A97B]/20 to-teal-500/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 backdrop-blur-sm border border-[#20A97B]/30">
+                      <Mic className="w-5 sm:w-6 h-5 sm:h-6 text-[#20A97B]" />
                     </div>
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-white mb-1">Keynote Speaker</h3>
-                      <p className="text-xs sm:text-sm text-[#0c5352] font-medium">{eventData[activeDay].theme}</p>
+                      <p className="text-xs sm:text-sm text-[#20A97B] font-medium">{eventData[activeDay].theme}</p>
                     </div>
                   </div>
 
@@ -671,15 +671,15 @@ const AnimatedEventTimeline = () => {
                       <img
                         src={eventData[activeDay].keynoteSpeaker.image}
                         alt={eventData[activeDay].keynoteSpeaker.name}
-                        className="w-16 sm:w-20 h-16 sm:h-20 rounded-xl object-cover border-2 border-[#0c5352]/40 shadow-lg"
+                        className="w-16 sm:w-20 h-16 sm:h-20 rounded-xl object-cover border-2 border-[#20A97B]/40 shadow-lg"
                       />
-                      <div className="absolute -bottom-1 sm:-bottom-2 -right-1 sm:-right-2 w-5 sm:w-6 h-5 sm:h-6 bg-[#0c5352] rounded-full flex items-center justify-center shadow-lg shadow-[#0c5352]/50">
+                      <div className="absolute -bottom-1 sm:-bottom-2 -right-1 sm:-right-2 w-5 sm:w-6 h-5 sm:h-6 bg-[#20A97B] rounded-full flex items-center justify-center shadow-lg shadow-[#20A97B]/50">
                         <Star className="w-2 sm:w-3 h-2 sm:h-3 text-white" />
                       </div>
                     </div>
                     <div className="flex-1 text-center sm:text-left">
                       <h4 className="text-lg sm:text-xl font-bold text-white mb-1">{eventData[activeDay].keynoteSpeaker.name}</h4>
-                      <p className="text-xs sm:text-sm text-[#0c5352] font-medium mb-2">{eventData[activeDay].keynoteSpeaker.title}</p>
+                      <p className="text-xs sm:text-sm text-[#20A97B] font-medium mb-2">{eventData[activeDay].keynoteSpeaker.title}</p>
                       <div className="flex items-center justify-center sm:justify-start text-xs text-gray-400">
                         <Clock className="w-3 h-3 mr-1" />
                         <span>{eventData[activeDay].keynoteSpeaker.duration}</span>
@@ -690,14 +690,14 @@ const AnimatedEventTimeline = () => {
                   <p className="text-sm text-gray-300 leading-relaxed mb-4 sm:mb-6 text-center sm:text-left">{eventData[activeDay].keynoteSpeaker.bio}</p>
 
                   {/* Topic */}
-                  <div className="relative overflow-hidden rounded-xl backdrop-blur-sm bg-gradient-to-br from-[#0c5352]/10 to-teal-500/10 border border-[#0c5352]/30 p-3 sm:p-4 mb-4">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0c5352]/5 to-transparent" />
+                  <div className="relative overflow-hidden rounded-xl backdrop-blur-sm bg-gradient-to-br from-[#20A97B]/10 to-teal-500/10 border border-[#20A97B]/30 p-3 sm:p-4 mb-4">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#20A97B]/5 to-transparent" />
                     <div className="relative z-10">
                       <div className="flex items-center mb-2">
-                        <div className="w-7 sm:w-8 h-7 sm:h-8 bg-[#0c5352]/20 rounded-lg flex items-center justify-center mr-3 backdrop-blur-sm">
-                          <Presentation className="w-3 sm:w-4 h-3 sm:h-4 text-[#0c5352]" />
+                        <div className="w-7 sm:w-8 h-7 sm:h-8 bg-[#20A97B]/20 rounded-lg flex items-center justify-center mr-3 backdrop-blur-sm">
+                          <Presentation className="w-3 sm:w-4 h-3 sm:h-4 text-[#20A97B]" />
                         </div>
-                        <span className="text-xs font-bold text-[#0c5352] uppercase tracking-wider">Speaking Topic</span>
+                        <span className="text-xs font-bold text-[#20A97B] uppercase tracking-wider">Speaking Topic</span>
                       </div>
                       <h5 className="text-sm font-bold text-white">{eventData[activeDay].keynoteSpeaker.topic}</h5>
                     </div>

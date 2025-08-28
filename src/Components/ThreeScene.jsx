@@ -412,13 +412,13 @@ import { useState, useEffect } from "react"
 
 const coaches = [
   {
-<<<<<<< HEAD
     id: "bubba",
     name: "AMAN GUPTA",
     designation: "CEO, BOAT",
     image: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5oczgnl4PeMihumzLlUbvjISDBp9sdwO5XFrc",
     title: "WHY HIRE AN EXECUTIVE COACH?",
-    description: "As an executive coach, I work to empower business leaders through a personal partnership. I jump into the trenches with you, have the hard conversations, ask the right questions, uncover insights and discover the solutions that will help you and your business reach full potential.",
+    description:
+      "As an executive coach, I work to empower business leaders through a personal partnership. I jump into the trenches with you, have the hard conversations, ask the right questions, uncover insights and discover the solutions that will help you and your business reach full potential.",
   },
   {
     id: "sarah",
@@ -426,7 +426,8 @@ const coaches = [
     designation: "LEADERSHIP COACH",
     image: "/professional-woman-executive-coach.png",
     title: "WHY CHOOSE LEADERSHIP COACHING?",
-    description: "Leadership coaching transforms how you lead and inspire others. I help executives develop authentic leadership styles, build high-performing teams, and create cultures of excellence that drive sustainable business growth and innovation.",
+    description:
+      "Leadership coaching transforms how you lead and inspire others. I help executives develop authentic leadership styles, build high-performing teams, and create cultures of excellence that drive sustainable business growth and innovation.",
   },
   {
     id: "michael",
@@ -434,75 +435,10 @@ const coaches = [
     designation: "PERFORMANCE COACH",
     image: "/professional-man-performance-coach.png",
     title: "WHY INVEST IN PERFORMANCE COACHING?",
-    description: "Performance coaching unlocks your highest potential through strategic goal-setting and accountability. I work with leaders to optimize their effectiveness, overcome limiting beliefs, and achieve breakthrough results in both personal and professional domains.",
+    description:
+      "Performance coaching unlocks your highest potential through strategic goal-setting and accountability. I work with leaders to optimize their effectiveness, overcome limiting beliefs, and achieve breakthrough results in both personal and professional domains.",
   },
 ]
-=======
-    id: 1,
-    name: "Akshay Kumar",
-    role: "Bollywood Superstar",
-    bio: "With over 30 years in the Indian film industry, Akshay Kumar is one of the most prolific actors and influential personalities in Indian cinema.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    rating: 4.8,
-    topic: "Journey from Action Hero to Social Advocate",
-    color: "#0c5352",
-    gradient: "from-emerald-500 to-emerald-600",
-    social: {
-      twitter: "@akshaykumar",
-      instagram: "@akshaykumar",
-      linkedin: "akshay-kumar"
-    }
-  },
-  {
-    id: 2,
-    name: "Raima Sen",
-    role: "Award-Winning Actress",
-    bio: "Known for her work in independent cinema and mainstream Bollywood, Raima has been a vocal advocate for women's rights in the entertainment industry.",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    rating: 4.5,
-    topic: "Breaking Stereotypes in Indian Cinema",
-    color: "#0c5352",
-    gradient: "from-emerald-500 to-emerald-600",
-    social: {
-      twitter: "@raimasen",
-      instagram: "@raimasen",
-      linkedin: "raima-sen"
-    }
-  },
-  {
-    id: 3,
-    name: "Arjun Kapur",
-    role: "Tech Entrepreneur",
-    bio: "Founder of multiple successful startups, Arjun is known for his inspiring talks on innovation, leadership, and the future of technology in India.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    rating: 4.9,
-    topic: "Innovation at the Intersection of Technology and Creativity",
-    color: "#0c5352",
-    gradient: "from-emerald-500 to-emerald-600",
-    social: {
-      twitter: "@arjunkapur",
-      instagram: "@arjunkapur",
-      linkedin: "arjun-kapur"
-    }
-  },
-  {
-    id: 4,
-    name: "Priya Sharma",
-    role: "Environmental Scientist",
-    bio: "Leading researcher in sustainable development with numerous publications and a powerful voice in the climate change conversation.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-    rating: 4.7,
-    topic: "Sustainable Futures: Our Collective Responsibility",
-    color: "#0c5352",
-    gradient: "from-emerald-500 to-emerald-600",
-    social: {
-      twitter: "@priyasharma",
-      instagram: "@priyasharma",
-      linkedin: "priya-sharma"
-    }
-  },
-];
->>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("bubba")
@@ -516,93 +452,40 @@ export default function Home() {
   }, [activeTab])
 
   return (
-<<<<<<< HEAD
     <div className="min-h-screen bg-black text-white relative overflow-hidden flex flex-col">
-      {/* Animated Background */}
-=======
-    <section id="speakers" className="relative py-16 md:py-24 overflow-hidden">
-      {/* Background with reduced opacity */}
-      <div className="absolute inset-0 bg-transparent"></div>
-      
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-        }}
-      />
-
->>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
+      {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute grayscale inset-0 bg-cover bg-center bg-no-repeat opacity-40 transition-all duration-1000"
           style={{
-            backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/b/bd/New_York_City_Skyline_at_Dusk.jpg')",
+            backgroundImage:
+              "url('https://upload.wikimedia.org/wikipedia/commons/b/bd/New_York_City_Skyline_at_Dusk.jpg')",
           }}
         />
-        
+
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80" />
         <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-black via-black/90 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/90 to-transparent" />
-        
+
         {/* Subtle Background Elements */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#10B981]/5 rounded-full filter blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-500/3 rounded-full filter blur-3xl animate-pulse-medium" />
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#20A97B]/5 rounded-full filter blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse-medium" />
       </div>
-<<<<<<< HEAD
-=======
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.h2 
-            className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-6"
-            // style={{
-            //   background: `linear-gradient(135deg, #ffffff 0%, ${currentSpeaker.color} 100%)`,
-            //   WebkitBackgroundClip: 'text',
-            //   WebkitTextFillColor: 'transparent',
-            //   backgroundClip: 'text',
-            // }}
-          >
-            Celebrity Speakers
-          </motion.h2>
-          
-          <motion.div
-            className="relative mb-8"
-            initial={{ width: 0 }}
-            animate={{ width: "300px" }}
-            transition={{ delay: 0.5, duration: 1.2 }}
-          >
-            <div 
-              className="h-2 mx-auto rounded-full"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${currentSpeaker.color}, transparent)`
-              }}
-            />
-          </motion.div>
-          
-          <p className="text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
-            Get inspired by our lineup of distinguished speakers
-          </p>
-        </motion.div>
->>>>>>> c76cb8f9b00877775e20a0ca6730ad2782b3cef7
 
       {/* Content */}
       <div className="relative z-10 flex flex-col flex-1">
         {/* Header Section */}
         <div className="container mx-auto px-6 md:px-8 py-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-widest mb-2 text-[#10B981] animate-fade-in">
-            CELEBRITY SPEAKERS
+         
+          <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
+                CELEBRITY <span className="text-[#20A97B]">SPEAKERS</span>
           </h1>
-          <p className="text-gray-300 text-lg animate-fade-in delay-100">World-class coaching from industry leaders</p>
+          <p className="text-gray-300 text-lg animate-fade-in delay-100">
+            World-class coaching from industry leaders
+          </p>
         </div>
-       
+
         {/* Tab Navigation */}
         <div className="container mx-auto px-6 md:px-8 py-4">
           <div className="flex justify-center">
@@ -612,8 +495,8 @@ export default function Home() {
                   key={coach.id}
                   onClick={() => setActiveTab(coach.id)}
                   className={`px-6 py-3 rounded-md text-sm font-medium transition-all duration-300 relative overflow-hidden ${
-                    activeTab === coach.id 
-                      ? "bg-[#10B981] text-white shadow-md" 
+                    activeTab === coach.id
+                      ? "bg-[#20A97B] text-white shadow-md"
                       : "text-white hover:bg-white/20"
                   }`}
                 >
@@ -630,13 +513,12 @@ export default function Home() {
         {/* Main Hero Section */}
         <div className="container mx-auto px-6 md:px-8 py-4 md:py-8 flex-1 flex items-center">
           <div className="flex flex-col items-center space-y-8 w-full">
-            {/* Centered Professional Image with Text Overlay */}
             <div className="relative flex justify-center">
               <div className="relative">
                 <div className="w-72 h-80 md:w-96 md:h-[420px] relative transition-all duration-500">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#10B981] to-emerald-400 rounded-lg opacity-30 animate-pulse-slow"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#10B981] to-emerald-400 rounded-lg opacity-0 transition-opacity duration-700 hover:opacity-20"></div>
-                  
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#20A97B] to-[#32C38E] rounded-lg opacity-30 animate-pulse-slow"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#20A97B] to-[#32C38E] rounded-lg opacity-0 transition-opacity duration-700 hover:opacity-20"></div>
+
                   <img
                     src={currentCoach.image || "/placeholder.svg"}
                     alt={`${currentCoach.name} - ${currentCoach.designation}`}
@@ -644,23 +526,28 @@ export default function Home() {
                       isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
                     }`}
                   />
-                  
-                  {/* Text Overlay on Image */}
+
+                  {/* Text Overlay */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40 rounded-lg z-20 transition-all duration-500">
-                    <h2 className={`text-2xl md:text-4xl font-bold tracking-[0.2em] text-white drop-shadow-2xl whitespace-nowrap transition-all duration-700 ${
-                      isTransitioning ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-                    }`}>
+                    <h2
+                      className={`text-2xl md:text-4xl font-bold tracking-[0.2em] text-white drop-shadow-2xl whitespace-nowrap transition-all duration-700 ${
+                        isTransitioning ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
+                      }`}
+                    >
                       {currentCoach.name}
                     </h2>
-                    <p className={`text-sm md:text-lg text-white/90 tracking-widest font-light mt-2 drop-shadow-lg transition-all duration-700 delay-100 ${
-                      isTransitioning ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-                    }`}>
+                    <p
+                      className={`text-sm md:text-lg text-white/90 tracking-widest font-light mt-2 drop-shadow-lg transition-all duration-700 delay-100 ${
+                        isTransitioning ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
+                      }`}
+                    >
                       {currentCoach.designation}
                     </p>
-                    {/* Animated Decorative Line */}
-                    <div className={`w-16 h-0.5 bg-[#10B981] mt-4 transition-all duration-700 delay-200 ${
-                      isTransitioning ? "scale-0 opacity-0" : "scale-100 opacity-100"
-                    }`} />
+                    <div
+                      className={`w-16 h-0.5 bg-[#20A97B] mt-4 transition-all duration-700 delay-200 ${
+                        isTransitioning ? "scale-0 opacity-0" : "scale-100 opacity-100"
+                      }`}
+                    />
                   </div>
                 </div>
               </div>
@@ -671,23 +558,21 @@ export default function Home() {
         {/* Why Hire Section */}
         <div className="container mx-auto px-6 bg-gradient-to-b from-[#020617] to-black md:px-8 py-8 md:py-12">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h2 className={`text-2xl md:text-3xl font-bold tracking-wider transition-all duration-700 text-[#10B981] ${
-              isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-            }`}>
+            <h2
+              className={`text-2xl md:text-3xl font-bold tracking-wider transition-all duration-700 text-[#20A97B] ${
+                isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+              }`}
+            >
               {currentCoach.title}
             </h2>
 
-            <p className={`text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto transition-all duration-700 delay-100 ${
-              isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-            }`}>
+            <p
+              className={`text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto transition-all duration-700 delay-100 ${
+                isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+              }`}
+            >
               {currentCoach.description}
             </p>
-
-            <div className={`pt-6 transition-all duration-700 delay-200 ${
-              isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-            }`}>
-             
-            </div>
           </div>
         </div>
       </div>
@@ -695,16 +580,30 @@ export default function Home() {
       {/* Global Styles for Animations */}
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
         @keyframes pulseSlow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.5; }
+          0%,
+          100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.5;
+          }
         }
         @keyframes pulseMedium {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.4; }
+          0%,
+          100% {
+            opacity: 0.2;
+          }
+          50% {
+            opacity: 0.4;
+          }
         }
         .animate-fade-in {
           animation: fadeIn 0.8s ease-out forwards;
