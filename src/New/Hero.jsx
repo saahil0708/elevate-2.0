@@ -724,12 +724,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-gray-700/50 to-gray-800/50 border border-gray-600/50 backdrop-blur-sm flex items-center justify-center mb-2 sm:mb-4">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">V0 Compatible</h3>
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">15 +</div>
+              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Events</h3>
             </div>
           </div>
 
@@ -742,12 +738,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-gray-700/50 to-gray-800/50 border border-gray-600/50 backdrop-blur-sm flex items-center justify-center mb-2 sm:mb-4">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Animated UI</h3>
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">60 +</div>
+              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Projects</h3>
             </div>
           </div>
 
