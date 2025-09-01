@@ -28,8 +28,8 @@ export default function Layout() {
       <section id="cultural" className="w-full"><Cultural /></section>
       <section id="speakers" className="w-full"><Speakers /></section>
       <section id="timeline" className="w-full"><Timeline /></section>
-      <section id="panel" className="w-full"><Panel /></section>
-      <section id="panel" className="w-full"><SIH /></section>      
+      <section id="panel" className="w-full"><Panel /></section>  
+      <section id="sih" className="w-full"><SIH /></section>    
       <section id="ideajam" className="w-full"><IdeaJamSection /></section>
       <section id="gallery" className="w-full"><ThreeDMarqueeDemo /></section>
       <section id="testimonials" className="w-full"><Testimonials /></section>
