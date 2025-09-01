@@ -364,7 +364,7 @@ const AnimatedEventTimeline = () => {
       ]
     }
   }
-
+  // hello
   // Scroll-based animation control
   useEffect(() => {
     const handleScroll = () => {
