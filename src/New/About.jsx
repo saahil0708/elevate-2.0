@@ -12,10 +12,10 @@ const ElevatePage = () => {
         ELEVATE 2.0 is set to be bigger, grander, and more impactful — a three-day national event blending culture, technology, innovation, and entertainment. From cultural programs, competitions, and live performances to startup showcases, panel discussions, and community presentations, it offers a one-of-a-kind platform for students, professionals, and communities across India. Special guests include Aman Gupta (Co-Founder, boAt) and Anand Kumar (Founder, Super 30), along with many more icons and innovators.
       `,
       stats: {
-        Teams: "150+",
+        Teams: "50+",
         Events: "20+",
         Speakers: "25+",
-        Participants: "900+",
+        Participants: "500+",
         StartUps: "10+",
         Departments: "25+",
       },
@@ -27,10 +27,10 @@ const ElevatePage = () => {
         Elevate 1.0 marked the beginning of a new era of innovation and collaboration. With inspiring leaders like Ashneer Grover and industry pioneers, it brought together culture, startups, and impactful sessions — setting the legacy for all future editions of Elevate.
       `,
         stats: {
-        Teams: "100+",
+        Teams: "50+",
         Events: "15+",
         Speakers: "20+",
-        Participants: "600+",
+        Participants: "300+",
         StartUps: "07+",
         Departments: "25+",
       },
