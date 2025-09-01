@@ -74,7 +74,7 @@ const speakersData = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
     rating: 4.8,
     topic: "Journey from Action Hero to Social Advocate",
-    color: "#1cb683",
+    color: "#0c5352",
     gradient: "from-emerald-500 to-emerald-600",
     social: {
       twitter: "@akshaykumar",
@@ -90,7 +90,7 @@ const speakersData = [
     image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
     rating: 4.5,
     topic: "Breaking Stereotypes in Indian Cinema",
-    color: "#1cb683",
+    color: "#0c5352",
     gradient: "from-emerald-500 to-emerald-600",
     social: {
       twitter: "@raimasen",
@@ -106,7 +106,7 @@ const speakersData = [
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
     rating: 4.9,
     topic: "Innovation at the Intersection of Technology and Creativity",
-    color: "#1cb683",
+    color: "#0c5352",
     gradient: "from-emerald-500 to-emerald-600",
     social: {
       twitter: "@arjunkapur",
@@ -122,7 +122,7 @@ const speakersData = [
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
     rating: 4.7,
     topic: "Sustainable Futures: Our Collective Responsibility",
-    color: "#1cb683",
+    color: "#0c5352",
     gradient: "from-emerald-500 to-emerald-600",
     social: {
       twitter: "@priyasharma",
@@ -338,13 +338,13 @@ const SpeakersCarousel = () => {
           transition={{ duration: 1 }}
         >
           <motion.h2 
-            className="text-5xl md:text-7xl font-black mb-6"
-            style={{
-              background: `linear-gradient(135deg, #ffffff 0%, ${currentSpeaker.color} 100%)`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
+            className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-6"
+            // style={{
+            //   background: `linear-gradient(135deg, #ffffff 0%, ${currentSpeaker.color} 100%)`,
+            //   WebkitBackgroundClip: 'text',
+            //   WebkitTextFillColor: 'transparent',
+            //   backgroundClip: 'text',
+            // }}
           >
             Celebrity Speakers
           </motion.h2>
