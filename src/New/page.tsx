@@ -313,10 +313,10 @@ export default function Home() {
                           <div className={`relative w-fit transform transition-all duration-700 ease-out ${
                             currentSection === 0 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                           }`} style={{ transitionDelay: '800ms' }}>
-                            <button className="px-5 py-2.5 rounded-full bg-[#20A97B]/10 border border-[#20A97B]/30 text-[#20A97B] font-medium tracking-wide hover:bg-[#20A97B]/20 hover:text-white transition-all duration-300 group relative overflow-hidden">
+                            {/* <button className="px-5 py-2.5 rounded-full bg-[#20A97B]/10 border border-[#20A97B]/30 text-[#20A97B] font-medium tracking-wide hover:bg-[#20A97B]/20 hover:text-white transition-all duration-300 group relative overflow-hidden">
                               <span className="relative z-10">Explore More</span>
                               <span className="absolute inset-0 bg-gradient-to-r from-[#20A97B]/20 to-[#20A97B]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            </button>
+                            </button> */}
                           </div>
                         </div>
 
@@ -325,14 +325,14 @@ export default function Home() {
                           {[
                             { 
                               title: 'Traditional Dance', 
-                              image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=600&auto=format&fit=crop', 
+                              image: 'https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5D1Mxh8kQ57NPj9YlOJCumqw8S4bfTIih3gXv', 
                               desc: 'Experience ancient rhythms passed through generations',
                               rotation: '-1.5deg'
                             },
                             { 
-                              title: 'Ancient Crafts', 
-                              image: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=600&auto=format&fit=crop', 
-                              desc: 'Discover timeless artistry of our heritage',
+                              title: 'Heritage Moves', 
+                              image: 'https://5oehmt2w6r.ufs.sh/f/zuvITbjJ2vf4rO2SsNip4HtimLlc23C5Auz79oK01jGsEVJI', 
+                              desc: 'Discover the grace of traditions preserved in motion',
                               rotation: '2deg'
                             }
                           ].map((card, index) => (
@@ -393,13 +393,13 @@ export default function Home() {
                           {[
                             { 
                               title: 'Stand-Up Comedy', 
-                              image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop', 
+                              image: 'https://5oehmt2w6r.ufs.sh/f/zuvITbjJ2vf4D4fDnFVo9hVdKR3MEmkcI1zWnBg2pqwFPO5x', 
                               desc: 'Laugh with the best comedians in town',
                               rotation: '2deg'
                             },
                             { 
                               title: 'Comedy Club', 
-                              image: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?q=80&w=600&auto=format&fit=crop', 
+                              image: 'https://5oehmt2w6r.ufs.sh/f/zuvITbjJ2vf4GEWZgQAo2RuPrB34zxwiqymlj1XFnYcdabpU', 
                               desc: 'Best comedy experience with friends and family',
                               rotation: '-1.5deg'
                             }
@@ -476,10 +476,10 @@ export default function Home() {
                           <div className={`relative w-fit transform transition-all duration-700 ease-out ${
                             currentSection === 1 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                           }`} style={{ transitionDelay: '800ms' }}>
-                            <button className="px-5 py-2.5 rounded-full bg-[#20A97B]/10 border border-[#20A97B]/30 text-[#20A97B] font-medium tracking-wide hover:bg-[#20A97B]/20 hover:text-white transition-all duration-300 group relative overflow-hidden">
+                            {/* <button className="px-5 py-2.5 rounded-full bg-[#20A97B]/10 border border-[#20A97B]/30 text-[#20A97B] font-medium tracking-wide hover:bg-[#20A97B]/20 hover:text-white transition-all duration-300 group relative overflow-hidden">
                               <span className="relative z-10">Explore More</span>
                               <span className="absolute inset-0 bg-gradient-to-r from-[#20A97B]/20 to-[#20A97B]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                       </div>

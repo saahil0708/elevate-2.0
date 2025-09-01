@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { useState, useEffect, useRef } from "react"
 import {
   Clock,
@@ -551,9 +552,9 @@ const AnimatedEventTimeline = () => {
   const currentDayColor = eventData[activeDay].color || "#20A97B"
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden" style={{ background: "#020617" }}>
       {/* Enhanced Background Effects */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-[#20A97B]/15 to-teal-400/15 rounded-full blur-3xl"
           style={{ y: backgroundY, rotate: backgroundRotate }}
@@ -648,7 +649,7 @@ const AnimatedEventTimeline = () => {
                     backgroundSize: "200% 200%",
                   }}
                 >
-                  Time<span className="text-[#20A97B]">Line</span>
+                  Time<span className="text-[#20A97B">Line</span>
                 </motion.h1>
                 <div className="w-40 h-0.5 bg-gradient-to-r from-transparent via-[#20A97B] to-transparent mx-auto animate-line-expand"></div>
 
@@ -798,7 +799,7 @@ const AnimatedEventTimeline = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 lg:gap-12">
-          {/* Enhanced Timeline Section */}
+          {/* Timeline Section */}
           <div className="xl:col-span-3">
             <AnimatePresence mode="wait">
               <motion.div
@@ -815,9 +816,9 @@ const AnimatedEventTimeline = () => {
                 ref={timelineRef}
                 style={{ perspective: "1000px" }}
               >
-                {/* Enhanced Day Header */}
+                {/* Day Header */}
                 <motion.div
-                  className="relative overflow-hidden rounded-2xl backdrop-blur-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-2xl p-6 sm:p-8 mb-8 sm:mb-12"
+                  className="relative overflow-hidden rounded-2xl backdrop-blur-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-2xl p-4 sm:p-6 mb-6 sm:mb-8"
                   style={{
                     borderColor: `${currentDayColor}40`,
                     boxShadow: `0 25px 50px -12px ${currentDayColor}20`,
@@ -922,9 +923,9 @@ const AnimatedEventTimeline = () => {
                   </div>
                 </motion.div>
 
-                {/* Enhanced Timeline with Path */}
+                {/* Timeline with Path */}
                 <div className="relative">
-                  {/* Enhanced Timeline Path */}
+                  {/* Timeline Path */}
                   <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-gray-700/40 rounded-full hidden sm:block">
                     <motion.div
                       className="w-full rounded-full shadow-xl"
@@ -936,11 +937,10 @@ const AnimatedEventTimeline = () => {
                       initial="hidden"
                       animate="visible"
                     />
-
-                    {/* Enhanced progress indicator */}
+                    {/* Progress indicator */}
                     {scrollProgress > 0 && (
                       <motion.div
-                        className="absolute -right-[7px] w-4 h-4 rounded-full shadow-xl"
+                        className="absolute -right-[5px] w-3 h-3 rounded-full shadow-xl"
                         style={{
                           top: `${scrollProgress * 100}%`,
                           transform: "translateY(-50%)",
@@ -969,7 +969,6 @@ const AnimatedEventTimeline = () => {
                         />
                       </motion.div>
                     )}
-
                     {/* Timeline dots for each event */}
                     {eventData[activeDay].events.map((event, index) => {
                       const dotProgress = (index + 1) / eventData[activeDay].events.length
@@ -978,7 +977,7 @@ const AnimatedEventTimeline = () => {
                       return (
                         <motion.div
                           key={event.id}
-                          className="absolute -right-[6px] w-4 h-4 rounded-full border-4 border-gray-900"
+                          className="absolute -right-[6px] w-3 h-3 rounded-full border-2 border-gray-900"
                           style={{ top: `${dotProgress * 100}%`, transform: "translateY(-50%)" }}
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{
@@ -997,9 +996,9 @@ const AnimatedEventTimeline = () => {
                     })}
                   </div>
 
-                  {/* Enhanced Events */}
+                  {/* Events */}
                   <motion.div
-                    className="space-y-6 sm:space-y-8 lg:space-y-12 pl-0 sm:pl-20"
+                    className="space-y-4 sm:space-y-6 lg:space-y-8 pl-0 sm:pl-20"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -1015,7 +1014,7 @@ const AnimatedEventTimeline = () => {
                         <motion.div
                           key={event.id}
                           variants={eventVariants}
-                          className={`relative overflow-hidden rounded-2xl backdrop-blur-2xl transition-all duration-700 group cursor-pointer ${
+                          className={`relative overflow-hidden rounded-xl backdrop-blur-xl transition-all duration-700 group cursor-pointer ${
                             isCurrentEvent ? "shadow-2xl" : "shadow-xl"
                           } ${isVisible ? "opacity-100" : "opacity-30"}`}
                           style={{
@@ -1023,48 +1022,50 @@ const AnimatedEventTimeline = () => {
                             borderColor: isCurrentEvent ? `${currentDayColor}60` : "#374151",
                             borderWidth: "1px",
                             boxShadow: isCurrentEvent
-                              ? `0 25px 50px -12px ${currentDayColor}30`
-                              : "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
+                              ? `0 12px 24px -6px ${currentDayColor}30`
+                              : "0 12px 24px -6px rgba(0, 0, 0, 0.4)",
                           }}
-                          whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                          whileTap={{ scale: 0.95 }}
+                          whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                          whileTap={{ scale: 0.97 }}
                           onClick={() => setHoveredEvent(isHovered ? null : event.id)}
                         >
-                          <div className="p-6 sm:p-8">
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-center gap-2">
-                                {event.icon}
-                                <span className="text-lg sm:text-xl font-medium">{event.time}</span>
+                          <div className="p-4 sm:p-5">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-1">
+                                {/* Lower icon size */}
+                                {React.cloneElement(event.icon, { className: "w-4 h-4" })}
+                                <span className="text-base sm:text-lg font-medium">{event.time}</span>
                               </div>
-                              <div className="flex items-center gap-2">
-                                {getPriorityIndicator(event.priority)}
-                                <span className="text-sm sm:text-base text-gray-400">{event.status}</span>
+                              <div className="flex items-center gap-1">
+                                {/* Lower priority icon size */}
+                                {React.cloneElement(getPriorityIndicator(event.priority), { className: "w-3 h-3" })}
+                                <span className="text-xs sm:text-sm text-gray-400">{event.status}</span>
                               </div>
                             </div>
                             <motion.h3
-                              className="text-2xl sm:text-3xl font-bold mb-2"
-                              initial={{ opacity: 0, y: -20 }}
+                              className="text-lg sm:text-xl font-bold mb-1"
+                              initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.5 }}
+                              transition={{ duration: 0.4 }}
                             >
                               {event.title}
                             </motion.h3>
                             <motion.p
-                              className="text-base sm:text-lg text-gray-300 mb-4"
-                              initial={{ opacity: 0, y: -20 }}
+                              className="text-sm sm:text-base text-gray-300 mb-2"
+                              initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.5 }}
+                              transition={{ duration: 0.4 }}
                             >
                               {event.description}
                             </motion.p>
                             <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-2">
-                                <MapPin className="w-5 h-5 text-gray-400" />
-                                <span className="text-sm sm:text-base text-gray-400">{event.location}</span>
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-4 h-4 text-gray-400" />
+                                <span className="text-xs sm:text-sm text-gray-400">{event.location}</span>
                               </div>
-                              <div className="flex items-center gap-2">
-                                <Users className="w-5 h-5 text-gray-400" />
-                                <span className="text-sm sm:text-base text-gray-400">{event.attendees}</span>
+                              <div className="flex items-center gap-1">
+                                <Users className="w-4 h-4 text-gray-400" />
+                                <span className="text-xs sm:text-sm text-gray-400">{event.attendees}</span>
                               </div>
                             </div>
                           </div>
@@ -1077,23 +1078,22 @@ const AnimatedEventTimeline = () => {
             </AnimatePresence>
           </div>
 
-          {/* Enhanced Sidebar Section */}
+          {/* Sidebar Section */}
           <div className="xl:col-span-1">
             <motion.div
-              className="relative overflow-hidden rounded-2xl backdrop-blur-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-2xl p-6 sm:p-8"
+              className="relative overflow-hidden rounded-xl backdrop-blur-xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-xl p-4 sm:p-6"
               style={{
                 borderColor: `${currentDayColor}40`,
-                boxShadow: `0 25px 50px -12px ${currentDayColor}20`,
+                boxShadow: `0 12px 24px -6px ${currentDayColor}20`,
               }}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               whileHover={{
                 scale: 1.02,
                 transition: { duration: 0.3 },
               }}
             >
-              {/* Animated background gradient */}
               <motion.div
                 className="absolute inset-0 opacity-20"
                 style={{
@@ -1108,85 +1108,84 @@ const AnimatedEventTimeline = () => {
                   ease: "easeInOut",
                 }}
               />
-
               <div className="relative z-10">
                 <motion.h3
-                  className="text-2xl sm:text-3xl font-bold mb-4"
-                  initial={{ opacity: 0, y: -20 }}
+                  className="text-lg sm:text-xl font-bold mb-2"
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.4 }}
                 >
                   Keynote Speaker
                 </motion.h3>
                 <motion.div
-                  className="flex items-center gap-4 mb-6"
-                  initial={{ opacity: 0, y: -20 }}
+                  className="flex items-center gap-2 mb-3"
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.4 }}
                 >
                   <motion.img
                     src={eventData[activeDay].keynoteSpeaker.image}
                     alt={eventData[activeDay].keynoteSpeaker.name}
-                    className="w-16 h-16 rounded-full object-cover"
+                    className="w-10 h-10 rounded-full object-cover"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.4 }}
                   />
                   <div>
                     <motion.h4
-                      className="text-xl sm:text-2xl font-medium mb-1"
-                      initial={{ opacity: 0, y: -20 }}
+                      className="text-base sm:text-lg font-medium mb-1"
+                      initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
+                      transition={{ duration: 0.4 }}
                     >
                       {eventData[activeDay].keynoteSpeaker.name}
                     </motion.h4>
                     <motion.p
-                      className="text-sm sm:text-base text-gray-400 mb-2"
-                      initial={{ opacity: 0, y: -20 }}
+                      className="text-xs sm:text-sm text-gray-400 mb-1"
+                      initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
+                      transition={{ duration: 0.4 }}
                     >
                       {eventData[activeDay].keynoteSpeaker.title}
                     </motion.p>
                     <motion.div
-                      className="text-sm sm:text-base text-gray-400"
-                      initial={{ opacity: 0, y: -20 }}
+                      className="text-xs sm:text-sm text-gray-400"
+                      initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
+                      transition={{ duration: 0.4 }}
                     >
                       {eventData[activeDay].keynoteSpeaker.bio}
                     </motion.div>
                   </div>
                 </motion.div>
                 <motion.div
-                  className="flex items-center justify-between mb-4"
-                  initial={{ opacity: 0, y: -20 }}
+                  className="flex items-center justify-between mb-2"
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <div className="flex items-center gap-2">
-                    <Mic className="w-5 h-5 text-gray-400" />
-                    <span className="text-sm sm:text-base text-gray-400">
+                  <div className="flex items-center gap-1">
+                    <Mic className="w-3 h-3 text-gray-400" />
+                    <span className="text-xs sm:text-sm text-gray-400">
                       {eventData[activeDay].keynoteSpeaker.topic}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-gray-400" />
-                    <span className="text-sm sm:text-base text-gray-400">
+                  <div className="flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-gray-400" />
+                    <span className="text-xs sm:text-sm text-gray-400">
                       {eventData[activeDay].keynoteSpeaker.duration}
                     </span>
                   </div>
                 </motion.div>
                 <motion.div
                   className="flex items-center justify-between"
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <div className="flex items-center gap-2">
-                    <Star className="w-5 h-5 text-[#20A97B]" />
-                    <span className="text-sm sm:text-base text-gray-400">
+                  <div className="flex items-center gap-1">
+                    <Star className="w-3 h-3 text-[#20A97B]" />
+                    <span className="text-xs sm:text-sm text-gray-400">
                       Rating: {eventData[activeDay].keynoteSpeaker.rating}
                     </span>
                   </div>
