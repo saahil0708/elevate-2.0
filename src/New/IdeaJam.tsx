@@ -4,6 +4,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 interface Project {
   id: string
@@ -148,20 +149,12 @@ export default function IdeaJamSection() {
                           onMouseEnter={() => setHoveredCard(project.id)}
                           onMouseLeave={() => setHoveredCard(null)}
                         >
-                          <img
+                          <Image
                             src={typeof project.image === "string" ? project.image : project.image?.src || project.image}
                             alt={project.title}
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement
-                              target.src = `data:image/svg+xml;base64,${btoa(`
-                                <svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
-                                  <rect width="400" height="600" fill="#374151"/>
-                                  <text x="200" y="300" textAnchor="middle" fill="#10B981" fontFamily="Arial" fontSize="18">Phase ${project.id}</text>
-                                  <text x="200" y="330" textAnchor="middle" fill="#9CA3AF" fontFamily="Arial" fontSize="14">${project.title}</text>
-                                </svg>
-                              `)}`
-                            }}
+                            fill
+                            className="object-cover"
+                            sizes="280px"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                           <div className="absolute inset-0 rounded-xl border border-white/20 pointer-events-none" />
@@ -218,20 +211,12 @@ export default function IdeaJamSection() {
                         onMouseEnter={() => setHoveredCard(project.id)}
                         onMouseLeave={() => setHoveredCard(null)}
                       >
-                        <img
+                        <Image
                           src={typeof project.image === "string" ? project.image : project.image?.src || project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement
-                            target.src = `data:image/svg+xml;base64,${btoa(`
-                              <svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
-                                <rect width="400" height="600" fill="#374151"/>
-                                <text x="200" y="300" textAnchor="middle" fill="#10B981" fontFamily="Arial" fontSize="18">Phase ${project.id}</text>
-                                <text x="200" y="330" textAnchor="middle" fill="#9CA3AF" fontFamily="Arial" fontSize="14">${project.title}</text>
-                              </svg>
-                            `)}`
-                          }}
+                          fill
+                          className="object-cover transition-transform duration-500 hover:scale-105"
+                          sizes="(max-width: 768px) 256px, 288px"
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />

@@ -30,6 +30,7 @@ const AnimatedEventTimeline = () => {
   const [scrollProgress, setScrollProgress] = useState(0)
   const [visibleEvents, setVisibleEvents] = useState(new Set())
   const [hoveredEvent, setHoveredEvent] = useState(null)
+  const [isTimelineInView, setIsTimelineInView] = useState(false)
   const timelineRef = useRef(null)
   const { scrollY } = useScroll()
 
@@ -423,43 +424,55 @@ const AnimatedEventTimeline = () => {
     },
   }
 
-  // Enhanced scroll-based animation control
+  // Enhanced smooth scroll-based animation control
   useEffect(() => {
+    let ticking = false
+
     const handleScroll = () => {
-      if (!timelineRef.current) return
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (!timelineRef.current) return
 
-      const timelineElement = timelineRef.current
-      const rect = timelineElement.getBoundingClientRect()
-      const windowHeight = window.innerHeight
+          const timelineElement = timelineRef.current
+          const rect = timelineElement.getBoundingClientRect()
+          const windowHeight = window.innerHeight
 
-      const timelineTop = rect.top
-      const timelineHeight = rect.height
-      const viewportStart = windowHeight * 0.15
-      const viewportEnd = windowHeight * 0.85
+          const timelineTop = rect.top
+          const timelineHeight = rect.height
+          const viewportStart = windowHeight * 0.1
+          const viewportEnd = windowHeight * 0.9
 
-      let progress = 0
-      if (timelineTop < viewportStart) {
-        const scrolled = viewportStart - timelineTop
-        const totalScrollDistance = timelineHeight + (viewportStart - viewportEnd)
-        progress = Math.min(scrolled / totalScrollDistance, 1)
+          let progress = 0
+          if (timelineTop < viewportStart) {
+            const scrolled = viewportStart - timelineTop
+            const totalScrollDistance = timelineHeight + (viewportStart - viewportEnd)
+            progress = Math.min(Math.max(scrolled / totalScrollDistance, 0), 1)
+          }
+
+          // Smooth progress transition
+          setScrollProgress(prevProgress => {
+            const diff = progress - prevProgress
+            return prevProgress + diff * 0.1 // Smooth interpolation
+          })
+
+          const events = eventData[activeDay].events
+          const newVisibleEvents = new Set()
+
+          events.forEach((event, index) => {
+            const eventProgress = (index + 0.3) / events.length // Earlier trigger
+            if (progress >= eventProgress) {
+              newVisibleEvents.add(event.id)
+            }
+          })
+
+          setVisibleEvents(newVisibleEvents)
+          ticking = false
+        })
+        ticking = true
       }
-
-      setScrollProgress(progress)
-
-      const events = eventData[activeDay].events
-      const newVisibleEvents = new Set()
-
-      events.forEach((event, index) => {
-        const eventProgress = (index + 0.5) / events.length
-        if (progress >= eventProgress) {
-          newVisibleEvents.add(event.id)
-        }
-      })
-
-      setVisibleEvents(newVisibleEvents)
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
 
     return () => window.removeEventListener("scroll", handleScroll)
@@ -468,6 +481,23 @@ const AnimatedEventTimeline = () => {
   useEffect(() => {
     setScrollProgress(0)
     setVisibleEvents(new Set())
+    setIsTimelineInView(false)
+  }, [activeDay])
+
+  // Intersection Observer for better performance
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsTimelineInView(entry.isIntersecting)
+      },
+      { threshold: 0.1 }
+    )
+
+    if (timelineRef.current) {
+      observer.observe(timelineRef.current)
+    }
+
+    return () => observer.disconnect()
   }, [activeDay])
 
   const getEventTypeStyles = (type, status, priority) => {
@@ -509,8 +539,8 @@ const AnimatedEventTimeline = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   }
@@ -518,33 +548,62 @@ const AnimatedEventTimeline = () => {
   const eventVariants = {
     hidden: {
       opacity: 0,
-      y: 80,
-      scale: 0.9,
-      rotateX: -15,
+      y: 30,
+      scale: 0.96,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      rotateX: 0,
       transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 20,
-        duration: 0.8,
+        duration: 0.5,
+        ease: "easeOut",
       },
     },
   }
 
   const timelineVariants = {
-    hidden: { height: 0 },
+    hidden: { height: 0, opacity: 0 },
     visible: {
       height: `${scrollProgress * 100}%`,
+      opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 60,
-        damping: 25,
-        duration: 0.8,
+        height: {
+          type: "spring",
+          stiffness: 100,
+          damping: 30,
+          duration: 0.6,
+        },
+        opacity: {
+          duration: 0.3,
+        },
+      },
+    },
+  }
+
+  // Subtle event animation variants
+  const enhancedEventVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      scale: 0.98,
+    },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+        delay: index * 0.05, // Minimal stagger
+      },
+    }),
+    hover: {
+      y: -4,
+      scale: 1.01,
+      transition: {
+        duration: 0.2,
+        ease: "easeOut",
       },
     },
   }
@@ -651,7 +710,12 @@ const AnimatedEventTimeline = () => {
                 >
                   Time<span className="text-[#20A97B">Line</span>
                 </motion.h1>
-                <div className="w-40 h-0.5 bg-gradient-to-r from-transparent via-[#20A97B] to-transparent mx-auto animate-line-expand"></div>
+                <motion.div
+                  className="w-40 h-0.5 bg-gradient-to-r from-transparent via-[#20A97B] to-transparent mx-auto"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 1.2, delay: 1.5, ease: "easeOut" }}
+                />
 
                 {/* Animated underline */}
                 {/* <motion.div 
@@ -736,9 +800,8 @@ const AnimatedEventTimeline = () => {
                   <motion.button
                     key={day}
                     onClick={() => setActiveDay(day)}
-                    className={`relative px-6 sm:px-8 py-1 sm:py-1 rounded-full text-sm font-bold transition-all duration-500 group ${
-                      isActive ? "text-white shadow-xl" : "text-gray-400 hover:text-white hover:bg-gray-800/50"
-                    }`}
+                    className={`relative px-6 sm:px-8 py-1 sm:py-1 rounded-full text-sm font-bold transition-all duration-500 group ${isActive ? "text-white shadow-xl" : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                      }`}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     style={{
@@ -923,82 +986,167 @@ const AnimatedEventTimeline = () => {
                   </div>
                 </motion.div>
 
-                {/* Timeline with Path */}
+                {/* Enhanced Timeline with Path */}
                 <div className="relative">
-                  {/* Timeline Path */}
-                  <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-gray-700/40 rounded-full hidden sm:block">
+                  {/* Timeline Path Background */}
+                  <div className="absolute left-8 top-0 bottom-0 w-[3px] bg-gray-800/60 rounded-full hidden sm:block">
+                    {/* Animated background glow */}
                     <motion.div
-                      className="w-full rounded-full shadow-xl"
+                      className="absolute inset-0 rounded-full"
                       style={{
-                        background: `linear-gradient(to bottom, ${currentDayColor}, ${currentDayColor}88)`,
-                        boxShadow: `0 0 20px ${currentDayColor}40`,
+                        background: `linear-gradient(to bottom, ${currentDayColor}20, transparent, ${currentDayColor}20)`,
+                        filter: "blur(8px)",
+                      }}
+                      animate={{
+                        opacity: [0.3, 0.6, 0.3],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
+
+                  {/* Active Timeline Path */}
+                  <div className="absolute left-8 top-0 bottom-0 w-[3px] rounded-full hidden sm:block overflow-hidden">
+                    <motion.div
+                      className="w-full rounded-full relative"
+                      style={{
+                        background: `linear-gradient(to bottom, ${currentDayColor}, ${currentDayColor}88, ${currentDayColor}44)`,
+                        boxShadow: `0 0 20px ${currentDayColor}40, inset 0 0 10px ${currentDayColor}20`,
                       }}
                       variants={timelineVariants}
                       initial="hidden"
                       animate="visible"
-                    />
-                    {/* Progress indicator */}
+                    >
+                      {/* Flowing animation effect */}
+                      <motion.div
+                        className="absolute inset-0 w-full rounded-full"
+                        style={{
+                          background: `linear-gradient(to bottom, transparent, ${currentDayColor}60, transparent)`,
+                        }}
+                        animate={{
+                          y: ["-100%", "100%"],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Number.POSITIVE_INFINITY,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </motion.div>
+
+                    {/* Enhanced Progress indicator */}
                     {scrollProgress > 0 && (
                       <motion.div
-                        className="absolute -right-[5px] w-3 h-3 rounded-full shadow-xl"
+                        className="absolute -right-[7px] w-4 h-4 rounded-full"
                         style={{
                           top: `${scrollProgress * 100}%`,
                           transform: "translateY(-50%)",
-                          background: `linear-gradient(135deg, ${currentDayColor}, ${currentDayColor}aa)`,
-                          boxShadow: `0 0 25px ${currentDayColor}60`,
+                          background: `radial-gradient(circle, ${currentDayColor}, ${currentDayColor}aa)`,
+                          boxShadow: `0 0 30px ${currentDayColor}80, 0 0 60px ${currentDayColor}40`,
                         }}
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{
                           type: "spring",
-                          stiffness: 150,
-                          damping: 15,
+                          stiffness: 200,
+                          damping: 20,
                         }}
                       >
+                        {/* Inner core */}
                         <motion.div
                           className="absolute inset-1 rounded-full"
                           style={{ background: currentDayColor }}
-                          animate={{ scale: [1, 1.3, 1] }}
-                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                          animate={{
+                            scale: [1, 1.4, 1],
+                            opacity: [1, 0.8, 1]
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Number.POSITIVE_INFINITY,
+                            ease: "easeInOut"
+                          }}
                         />
-                        <motion.div
-                          className="absolute inset-0 rounded-full"
-                          style={{ background: `radial-gradient(circle, ${currentDayColor}40, transparent)` }}
-                          animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
-                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                        />
+                        {/* Outer pulse rings */}
+                        {[...Array(3)].map((_, i) => (
+                          <motion.div
+                            key={i}
+                            className="absolute inset-0 rounded-full border-2"
+                            style={{ borderColor: `${currentDayColor}60` }}
+                            animate={{
+                              scale: [1, 2.5 + i * 0.5],
+                              opacity: [0.6, 0]
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Number.POSITIVE_INFINITY,
+                              delay: i * 0.3,
+                              ease: "easeOut"
+                            }}
+                          />
+                        ))}
                       </motion.div>
                     )}
-                    {/* Timeline dots for each event */}
+
+                    {/* Enhanced Timeline dots for each event */}
                     {eventData[activeDay].events.map((event, index) => {
                       const dotProgress = (index + 1) / eventData[activeDay].events.length
-                      const isActive = scrollProgress >= dotProgress
+                      const isActive = scrollProgress >= dotProgress - 0.05
+                      const isPassed = scrollProgress > dotProgress + 0.05
 
                       return (
                         <motion.div
                           key={event.id}
-                          className="absolute -right-[6px] w-3 h-3 rounded-full border-2 border-gray-900"
-                          style={{ top: `${dotProgress * 100}%`, transform: "translateY(-50%)" }}
+                          className="absolute -right-[8px] w-4 h-4 rounded-full border-2"
+                          style={{
+                            top: `${dotProgress * 100}%`,
+                            transform: "translateY(-50%)",
+                            borderColor: isActive ? currentDayColor : "#374151",
+                            background: isPassed ? currentDayColor : isActive ? `${currentDayColor}40` : "#1F2937",
+                            boxShadow: isActive ? `0 0 15px ${currentDayColor}60` : "none",
+                          }}
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{
-                            scale: isActive ? 1 : 0.7,
-                            opacity: isActive ? 1 : 0.4,
-                            background: isActive ? currentDayColor : "#374151",
+                            scale: isActive ? 1.1 : 0.8,
+                            opacity: isActive ? 1 : 0.6,
                           }}
                           transition={{
                             type: "spring",
-                            stiffness: 200,
-                            damping: 15,
-                            delay: index * 0.1,
+                            stiffness: 300,
+                            damping: 25,
+                            delay: index * 0.05,
                           }}
-                        />
+                          whileHover={{
+                            scale: 1.3,
+                            transition: { duration: 0.2 }
+                          }}
+                        >
+                          {/* Inner dot animation */}
+                          {isActive && (
+                            <motion.div
+                              className="absolute inset-1 rounded-full"
+                              style={{ background: currentDayColor }}
+                              animate={{
+                                scale: [0.8, 1.2, 0.8],
+                                opacity: [0.8, 1, 0.8]
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Number.POSITIVE_INFINITY,
+                                ease: "easeInOut"
+                              }}
+                            />
+                          )}
+                        </motion.div>
                       )
                     })}
                   </div>
 
-                  {/* Events */}
+                  {/* Enhanced Events */}
                   <motion.div
-                    className="space-y-4 sm:space-y-6 lg:space-y-8 pl-0 sm:pl-20"
+                    className="space-y-6 sm:space-y-8 lg:space-y-10 pl-0 sm:pl-24"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -1007,26 +1155,37 @@ const AnimatedEventTimeline = () => {
                       const isVisible = visibleEvents.has(event.id)
                       const eventProgress = (index + 1) / eventData[activeDay].events.length
                       const isCurrentEvent =
-                        scrollProgress >= eventProgress - 0.15 && scrollProgress <= eventProgress + 0.15
+                        scrollProgress >= eventProgress - 0.12 && scrollProgress <= eventProgress + 0.12
                       const isHovered = hoveredEvent === event.id
+                      const isPassed = scrollProgress > eventProgress + 0.12
 
                       return (
                         <motion.div
                           key={event.id}
-                          variants={eventVariants}
-                          className={`relative overflow-hidden rounded-xl backdrop-blur-xl transition-all duration-700 group cursor-pointer ${
-                            isCurrentEvent ? "shadow-2xl" : "shadow-xl"
-                          } ${isVisible ? "opacity-100" : "opacity-30"}`}
+                          custom={index}
+                          variants={enhancedEventVariants}
+                          initial="hidden"
+                          animate={isVisible ? "visible" : "hidden"}
+                          whileHover="hover"
+                          className={`relative overflow-hidden rounded-2xl backdrop-blur-xl transition-all duration-500 group cursor-pointer border ${isCurrentEvent ? "shadow-2xl" : "shadow-lg"
+                            } ${isVisible ? "opacity-100" : "opacity-20"}`}
                           style={{
-                            background: `linear-gradient(135deg, ${isCurrentEvent ? currentDayColor + "15" : "#1F2937"}90, ${isCurrentEvent ? currentDayColor + "08" : "#111827"}90)`,
-                            borderColor: isCurrentEvent ? `${currentDayColor}60` : "#374151",
-                            borderWidth: "1px",
+                            background: isCurrentEvent
+                              ? `linear-gradient(135deg, ${currentDayColor}18, ${currentDayColor}08, transparent)`
+                              : isPassed
+                                ? `linear-gradient(135deg, ${currentDayColor}08, transparent)`
+                                : "linear-gradient(135deg, #1F293790, #11182790)",
+                            borderColor: isCurrentEvent
+                              ? `${currentDayColor}70`
+                              : isPassed
+                                ? `${currentDayColor}30`
+                                : "#374151",
                             boxShadow: isCurrentEvent
-                              ? `0 12px 24px -6px ${currentDayColor}30`
-                              : "0 12px 24px -6px rgba(0, 0, 0, 0.4)",
+                              ? `0 20px 40px -12px ${currentDayColor}40, 0 0 0 1px ${currentDayColor}20`
+                              : isPassed
+                                ? `0 8px 16px -4px ${currentDayColor}20`
+                                : "0 8px 16px -4px rgba(0, 0, 0, 0.3)",
                           }}
-                          whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                          whileTap={{ scale: 0.97 }}
                           onClick={() => setHoveredEvent(isHovered ? null : event.id)}
                         >
                           <div className="p-4 sm:p-5">
@@ -1079,9 +1238,10 @@ const AnimatedEventTimeline = () => {
           </div>
 
           {/* Sidebar Section */}
-          <div className="xl:col-span-1">
+          <div className="xl:col-span-1 space-y-6">
+            {/* Keynote Speaker Card */}
             <motion.div
-              className="relative overflow-hidden rounded-xl backdrop-blur-xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-xl p-4 sm:p-6"
+              className="relative overflow-hidden rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-xl p-6"
               style={{
                 borderColor: `${currentDayColor}40`,
                 boxShadow: `0 12px 24px -6px ${currentDayColor}20`,
@@ -1110,15 +1270,17 @@ const AnimatedEventTimeline = () => {
               />
               <div className="relative z-10">
                 <motion.h3
-                  className="text-lg sm:text-xl font-bold mb-2"
+                  className="text-xl font-bold mb-4 text-white"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
                 >
-                  Keynote Speaker
+                  Featured Speaker
                 </motion.h3>
+
+                {/* Speaker Image and Basic Info */}
                 <motion.div
-                  className="flex items-center gap-2 mb-3"
+                  className="text-center mb-4"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
@@ -1126,72 +1288,168 @@ const AnimatedEventTimeline = () => {
                   <motion.img
                     src={eventData[activeDay].keynoteSpeaker.image}
                     alt={eventData[activeDay].keynoteSpeaker.name}
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2"
+                    style={{ borderColor: currentDayColor }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
                   />
-                  <div>
-                    <motion.h4
-                      className="text-base sm:text-lg font-medium mb-1"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {eventData[activeDay].keynoteSpeaker.name}
-                    </motion.h4>
-                    <motion.p
-                      className="text-xs sm:text-sm text-gray-400 mb-1"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {eventData[activeDay].keynoteSpeaker.title}
-                    </motion.p>
-                    <motion.div
-                      className="text-xs sm:text-sm text-gray-400"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {eventData[activeDay].keynoteSpeaker.bio}
-                    </motion.div>
-                  </div>
+                  <motion.h4
+                    className="text-lg font-bold text-white mb-1"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {eventData[activeDay].keynoteSpeaker.name}
+                  </motion.h4>
+                  <motion.p
+                    className="text-sm font-medium mb-2"
+                    style={{ color: currentDayColor }}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {eventData[activeDay].keynoteSpeaker.title}
+                  </motion.p>
                 </motion.div>
+
+                {/* Bio */}
                 <motion.div
-                  className="flex items-center justify-between mb-2"
+                  className="mb-4"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <div className="flex items-center gap-1">
-                    <Mic className="w-3 h-3 text-gray-400" />
-                    <span className="text-xs sm:text-sm text-gray-400">
-                      {eventData[activeDay].keynoteSpeaker.topic}
-                    </span>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    {eventData[activeDay].keynoteSpeaker.bio}
+                  </p>
+                </motion.div>
+
+                {/* Topic */}
+                <motion.div
+                  className="mb-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700/50"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <Mic className="w-4 h-4" style={{ color: currentDayColor }} />
+                    <span className="text-sm font-medium text-white">Session Topic</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-gray-400" />
-                    <span className="text-xs sm:text-sm text-gray-400">
+                  <p className="text-sm text-gray-300">
+                    {eventData[activeDay].keynoteSpeaker.topic}
+                  </p>
+                </motion.div>
+
+                {/* Details */}
+                <motion.div
+                  className="space-y-3"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-gray-400" />
+                      <span className="text-sm text-gray-300">Duration</span>
+                    </div>
+                    <span className="text-sm font-medium text-white">
                       {eventData[activeDay].keynoteSpeaker.duration}
                     </span>
                   </div>
-                </motion.div>
-                <motion.div
-                  className="flex items-center justify-between"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <div className="flex items-center gap-1">
-                    <Star className="w-3 h-3 text-[#20A97B]" />
-                    <span className="text-xs sm:text-sm text-gray-400">
-                      Rating: {eventData[activeDay].keynoteSpeaker.rating}
-                    </span>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Star className="w-4 h-4 text-[#20A97B]" />
+                      <span className="text-sm text-gray-300">Rating</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm font-medium text-white">
+                        {eventData[activeDay].keynoteSpeaker.rating}
+                      </span>
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-3 h-3 ${i < Math.floor(eventData[activeDay].keynoteSpeaker.rating)
+                              ? 'text-[#20A97B] fill-current'
+                              : 'text-gray-600'
+                              }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               </div>
             </motion.div>
+
+            {/* Day Stats Card */}
+            {/* <motion.div
+              className="relative overflow-hidden rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-xl p-6"
+              style={{
+                borderColor: `${currentDayColor}40`,
+                boxShadow: `0 12px 24px -6px ${currentDayColor}20`,
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <motion.h3
+                className="text-lg font-bold mb-4 text-white"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                Day {activeDay} Overview
+              </motion.h3>
+
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" style={{ color: currentDayColor }} />
+                    <span className="text-sm text-gray-300">Total Events</span>
+                  </div>
+                  <span className="text-lg font-bold text-white">
+                    {eventData[activeDay].events.length}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4" style={{ color: currentDayColor }} />
+                    <span className="text-sm text-gray-300">Expected Attendees</span>
+                  </div>
+                  <span className="text-lg font-bold text-white">2000+</span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4" style={{ color: currentDayColor }} />
+                    <span className="text-sm text-gray-300">Duration</span>
+                  </div>
+                  <span className="text-lg font-bold text-white">Full Day</span>
+                </div>
+              </div>
+
+              Progress indicator
+              <div className="mt-4 pt-4 border-t border-gray-700/50">
+                <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
+                  <span>Timeline Progress</span>
+                  <span>{Math.round(scrollProgress * 100)}%</span>
+                </div>
+                <div className="w-full bg-gray-700/30 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className="h-full rounded-full shadow-lg"
+                    style={{
+                      background: `linear-gradient(to right, ${currentDayColor}, ${currentDayColor}88)`,
+                      width: `${scrollProgress * 100}%`
+                    }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                  />
+                </div>
+              </div>
+            </motion.div> */}
           </div>
         </div>
       </div>
