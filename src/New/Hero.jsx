@@ -525,9 +525,9 @@ export default function Hero() {
   const [cursorPosition, setCursorPosition] = useState({ x: 50, y: 50 })
 
   useEffect(() => {
-    // Set up the Audiowide font
+    // Set up the Montserrat font
     const link = document.createElement('link')
-    link.href = 'https://fonts.googleapis.com/css2?family=Audiowide&display=swap'
+    link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap'
     link.rel = 'stylesheet'
     document.head.appendChild(link)
 
@@ -665,7 +665,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Main Title with Audiowide font - Improved responsive sizing */}
+        {/* Main Title with Montserrat font - Improved responsive sizing */}
         <div 
           ref={titleRef} 
           className="mb-6 sm:mb-8 relative px-2"
@@ -676,7 +676,8 @@ export default function Hero() {
             <span 
               className="block bg-clip-text text-transparent drop-shadow-2xl relative z-10"
               style={{ 
-                fontFamily: "'Audiowide', cursive",
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 400,
                 backgroundImage: `radial-gradient(circle at ${cursorPosition.x}% ${cursorPosition.y}%, #10B981, white, #10B981)`,
                 backgroundSize: '200% 200%',
                 transition: 'background-position 0.1s ease'
@@ -758,21 +759,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Industry Standards Icons - Responsive */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-gray-500 px-4">
-          <span className="text-xs sm:text-sm mb-2 sm:mb-0">We use industry standards like</span>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">R</span>
-            </div>
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-cyan-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">T</span>
-            </div>
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-purple-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">F</span>
-            </div>
-          </div>
-        </div>
+       
 
       </div>
 
