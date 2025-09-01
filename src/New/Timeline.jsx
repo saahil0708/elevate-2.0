@@ -28,125 +28,233 @@ const AnimatedEventTimeline = () => {
 
   const eventData = {
     1: {
-      title: "Strategic Foundation Day",
+      title: " Explore Possibilities | Build Foundations ",
       subtitle: "Keynotes & Strategic Insights",
-      date: "Monday, September 11, 2025",
-      theme: "Innovation & Leadership",
+      date: "Thursday, September 11, 2025",
+      // theme: "Explore Possibilities | Build Foundations",
       keynoteSpeaker: {
         name: "Aman Gupta",
         title: "Co-Founder & CMO, boAt",
         bio: "Aman Gupta, Co-founder and CMO of boAt, is a leading entrepreneur who transformed India's audio and wearable market with affordable, stylish products.",
         image: "https://www.celebzliving.com/wp-content/uploads/2023/09/Aman-Gupta.jpg",
-        topic: "Innovation in Modern Technology",
+        topic: "Brand Building & Fearless Entrepreneurship",
         duration: "45 minutes"
       },
       events: [
         {
           id: 1,
-          time: "08:00 - 09:00",
-          title: "Executive Registration & Welcome",
-          description: "Professional check-in, networking breakfast, and welcome materials distribution",
-          location: "Grand Foyer",
+          time: "09:30 - 10:15",
+          title: "Opening & Inaugural Ceremony ",
+          description: "Welcome Address by Leadership, Lighting of the Lamp & Institutional Vision and Cultural Welcome Showcase ",
+          location: "Auditorium",
           attendees: "All participants",
           type: "registration",
           icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
           priority: "high"
         },
+        // {
+        //   id: 2,
+        //   time: "09:00 - 09:30",
+        //   title: "Opening Ceremony",
+        //   description: "Welcome address by organizing committee and strategic event overview",
+        //   location: "Main Auditorium",
+        //   attendees: "All participants",
+        //   type: "ceremony",
+        //   icon: <Award className="w-5 h-5" />,
+        //   status: "confirmed",
+        //   priority: "high"
+        // },
         {
           id: 2,
-          time: "09:00 - 09:30",
-          title: "Opening Ceremony",
-          description: "Welcome address by organizing committee and strategic event overview",
-          location: "Main Auditorium",
-          attendees: "All participants",
-          type: "ceremony",
-          icon: <Award className="w-5 h-5" />,
-          status: "confirmed",
-          priority: "high"
-        },
-        {
-          id: 3,
-          time: "09:30 - 10:30",
-          title: "Keynote: Innovation in Modern Technology",
-          description: "Strategic insights for digital transformation and market leadership",
-          location: "Main Auditorium",
+          time: "10:30 - 11:15",
+          title: "Celebrity Keynote – Mr. Aman Gupta (Co-Founder, boAt) ",
+          description: "Brand Building & Fearless Entrepreneurship”",
+          location: "Auditorium",
           attendees: "All participants",
           type: "keynote",
           icon: <Mic className="w-5 h-5" />,
           status: "featured",
-          priority: "critical"
+          priority: "high"
         },
         {
-          id: 4,
-          time: "10:30 - 11:00",
-          title: "Strategic Networking Break",
-          description: "Premium coffee service and structured networking opportunities",
-          location: "Exhibition Hall",
+          id: 3,
+          time: "11:15 - 12:50",
+          title: "Panel Discussion – Shaping Future Careers: Where Academia Meets Industry",
+          description: "Corporate & Academic Stalwarts  and  Insights on future-ready careers, interdisciplinary growth, and aligning passions with profession ",
+          location: "Auditorium",
           attendees: "All participants",
-          type: "break",
-          icon: <Coffee className="w-5 h-5" />,
+          type: "panel",
+          icon: <MessageSquare className="w-5 h-5" />,
           status: "confirmed",
           priority: "medium"
         },
         {
-          id: 5,
-          time: "11:00 - 12:30",
-          title: "Executive Panel: Future Market Trends",
+          id: 4,
+          time: "12:50 - 01:25",
+          title: "Lunch Break & Networking",
           description: "Industry leaders roundtable on emerging opportunities and challenges",
-          location: "Conference Room A",
+          location: "Cusione",
           attendees: "All participants",
-          type: "panel",
+          type: "break",
           icon: <MessageSquare className="w-5 h-5" />,
           status: "confirmed",
           priority: "high"
         },
         {
-          id: 6,
-          time: "12:30 - 13:30",
-          title: "Executive Lunch & Networking",
-          description: "Curated dining experience with continued strategic discussions",
-          location: "Executive Dining Room",
+          id: 5,
+          time: "01:30 - 04:30",
+          title: "Midday Workshops ",
+          description:[ 
+            <span className='text-[#20A97B]'>For Cluster A (Engineering, Business, Hotel Management) </span>,
+            <br />,
+            "Generative AI for Campus Productivity, ",
+            "Canva + No-Code Tools for Innovation and, ",
+            "Personal Branding on LinkedIn & Beyond ",
+            <br />,
+            <span className='text-[#20A97B]'>For Cluster B (Pharmacy, Paramedical, Law)  </span>,
+            <br />,
+            "AI in Diagnostics & Smart Healthcare , ",
+            "Clinical Innovation & Patient Experience and,  ",
+            "Pharma Branding & Digital Health Trends "
+          ],
+          location: "Auditorium",
           attendees: "All participants",
-          type: "break",
-          icon: <Coffee className="w-5 h-5" />,
+          type: "Workshop",
+          icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
           priority: "medium"
+        },
+        {
+          id: 6,
+          time: "04:30 - 05:00",
+          title: "Tea Break & Networking",
+          description: "High Tea with networking opportunities",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Break",
+          icon: <Coffee className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "high"
+        },
+        {
+          id: 7,
+          time: "05:00 - onwards",
+          title: "Comedy Night – Laugh & Connect",
+          description: "Live Stand-Up by National Artists | Student Open Mic Slots A relaxed evening to unwind and connect through humour ",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Enjoyment",
+          icon: <Award className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "high"
         },
       ]
     },
     2: {
-      title: "Collaborative Excellence Day",
+      title: "Dream. Design. Disrupt. ",
       subtitle: "Workshops & Team Building",
-      date: "Tuesday, September 12, 2025",
-      theme: "Digital Transformation",
+      date: "Friday, September 12, 2025",
+      theme: "Dream and Live it.",
       keynoteSpeaker: {
         name: "Anand Kumar",
         title: "Founder, Super 30",
         bio: "Anand Kumar, founder of Super 30, is renowned for coaching underprivileged students for IIT exams and making quality education accessible to all.",
         image: "https://www.mbarendezvous.com/images/top-stories-img/bannerimage_1559647607.jpg",
-        topic: "Leadership in Digital Transformation",
+        topic: "Grit & Grace – The Real Superpower",
         duration: "60 minutes"
       },
       events: [
         {
           id: 11,
-          time: "08:30 - 09:00",
-          title: "Executive Morning Briefing",
-          description: "Premium breakfast service with strategic morning briefing materials",
-          location: "Executive Lounge",
+          time: "09:30 - 10:30",
+          title: "Startup ALLY Expo ",
+          description: "Powered by SVGOI Students & Alumni,  Startup Booths | Product Showcases | Internship Zones and,  First-hand experience of innovation, entrepreneurship & possibility",
+          location: "Auditorium",
           attendees: "All participants",
-          type: "break",
-          icon: <Coffee className="w-5 h-5" />,
+          type: "Project Showcase",
+          icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
           priority: "medium"
         },
         {
           id: 12,
-          time: "09:00 - 10:00",
-          title: "Keynote: Leadership in Digital Era",
-          description: "Navigating organizational change and digital transformation strategies",
-          location: "Main Auditorium",
+          time: "10:30 - 11:15",
+          title: "Startup Panel – “From Garage to Growth”",
+          description: "Alumni Founders | Incubation Leaders and, Stories of resilience, pivoting & early-stage risk-taking",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Panel",
+          icon: <MessageSquare className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "medium"
+        },
+        {
+          id: 13,
+          time: "11:15 - 11:45",
+          title: "Tech Communities Panel – “Connect with the Tech Universe”",
+          description: "A space to connect, collaborate, and explore the tech universe.",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Panel",
+          icon: <MessageSquare className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "medium"
+        },
+        {
+          id: 14,
+          time: "11:45 - 12:10",
+          title: " DCA-NEXTEDGE – Soft Skills Session ",
+          description: "Next-gen communication, leadership & career skills ",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Presentation",
+          icon: <Users2 className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "medium"
+        },
+        {
+          id: 15,
+          time: "12:10 - 12:30",
+          title: "Placement Orientation",
+          description: "SVGOI Career Services Team and, Roadmap for internships, placements & beyond ",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Presentation",
+          icon: <Users2 className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "medium"
+        },
+        {
+          id: 16,
+          time: "12:30 - 01:00",
+          title: "ERP Session ",
+          description: "SVGOI Career Services Team and, Roadmap for internships, placements & beyond ",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Workshop",
+          icon: <Activity className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "medium"
+        },
+        {
+          id: 17,
+          time: "01:30 - 02:00",
+          title: "Lunch Break & Networking",
+          description: "Lunch with networking opportunities",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Break",
+          icon: <Coffee className="w-5 h-5" />,
+          status: "confirmed",
+          priority: "medium"
+        },
+        {
+          id: 18,
+          time: "02:00 - 30:00",
+          title: "Keynote: Shri Anand Kumar (Founder, Super 30) ",
+          description: "Grit & Grace – The Real Superpower",
+          location: "Auditorium",
           attendees: "All participants",
           type: "keynote",
           icon: <Mic className="w-5 h-5" />,
@@ -154,35 +262,35 @@ const AnimatedEventTimeline = () => {
           priority: "critical"
         },
         {
-          id: 13,
-          time: "10:00 - 11:30",
-          title: "Interactive Innovation Workshop",
-          description: "Collaborative problem-solving with real-world case studies and solutions",
-          location: "Innovation Lab",
-          attendees: "40 participants",
-          type: "workshop",
+          id: 19,
+          time: "03:00 - 04:00",
+          title: "IDEAJAM 2.0 – Final Pitch Presentations ",
+          description: "Top student teams pitch to investors & faculty ",
+          location: "Auditorium",
+          attendees: "All participants",
+          type: "Presentation",
           icon: <BookOpen className="w-5 h-5" />,
           status: "confirmed",
           priority: "high"
         },
         {
-          id: 14,
-          time: "11:30 - 12:00",
-          title: "Strategic Networking Interval",
-          description: "Structured networking with industry connection opportunities",
-          location: "Networking Pavilion",
+          id: 20,
+          time: "04:00 - 05:00",
+          title: "Vision Panel – SVGOI Management & Leadership ",
+          description: "Reimagining Educa on: From Degree to Destiny",
+          location: "Auditorium",
           attendees: "All participants",
           type: "break",
-          icon: <Coffee className="w-5 h-5" />,
+          icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
           priority: "medium"
         },
         {
-          id: 15,
-          time: "12:00 - 13:30",
-          title: "Executive Team Building Challenge",
-          description: "Strategic collaborative challenges and leadership development exercises",
-          location: "Leadership Center",
+          id: 21,
+          time: "05:00 - 05:30",
+          title: "Spiritual Session ",
+          description: "Reflective hour for inner growth and calm focus ",
+          location: "Auditorium",
           attendees: "All participants",
           type: "activity",
           icon: <Activity className="w-5 h-5" />,
@@ -192,61 +300,61 @@ const AnimatedEventTimeline = () => {
       ]
     },
     3: {
-      title: "Strategic Outcomes Day",
+      title: "Unity in Diversity – The SVGOI Spirit",
       subtitle: "Presentations & Future Planning",
-      date: "Wednesday, September 13, 2025",
-      theme: "Future-Ready Organizations",
+      date: "Saturday, September 13, 2025",
+      theme: "Cultural Carnival ",
       keynoteSpeaker: {
         name: "Dr. Sarah Mitchell",
         title: "Chief Innovation Officer, TechForward Institute",
         bio: "Dr. Mitchell leads groundbreaking research in emerging technologies and digital transformation strategies for Fortune 500 companies worldwide.",
         image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
-        topic: "Building Future-Ready Organizations",
+        topic: "Cultural Carnival ",
         duration: "50 minutes"
       },
       events: [
         {
           id: 21,
-          time: "08:30 - 09:00",
-          title: "Final Day Executive Coffee",
-          description: "Last networking opportunities with premium coffee experience",
-          location: "Executive Lounge",
+          time: "09:30 - 01:00",
+          title: "Cultural Carnival ",
+          description: "Music, Dance, Drama & Fashion Competitions",
+          location: "Auditorium",
           attendees: "All participants",
-          type: "break",
-          icon: <Coffee className="w-5 h-5" />,
+          type: "Enjoyment",
+          icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
           priority: "medium"
         },
         {
           id: 22,
-          time: "09:00 - 11:00",
-          title: "Strategic Project Presentations",
-          description: "Team project presentations and strategic recommendations showcase",
-          location: "Main Auditorium",
+          time: "02:00 - 03:30",
+          title: "Dance Show",
+          description: "College Dance Teams Perform",
+          location: "Auditorium",
           attendees: "All participants",
-          type: "presentation",
-          icon: <Presentation className="w-5 h-5" />,
+          type: "Enjoyment",
+          icon: <Activity className="w-5 h-5" />,
           status: "featured",
           priority: "critical"
         },
         {
           id: 23,
-          time: "11:00 - 11:30",
-          title: "Final Strategic Networking",
-          description: "Last structured networking opportunity with premium refreshments",
-          location: "Networking Pavilion",
+          time: "03:30 - 04:30",
+          title: "Recognition Ceremony ",
+          description: "Awards for Cultural & Sports Excellence, Faculty & Staff Honours and, Celebrating achievements and contributions",
+          location: "Auditorium",
           attendees: "All participants",
           type: "break",
-          icon: <Coffee className="w-5 h-5" />,
+          icon: <Activity className="w-5 h-5" />,
           status: "confirmed",
           priority: "medium"
         },
         {
           id: 24,
-          time: "11:30 - 12:30",
-          title: "Results Analysis & Future Planning",
-          description: "Comprehensive outcome review and strategic action planning session",
-          location: "Main Auditorium",
+          time: "05:30 - onwards",
+          title: "Band Night",
+          description: "",
+          location: "Auditorium",
           attendees: "All participants",
           type: "session",
           icon: <Target className="w-5 h-5" />,
@@ -256,7 +364,7 @@ const AnimatedEventTimeline = () => {
       ]
     }
   }
-
+  // hello
   // Scroll-based animation control
   useEffect(() => {
     const handleScroll = () => {
@@ -312,7 +420,7 @@ const AnimatedEventTimeline = () => {
     const baseStyles = "inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-semibold border backdrop-blur-sm"
     
     if (status === 'featured') {
-      return `${baseStyles} bg-gradient-to-r from-[#0c5352]/20 to-teal-400/20 text-[#0c5352] border-[#0c5352]/40 shadow-lg shadow-[#0c5352]/20`
+      return `${baseStyles} bg-gradient-to-r from-[#20A97B]/20 to-teal-400/20 text-[#20A97B] border-[#20A97B]/40 shadow-lg shadow-[#20A97B]/20`
     }
     
     const typeStyles = {
@@ -334,7 +442,7 @@ const AnimatedEventTimeline = () => {
   const getPriorityIndicator = (priority) => {
     const indicators = {
       critical: <Zap className="w-3 h-3 text-red-400" />,
-      high: <Star className="w-3 h-3 text-[#0c5352]" />,
+      high: <Star className="w-3 h-3 text-[#20A97B]" />,
       medium: <Target className="w-3 h-3 text-blue-400" />
     }
     return indicators[priority] || indicators.medium
@@ -344,9 +452,9 @@ const AnimatedEventTimeline = () => {
     <div className="min-h-screen bg-transparent relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#0c5352]/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#20A97B]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#0c5352]/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#20A97B]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Header Section */}
@@ -358,11 +466,11 @@ const AnimatedEventTimeline = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white via-[#0c5352] to-teal-400 bg-clip-text text-transparent mb-2 sm:mb-4 leading-tight">
-                Strategic Leadership Conference 2025
+              <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
+                Time<span className="text-[#20A97B]">Line</span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-300 mb-2">Three-Day Executive Program</p>
-              <p className="text-xs sm:text-sm text-[#0c5352] font-medium uppercase tracking-wider px-4">
+              <p className="text-xs sm:text-sm text-[#20A97B] font-medium uppercase tracking-wider px-4">
                 Digital Transformation • Innovation • Leadership
               </p>
             </motion.div>
@@ -373,7 +481,7 @@ const AnimatedEventTimeline = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         {/* Day Navigation & Controls - FIXED */}
         <div className="mb-8 sm:mb-12 flex justify-center">
-          <div className="inline-flex backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 p-1 sm:p-2 shadow-2xl shadow-[#0c5352]/10">
+          <div className="inline-flex backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 p-1 sm:p-2 shadow-2xl shadow-[#20A97B]/10">
             {[1, 2, 3].map((day) => {
               const isActive = activeDay === day
               return (
@@ -382,7 +490,7 @@ const AnimatedEventTimeline = () => {
                   onClick={() => setActiveDay(day)}
                   className={`relative px-4 sm:px-6 py-1 rounded-lg sm:rounded-xl text-sm font-semibold transition-all duration-300 ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#0c5352] to-teal-500 text-white shadow-lg shadow-[#0c5352]/30'
+                      ? 'bg-gradient-to-r from-[#20A97B] to-teal-500 text-white shadow-lg shadow-[#20A97B]/30'
                       : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                   }`}
                 >
@@ -392,7 +500,7 @@ const AnimatedEventTimeline = () => {
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#0c5352]/20 to-teal-500/20 border border-[#0c5352]/40"
+                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#20A97B]/20 to-teal-500/20 border border-[#20A97B]/40"
                       initial={false}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
@@ -410,9 +518,9 @@ const AnimatedEventTimeline = () => {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 px-4 sm:px-6 py-2 sm:py-3 shadow-xl"
           >
-            <div className="w-2 h-2 bg-[#0c5352] rounded-full mr-3 animate-pulse"></div>
+            <div className="w-2 h-2 bg-[#20A97B] rounded-full mr-3 animate-pulse"></div>
             <span className="text-xs sm:text-sm text-gray-300">
-              <span className="text-[#0c5352] font-medium">Scroll down</span> to reveal the timeline
+              <span className="text-[#20A97B] font-medium">Scroll down</span> to reveal the timeline
             </span>
           </motion.div>
         </div>
@@ -430,21 +538,21 @@ const AnimatedEventTimeline = () => {
                 ref={timelineRef}
               >
                 {/* Day Header */}
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#0c5352]/30 shadow-2xl shadow-[#0c5352]/10 p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0c5352]/5 to-transparent" />
+                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#20A97B]/30 shadow-2xl shadow-[#20A97B]/10 p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#20A97B]/5 to-transparent" />
                   <div className="relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex-1">
                         <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{eventData[activeDay].title}</h2>
                         <div className="flex items-center text-gray-300 mb-2">
-                          <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 text-[#0c5352] flex-shrink-0" />
+                          <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 text-[#20A97B] flex-shrink-0" />
                           <span className="text-sm sm:text-base lg:text-lg">{eventData[activeDay].date}</span>
                         </div>
-                        <p className="text-sm sm:text-base text-[#0c5352] font-medium">{eventData[activeDay].theme}</p>
+                        <p className="text-sm sm:text-base text-[#20A97B] font-medium">{eventData[activeDay].theme}</p>
                       </div>
                       <div className="text-center sm:text-right">
                         <div className="text-xs sm:text-sm text-gray-400 mb-1">Total Sessions</div>
-                        <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#0c5352] to-teal-400 bg-clip-text text-transparent">
+                        <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#20A97B] to-teal-400 bg-clip-text text-transparent">
                           {eventData[activeDay].events.length}
                         </div>
                       </div>
@@ -457,7 +565,7 @@ const AnimatedEventTimeline = () => {
                   {/* Animated Timeline Path - Hidden on mobile, shown on sm+ */}
                   <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-[1.5px] bg-gray-700/30 rounded-full hidden sm:block">
                     <motion.div
-                      className="w-full bg-gradient-to-b from-[#0c5352] to-teal-500 rounded-full shadow-lg shadow-[#0c5352]/50"
+                      className="w-full bg-gradient-to-b from-[#20A97B] to-teal-500 rounded-full shadow-lg shadow-[#20A97B]/50"
                       initial={{ height: 0 }}
                       animate={{ 
                         height: `${scrollProgress * 100}%`
@@ -468,7 +576,7 @@ const AnimatedEventTimeline = () => {
                     {/* Glowing orb at the end of the path */}
                     {scrollProgress > 0 && (
                       <motion.div
-                        className="absolute -right-[7px] w-4 h-4 bg-gradient-to-r from-[#0c5352] to-teal-500 rounded-full shadow-lg shadow-[#0c5352]/50"
+                        className="absolute -right-[7px] w-4 h-4 bg-gradient-to-r from-[#20A97B] to-teal-500 rounded-full shadow-lg shadow-[#20A97B]/50"
                         style={{ 
                           top: `${scrollProgress * 100}%`,
                           transform: 'translateY(-50%)'
@@ -477,7 +585,7 @@ const AnimatedEventTimeline = () => {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="absolute inset-0 bg-[#0c5352] rounded-full animate-ping opacity-75" />
+                        <div className="absolute inset-0 bg-[#20A97B] rounded-full animate-ping opacity-75" />
                       </motion.div>
                     )}
                   </div>
@@ -504,7 +612,7 @@ const AnimatedEventTimeline = () => {
                           }}
                           className={`relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/60 to-gray-800/60 border shadow-xl transition-all duration-500 ${
                             isCurrentEvent 
-                              ? 'border-[#0c5352]/60 shadow-2xl shadow-[#0c5352]/30 scale-[1.01] sm:scale-[1.02]' 
+                              ? 'border-[#20A97B]/60 shadow-2xl shadow-[#20A97B]/30 scale-[1.01] sm:scale-[1.02]' 
                               : 'border-gray-700/50'
                           }`}
                         >
@@ -512,7 +620,7 @@ const AnimatedEventTimeline = () => {
                           <div className="absolute -left-16 top-6 sm:top-8 w-4 h-4 bg-gray-700/50 rounded-full border-4 border-gray-900 hidden sm:block">
                             {isVisible && (
                               <motion.div
-                                className="w-full h-full bg-gradient-to-r from-[#0c5352] to-teal-500 rounded-full"
+                                className="w-full h-full bg-gradient-to-r from-[#20A97B] to-teal-500 rounded-full"
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 transition={{ duration: 0.4 }}
@@ -526,7 +634,7 @@ const AnimatedEventTimeline = () => {
                           {/* Priority indicator */}
                           {event.status === 'featured' && isVisible && (
                             <motion.div
-                              className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0c5352] via-teal-400 to-[#0c5352]"
+                              className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#20A97B] via-teal-400 to-[#20A97B]"
                               initial={{ scaleX: 0 }}
                               animate={{ scaleX: 1 }}
                               transition={{ duration: 0.6 }}
@@ -539,12 +647,12 @@ const AnimatedEventTimeline = () => {
                               <div className="flex items-start space-x-3 sm:space-x-4 flex-1">
                                 <div className="flex-shrink-0">
                                   <motion.div
-                                    className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-[#0c5352]/20 to-teal-500/20 rounded-xl flex items-center justify-center border border-[#0c5352]/30 backdrop-blur-sm"
+                                    className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-[#20A97B]/20 to-teal-500/20 rounded-xl flex items-center justify-center border border-[#20A97B]/30 backdrop-blur-sm"
                                     initial={{ rotate: -180, scale: 0 }}
                                     animate={isVisible ? { rotate: 0, scale: 1 } : { rotate: -180, scale: 0 }}
                                     transition={{ duration: 0.6 }}
                                   >
-                                    <span className="text-[#0c5352]">{event.icon}</span>
+                                    <span className="text-[#20A97B]">{event.icon}</span>
                                   </motion.div>
                                 </div>
                                 <div className="flex-1 min-w-0">
@@ -554,7 +662,7 @@ const AnimatedEventTimeline = () => {
                                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
                                   >
-                                    <div className="flex items-center text-[#0c5352] font-bold text-base sm:text-lg">
+                                    <div className="flex items-center text-[#20A97B] font-bold text-base sm:text-lg">
                                       <Clock className="w-4 sm:w-5 h-4 sm:h-5 mr-2 flex-shrink-0" />
                                       <span className="truncate">{event.time}</span>
                                     </div>
@@ -594,11 +702,11 @@ const AnimatedEventTimeline = () => {
                                     transition={{ duration: 0.5, delay: 0.4 }}
                                   >
                                     <div className="flex items-center">
-                                      <MapPin className="w-4 h-4 mr-2 text-[#0c5352] flex-shrink-0" />
+                                      <MapPin className="w-4 h-4 mr-2 text-[#20A97B] flex-shrink-0" />
                                       <span className="truncate">{event.location}</span>
                                     </div>
                                     <div className="flex items-center">
-                                      <UserCheck className="w-4 h-4 mr-2 text-[#0c5352] flex-shrink-0" />
+                                      <UserCheck className="w-4 h-4 mr-2 text-[#20A97B] flex-shrink-0" />
                                       <span className="truncate">{event.attendees}</span>
                                     </div>
                                   </motion.div>
@@ -613,9 +721,9 @@ const AnimatedEventTimeline = () => {
                                   animate={{ opacity: 1, scale: 1 }}
                                   transition={{ duration: 0.5, delay: 0.5 }}
                                 >
-                                  <div className="flex items-center bg-gradient-to-r from-[#0c5352]/20 to-teal-500/20 border border-[#0c5352]/40 rounded-lg px-3 py-1.5 backdrop-blur-sm">
-                                    <Star className="w-4 h-4 text-[#0c5352] mr-2" />
-                                    <span className="text-xs font-bold text-[#0c5352] uppercase tracking-wide">Featured</span>
+                                  <div className="flex items-center bg-gradient-to-r from-[#20A97B]/20 to-teal-500/20 border border-[#20A97B]/40 rounded-lg px-3 py-1.5 backdrop-blur-sm">
+                                    <Star className="w-4 h-4 text-[#20A97B] mr-2" />
+                                    <span className="text-xs font-bold text-[#20A97B] uppercase tracking-wide">Featured</span>
                                   </div>
                                 </motion.div>
                               )}
@@ -624,7 +732,7 @@ const AnimatedEventTimeline = () => {
                             {/* Current event glow effect */}
                             {isCurrentEvent && (
                               <motion.div
-                                className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#0c5352]/10 via-transparent to-[#0c5352]/10"
+                                className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#20A97B]/10 via-transparent to-[#20A97B]/10"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.3 }}
@@ -648,20 +756,20 @@ const AnimatedEventTimeline = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#0c5352]/30 shadow-2xl shadow-[#0c5352]/10"
+                className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#20A97B]/30 shadow-2xl shadow-[#20A97B]/10"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0c5352]/5 to-transparent" />
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#0c5352]/20 via-transparent to-[#0c5352]/20 blur-sm" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#20A97B]/5 to-transparent" />
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#20A97B]/20 via-transparent to-[#20A97B]/20 blur-sm" />
                 
                 <div className="relative z-10 p-4 sm:p-6">
                   {/* Header */}
                   <div className="flex items-center mb-4 sm:mb-6">
-                    <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-[#0c5352]/20 to-teal-500/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 backdrop-blur-sm border border-[#0c5352]/30">
-                      <Mic className="w-5 sm:w-6 h-5 sm:h-6 text-[#0c5352]" />
+                    <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-[#20A97B]/20 to-teal-500/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 backdrop-blur-sm border border-[#20A97B]/30">
+                      <Mic className="w-5 sm:w-6 h-5 sm:h-6 text-[#20A97B]" />
                     </div>
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-white mb-1">Keynote Speaker</h3>
-                      <p className="text-xs sm:text-sm text-[#0c5352] font-medium">{eventData[activeDay].theme}</p>
+                      <p className="text-xs sm:text-sm text-[#20A97B] font-medium">{eventData[activeDay].theme}</p>
                     </div>
                   </div>
 
@@ -671,15 +779,15 @@ const AnimatedEventTimeline = () => {
                       <img
                         src={eventData[activeDay].keynoteSpeaker.image}
                         alt={eventData[activeDay].keynoteSpeaker.name}
-                        className="w-16 sm:w-20 h-16 sm:h-20 rounded-xl object-cover border-2 border-[#0c5352]/40 shadow-lg"
+                        className="w-16 sm:w-20 h-16 sm:h-20 rounded-xl object-cover border-2 border-[#20A97B]/40 shadow-lg"
                       />
-                      <div className="absolute -bottom-1 sm:-bottom-2 -right-1 sm:-right-2 w-5 sm:w-6 h-5 sm:h-6 bg-[#0c5352] rounded-full flex items-center justify-center shadow-lg shadow-[#0c5352]/50">
+                      <div className="absolute -bottom-1 sm:-bottom-2 -right-1 sm:-right-2 w-5 sm:w-6 h-5 sm:h-6 bg-[#20A97B] rounded-full flex items-center justify-center shadow-lg shadow-[#20A97B]/50">
                         <Star className="w-2 sm:w-3 h-2 sm:h-3 text-white" />
                       </div>
                     </div>
                     <div className="flex-1 text-center sm:text-left">
                       <h4 className="text-lg sm:text-xl font-bold text-white mb-1">{eventData[activeDay].keynoteSpeaker.name}</h4>
-                      <p className="text-xs sm:text-sm text-[#0c5352] font-medium mb-2">{eventData[activeDay].keynoteSpeaker.title}</p>
+                      <p className="text-xs sm:text-sm text-[#20A97B] font-medium mb-2">{eventData[activeDay].keynoteSpeaker.title}</p>
                       <div className="flex items-center justify-center sm:justify-start text-xs text-gray-400">
                         <Clock className="w-3 h-3 mr-1" />
                         <span>{eventData[activeDay].keynoteSpeaker.duration}</span>
@@ -690,14 +798,14 @@ const AnimatedEventTimeline = () => {
                   <p className="text-sm text-gray-300 leading-relaxed mb-4 sm:mb-6 text-center sm:text-left">{eventData[activeDay].keynoteSpeaker.bio}</p>
 
                   {/* Topic */}
-                  <div className="relative overflow-hidden rounded-xl backdrop-blur-sm bg-gradient-to-br from-[#0c5352]/10 to-teal-500/10 border border-[#0c5352]/30 p-3 sm:p-4 mb-4">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0c5352]/5 to-transparent" />
+                  <div className="relative overflow-hidden rounded-xl backdrop-blur-sm bg-gradient-to-br from-[#20A97B]/10 to-teal-500/10 border border-[#20A97B]/30 p-3 sm:p-4 mb-4">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#20A97B]/5 to-transparent" />
                     <div className="relative z-10">
                       <div className="flex items-center mb-2">
-                        <div className="w-7 sm:w-8 h-7 sm:h-8 bg-[#0c5352]/20 rounded-lg flex items-center justify-center mr-3 backdrop-blur-sm">
-                          <Presentation className="w-3 sm:w-4 h-3 sm:h-4 text-[#0c5352]" />
+                        <div className="w-7 sm:w-8 h-7 sm:h-8 bg-[#20A97B]/20 rounded-lg flex items-center justify-center mr-3 backdrop-blur-sm">
+                          <Presentation className="w-3 sm:w-4 h-3 sm:h-4 text-[#20A97B]" />
                         </div>
-                        <span className="text-xs font-bold text-[#0c5352] uppercase tracking-wider">Speaking Topic</span>
+                        <span className="text-xs font-bold text-[#20A97B] uppercase tracking-wider">Speaking Topic</span>
                       </div>
                       <h5 className="text-sm font-bold text-white">{eventData[activeDay].keynoteSpeaker.topic}</h5>
                     </div>

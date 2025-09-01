@@ -59,54 +59,52 @@ export default function Footer() {
             {/* Contact */}
             <div>
               <h3
-                className="text-md font-semibold text-[#1cb683] mb-3"
-                style={{ textShadow: "0 0 15px rgba(28, 182, 131, 0.3)" }}
+                className="text-lg font-bold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-4"
+                style={{ textShadow: "0 0 25px rgba(12, 83, 82, 0.3)" }}
               >
                 Contact
               </h3>
-              <div className="space-y-2 text-sm">
-                <Link 
-                  href="mailto:hello@theuniques.in" 
-                  className="flex items-center gap-2 text-white hover:text-[#107372] transition-colors"
-                >
-                  <Mail className="h-4 w-4" />
-                  hello@theuniques.in
-                </Link>
-                <Link 
-                  href="https://www.theuniques.in/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white hover:text-[#107372] transition-colors"
-                >
-                  <Globe className="h-4 w-4" />
-                  www.theuniques.in
-                </Link>
+              <div className="space-y-3 text-sm">
+                <div>
+                  <p className="text-gray-400 mb-1">General enquiries</p>
+                  <Link href="mailto:hello@lusion.co" className="text-white hover:text-[#107372] transition-colors">
+                    hello@lusion.co
+                  </Link>
+                </div>
+                <div>
+                  <p className="text-gray-400 mb-1">New business</p>
+                  <Link href="mailto:business@lusion.co" className="text-white hover:text-[#107372] transition-colors">
+                    business@lusion.co
+                  </Link>
+                </div>
               </div>
             </div>
 
             {/* Social */}
             <div>
               <h3
-                className="text-md font-semibold text-[#1cb683] mb-3"
-                style={{ textShadow: "0 0 15px rgba(28, 182, 131, 0.3)" }}
+                className="text-lg font-bold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-4"
+                style={{ textShadow: "0 0 25px rgba(12, 83, 82, 0.3)" }}
               >
                 Follow Us
               </h3>
               <div className="space-y-2 text-sm">
                 <Link
-                  href="https://www.instagram.com/theuniquesofficial?igsh=MXN3bG1kMXM0OTl5eQ=="
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white hover:text-[#107372] transition-all duration-300"
+                  href="#"
+                  className="block text-white hover:text-[#107372] transition-all duration-300 hover:translate-x-1"
+                >
+                  Twitter / X
+                </Link>
+                <Link
+                  href="#"
+                  className="block text-white hover:text-[#107372] transition-all duration-300 hover:translate-x-1"
                 >
                   <Instagram className="h-4 w-4" />
                   Instagram
                 </Link>
                 <Link
-                  href="https://www.linkedin.com/company/theuniquesofflicial/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white hover:text-[#107372] transition-all duration-300"
+                  href="#"
+                  className="block text-white hover:text-[#107372] transition-all duration-300 hover:translate-x-1"
                 >
                   <Linkedin className="h-4 w-4" />
                   LinkedIn
@@ -133,7 +131,7 @@ export default function Footer() {
       {showScrollToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 right-5 bg-[#0c5352] hover:bg-[#107372] text-white rounded-full p-2 shadow-lg hover:shadow-[0_0_15px_rgba(12,83,82,0.3)] transition-all duration-300 z-50"
+          className="fixed bottom-6 right-6 bg-[#0c5352] hover:bg-[#107372] text-white rounded-full p-3 shadow-lg hover:shadow-[0_0_15px_rgba(12,83,82,0.3)] transition-all duration-300 z-50"
           aria-label="Scroll to top"
         >
           <ArrowUp className="h-4 w-4" />

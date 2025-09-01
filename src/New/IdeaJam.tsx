@@ -86,9 +86,11 @@ export default function IdeaJamSection() {
     <section id="ideajam" className="relative min-h-screen  text-white py-12 md:py-20 px-4 overflow-hidden">
       <div className="relative max-w-7xl mx-auto text-center">
         <div className="mb-8 md:mb-12 relative">
-          <p className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#ffffff] via-[#0c7372] to-[#0c5352] bg-clip-text text-transparent mb-6 md:mb-8 tracking-wide">IdeaJam 2025</p>
+          <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
+                Ideajam <span className="text-[#20A97B]"> 2025</span>
+              </h1>
           <motion.div
-            className="h-1 bg-gradient-to-r from-transparent via-[#0c5352] to-transparent mx-auto mb-6 md:mb-10"
+            className="h-1 bg-gradient-to-r from-transparent via-[#20A97B] to-transparent mx-auto mb-6 md:mb-10"
             initial={{ width: 0 }}
             animate={{ width: isMobile ? "120px" : "200px" }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -96,7 +98,7 @@ export default function IdeaJamSection() {
 
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mx-auto leading-relaxed mb-4 md:mb-6 px-2">
             Where Bold Ideas Transform Into{" "}
-            <span className="font-semibold text-[#0c5352]">Breakthrough Solutions</span>
+            <span className="font-semibold text-[#20A97B]">Breakthrough Solutions</span>
           </h2>
 
           <p className="text-gray-400 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
@@ -156,7 +158,7 @@ export default function IdeaJamSection() {
                         </div>
 
                         <div className="mt-4 text-center">
-                          <div className="text-[#0c5352] font-bold text-base mb-1">Phase {project.id}</div>
+                          <div className="text-[#20A97B] font-bold text-base mb-1">Phase {project.id}</div>
                           <div className="text-white font-semibold text-sm mb-1">{project.title}</div>
                           <div className="text-gray-400 font-medium text-xs">{project.category}</div>
                         </div>
@@ -222,7 +224,7 @@ export default function IdeaJamSection() {
                       </div>
 
                       <div className="mt-4 md:mt-6 text-center">
-                        <div className="text-[#0c5352] font-bold text-base md:text-lg mb-1">Phase {project.id}</div>
+                        <div className="text-[#20A97B] font-bold text-base md:text-lg mb-1">Phase {project.id}</div>
                         <div className="text-white font-semibold text-sm md:text-base mb-1">{project.title}</div>
                         <div className="text-gray-400 font-medium text-xs md:text-sm">{project.category}</div>
                       </div>
@@ -240,7 +242,7 @@ export default function IdeaJamSection() {
                 <button
                   key={index}
                   onClick={() => handleDotClick(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? 'bg-[#0c5352] w-4' : 'bg-gray-600'}`}
+                  className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? 'bg-[#20A97B] w-4' : 'bg-gray-600'}`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
@@ -253,15 +255,15 @@ export default function IdeaJamSection() {
             <p className="text-gray-300 text-base md:text-lg mb-1 md:mb-2">Ready to transform your ideas?</p>
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-gray-400">
               <div className="flex items-center gap-1 md:gap-2">
-                <div className="w-2 h-2 bg-[#0c5352] rounded-full"></div>
+                <div className="w-2 h-2 bg-[#20A97B] rounded-full"></div>
                 <span>48 Hours</span>
               </div>
               <div className="flex items-center gap-1 md:gap-2">
-                <div className="w-2 h-2 bg-[#0c5352] rounded-full"></div>
+                <div className="w-2 h-2 bg-[#20A97B] rounded-full"></div>
                 <span>Expert Mentors</span>
               </div>
               <div className="flex items-center gap-1 md:gap-2">
-                <div className="w-2 h-2 bg-[#0c5352] rounded-full"></div>
+                <div className="w-2 h-2 bg-[#20A97B] rounded-full"></div>
                 <span>Real Prizes</span>
               </div>
             </div>
@@ -271,7 +273,9 @@ export default function IdeaJamSection() {
             href="https://ideajam.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#0c5352] hover:bg-[#0c5352]/20 text-white px-8 sm:px-12 py-2 text-lg sm:text-xl font-semibold rounded-full transition-all duration-300 hover:scale-105 border border-emerald-500/30 inline-flex items-center group shadow-lg sm:shadow-xl cursor-pointer shadow-emerald-500/20"
+
+            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 sm:px-12 py-2 text-lg sm:text-xl font-semibold rounded-full transition-all duration-300 border border-emerald-500/30 inline-flex items-center group shadow-lg sm:shadow-xl cursor-pointer shadow-emerald-500/20"
+
           >
             <span>Register Now</span>
             <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:translate-x-1" />

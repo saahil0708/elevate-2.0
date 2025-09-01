@@ -1,3 +1,7 @@
+
+// "use client"
+// import { useEffect, useRef, useState } from "react"
+
 // "use client"
 // import { useEffect, useRef } from "react"
 // import { gsap } from "gsap"
@@ -521,9 +525,9 @@ export default function Hero() {
   const [cursorPosition, setCursorPosition] = useState({ x: 50, y: 50 })
 
   useEffect(() => {
-    // Set up the Audiowide font
+    // Set up the Montserrat font
     const link = document.createElement('link')
-    link.href = 'https://fonts.googleapis.com/css2?family=Audiowide&display=swap'
+    link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap'
     link.rel = 'stylesheet'
     document.head.appendChild(link)
 
@@ -654,14 +658,14 @@ export default function Hero() {
         <div ref={badgeRef} className="mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-[#20A97B]/30 bg-black/30 backdrop-blur-sm">
             <div className="w-2 h-2 bg-[#20A97B] rounded-full animate-pulse"></div>
-            <span className="text-xs sm:text-sm text-gray-300 font-medium">Zero Style Stress</span>
+            <span className="text-xs sm:text-sm text-gray-300 font-medium">Join Us</span>
             <svg className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </div>
         </div>
 
-        {/* Main Title with Audiowide font - Improved responsive sizing */}
+        {/* Main Title with Montserrat font - Improved responsive sizing */}
         <div 
           ref={titleRef} 
           className="mb-6 sm:mb-8 relative px-2"
@@ -672,7 +676,8 @@ export default function Hero() {
             <span 
               className="block bg-clip-text text-transparent drop-shadow-2xl relative z-10"
               style={{ 
-                fontFamily: "'Audiowide', cursive",
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 400,
                 backgroundImage: `radial-gradient(circle at ${cursorPosition.x}% ${cursorPosition.y}%, #10B981, white, #10B981)`,
                 backgroundSize: '200% 200%',
                 transition: 'background-position 0.1s ease'
@@ -706,8 +711,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-1 sm:mb-4">100 +</div>
-              <div className="text-gray-300 text-xs sm:text-base lg:text-lg">Components available</div>
+              <div className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-1 sm:mb-4">50 +</div>
+              <div className="text-gray-300 text-xs sm:text-base lg:text-lg">Teams</div>
             </div>
           </div>
 
@@ -720,12 +725,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-gray-700/50 to-gray-800/50 border border-gray-600/50 backdrop-blur-sm flex items-center justify-center mb-2 sm:mb-4">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">V0 Compatible</h3>
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">500 +</div>
+              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Attendees</h3>
             </div>
           </div>
 
@@ -738,12 +739,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-gray-700/50 to-gray-800/50 border border-gray-600/50 backdrop-blur-sm flex items-center justify-center mb-2 sm:mb-4">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Animated UI</h3>
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">60 +</div>
+              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Projects</h3>
             </div>
           </div>
 
@@ -756,27 +753,13 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">15 +</div>
-              <div className="text-gray-300 text-sm sm:text-base lg:text-lg">Categories available</div>
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">20+ +</div>
+              <div className="text-gray-300 text-sm sm:text-base lg:text-lg">Speakers</div>
             </div>
           </div>
         </div>
 
-        {/* Industry Standards Icons - Responsive */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-gray-500 px-4">
-          <span className="text-xs sm:text-sm mb-2 sm:mb-0">We use industry standards like</span>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">R</span>
-            </div>
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-cyan-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">T</span>
-            </div>
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-purple-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">F</span>
-            </div>
-          </div>
-        </div>
+       
 
       </div>
 

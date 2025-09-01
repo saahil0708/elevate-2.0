@@ -3,58 +3,72 @@
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
-export const ThreeDMarquee = ({ images, className }) => {
-  // Reduce images to first 12 for better layout
-  const reducedImages = images.slice(0, 12);
+// Assuming GridLineVertical and GridLineHorizontal are defined somewhere else
+// or imported from your components library
 
-  // Split images into 3 columns
-  const chunkSize = Math.ceil(reducedImages.length / 3);
-  const chunks = Array.from({ length: 3 }, (_, colIndex) =>
-    reducedImages.slice(colIndex * chunkSize, colIndex * chunkSize + chunkSize)
-  );
+// Simple grid line components
+const GridLineVertical = ({ className = "", offset = "0px" }) => (
+  <div
+    className={`absolute h-full w-px bg-gray-300 ${className}`}
+    style={{ left: offset }}
+  />
+);
+
+const GridLineHorizontal = ({ className = "", offset = "0px" }) => (
+  <div
+    className={`absolute w-full h-px bg-gray-300 ${className}`}
+    style={{ top: offset }}
+  />
+);
+
+export const ThreeDMarquee = ({ images, className }) => {
+  // Split the images array into 4 equal parts
+  const chunkSize = Math.ceil(images.length / 4);
+  const chunks = Array.from({ length: 4 }, (_, colIndex) => {
+    const start = colIndex * chunkSize;
+    return images.slice(start, start + chunkSize);
+  });
 
   return (
     <div
       className={cn(
-        "mx-auto block h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl perspective-1000",
+        "mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100",
         className
       )}
     >
-      <div className="flex w-full h-full items-center justify-center">
-        <div className="w-full lg:w-[1200px] h-full">
+      <div className="flex size-full items-center justify-center">
+        <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
           <div
-            style={{ transform: "rotateX(40deg) rotateY(0deg) rotateZ(-30deg)" }}
-            className="grid w-full h-full grid-cols-3 gap-6 origin-center"
+            style={{
+              transform: "rotateX(55deg) rotateY(0deg) rotateZ(-45deg)",
+            }}
+            className="relative top-96 right-[50%] grid size-full origin-top-left grid-cols-4 gap-8 transform-3d"
           >
             {chunks.map((subarray, colIndex) => (
               <motion.div
-                key={colIndex + "marquee"}
-                animate={{ y: colIndex % 2 === 0 ? 40 : -40 }}
+                animate={{ y: colIndex % 2 === 0 ? 100 : -100 }}
                 transition={{
-                  duration: colIndex % 2 === 0 ? 12 : 18,
+                  duration: colIndex % 2 === 0 ? 10 : 15,
                   repeat: Infinity,
                   repeatType: "reverse",
-                  ease: "easeInOut"
                 }}
-                className="flex flex-col items-start gap-6"
+                key={colIndex + "marquee"}
+                className="flex flex-col items-start gap-8"
               >
+                <GridLineVertical className="-left-4" offset="80px" />
                 {subarray.map((image, imageIndex) => (
-                  <motion.div
-                    key={imageIndex + image}
-                    className="relative group w-full"
-                    whileHover={{ y: -12 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  >
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0c5352]/80 opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300 z-10"
-                    />
+                  <div className="relative" key={imageIndex + image}>
+                    <GridLineHorizontal className="-top-4" offset="20px" />
                     <motion.img
+                      whileHover={{ y: -10 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
-                      className="aspect-[970/700] rounded-lg object-cover ring-1 ring-white/20 hover:ring-2 hover:ring-white/40 shadow-lg hover:shadow-xl w-full transition-all duration-300"
-                      loading="lazy"
+                      className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
+                      width={970}
+                      height={700}
                     />
-                  </motion.div>
+                  </div>
                 ))}
               </motion.div>
             ))}

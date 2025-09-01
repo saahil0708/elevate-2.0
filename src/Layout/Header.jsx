@@ -1,61 +1,3 @@
-// "use client"
-// import { useEffect } from "react"
-
-// export default function Header() {
-//   // Smooth scroll (polyfill for older browsers)
-//   useEffect(() => {
-//     if (typeof window !== "undefined") {
-//       require("smooth-scroll")('a[href*="#"]', {
-//         speed: 700,
-//         speedAsDuration: true,
-//       })
-//     }
-//   }, [])
-
-//   return (
-//     <header className="fixed top-0 left-0 w-full bg-black/60 backdrop-blur-md shadow-md z-50">
-//       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-//         {/* Logo / Event Name */}
-//         <h1 className="text-2xl font-extrabold text-[#1cb683] tracking-widest">
-//           ELEVATE 2.0
-//         </h1>
-
-//         {/* Navigation Links */}
-//         <nav>
-//           <ul className="flex gap-8 text-white font-medium">
-//             <li>
-//               <a href="#home" className="hover:text-[#1cb683] transition">
-//                 Home
-//               </a>
-//             </li>
-//             <li>
-//               <a href="#about" className="hover:text-[#1cb683] transition">
-//                 About
-//               </a>
-//             </li>
-            
-//             <li>
-//               <a href="#ideajam" className="hover:text-[#1cb683] transition">
-//                 IdeaJam
-//               </a>
-//             </li>
-//             <li>
-//               <a href="#gallery" className="hover:text-[#1cb683] transition">
-//                 Gallery
-//               </a>
-//             </li>
-//             <li>
-//               <a href="#footer" className="hover:text-[#1cb683] transition">
-//                 Contact
-//               </a>
-//             </li>
-//           </ul>
-//         </nav>
-//       </div>
-//     </header>
-//   )
-// }
-
 "use client"
 import { useEffect, useState } from "react"
 
@@ -75,7 +17,6 @@ export default function Header() {
   // Smooth scroll with refresh fix
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // ✅ Refresh hone par hash (#about) hata do aur top pe le aao
       if (window.location.hash) {
         history.replaceState(null, null, " ");
         window.scrollTo(0, 0);
@@ -85,7 +26,7 @@ export default function Header() {
       new SmoothScroll('a[href*="#"]', {
         speed: 700,
         speedAsDuration: true,
-        updateURL: false, // ✅ URL me hash add nahi hoga
+        updateURL: false,
         offset: 0,
       })
     }
@@ -100,14 +41,13 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-center px-6">
-      
-
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul className="flex items-center gap-2 bg-black/70 backdrop-blur-md rounded-full border border-white/10 px-2 py-2 shadow-2xl">
+          <ul className="flex items-center gap-2 bg-black/70 backdrop-blur-md rounded-lg border border-white/10 px-2 py-2 shadow-2xl">
             {[
               { name: "Home", href: "#home" },
               { name: "About", href: "#about" },
+              { name: "SIH", href: "#sih" },
               { name: "IdeaJam", href: "#ideajam" },
               { name: "Gallery", href: "#gallery" },
               { name: "Contact", href: "#footer" },
@@ -118,15 +58,10 @@ export default function Header() {
                   className="relative px-4 py-2 text-white/90 hover:text-white transition-colors duration-300 group"
                 >
                   <span className="relative z-10">{item.name}</span>
-                  <span className="absolute inset-0 bg-[#0c5352] rounded-full transform scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
+                  <span className="absolute inset-0 bg-[#20A97B] rounded-lg transform scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></span>
                 </a>
               </li>
             ))}
-            <li>
-              <button className="ml-2 bg-[#0c5352] text-white font-medium px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#1cb683]/30 transition-all duration-300 transform hover:-translate-y-0.5">
-                Register
-              </button>
-            </li>
           </ul>
         </nav>
 
@@ -164,6 +99,7 @@ export default function Header() {
             {[
               { name: "Home", href: "#home" },
               { name: "About", href: "#about" },
+              { name: "SIH", href: "#sih" },
               { name: "IdeaJam", href: "#ideajam" },
               { name: "Gallery", href: "#gallery" },
               { name: "Contact", href: "#footer" },
@@ -178,11 +114,6 @@ export default function Header() {
                 </a>
               </li>
             ))}
-            <li className="mt-2">
-              <button className="w-full bg-gradient-to-r from-[#1cb683] to-[#0ea5e9] text-white font-medium px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-[#1cb683]/30 transition-all duration-300">
-                Register Now
-              </button>
-            </li>
           </ul>
         </div>
       </div>

@@ -35,11 +35,24 @@ export function ThreeDMarqueeDemo() {
     "https://assets.aceternity.com/wobble-card.png",
     "https://assets.aceternity.com/world-map.webp",
   ];
+
   return (
-    <div
-      className="mx-auto my-10 max-w- rounded-3xl bg-[#020617] p-2 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
+    <div className="mx-auto my-10 max-w-7xl rounded-3xl bg-[#020617] p-6 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
+      {/* Heading & Description */}
+      <div className="text-center mb-8">
+        <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
+                Glimpses of <span className="text-[#20A97B]"> 2024</span>
+              </h1>
+        <p className="text-gray-400 max-w-2xl mx-auto text-base">
+          A quick look back at some of the most exciting projects, ideas, and
+          moments that defined our journey through the year.
+        </p>
+      </div>
+
+      {/* Marquee */}
       <ThreeDMarquee images={images} />
     </div>
   );
 }
+
 export default ThreeDMarqueeDemo;
