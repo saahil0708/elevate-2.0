@@ -423,7 +423,7 @@ export default function IdeaJamSection() {
       style={{ backgroundColor: "#020617" }}
     >
       {/* Floating Scroll Arrow */}
-      {showScrollArrow && (
+      {/* {showScrollArrow && (
         <motion.div
           className="fixed top-6 right-6 z-50 cursor-pointer"
           initial={{ opacity: 0 }}
@@ -451,7 +451,7 @@ export default function IdeaJamSection() {
             </svg>
           </div>
         </motion.div>
-      )}
+      )} */}
 
       <div className="relative max-w-7xl mx-auto">
         {/* SIH 2025 Section */}
