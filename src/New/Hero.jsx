@@ -759,21 +759,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Industry Standards Icons - Responsive */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-gray-500 px-4">
-          <span className="text-xs sm:text-sm mb-2 sm:mb-0">We use industry standards like</span>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">R</span>
-            </div>
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-cyan-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">T</span>
-            </div>
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-purple-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">F</span>
-            </div>
-          </div>
-        </div>
+       
 
       </div>
 
