@@ -711,8 +711,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-1 sm:mb-4">100 +</div>
-              <div className="text-gray-300 text-xs sm:text-base lg:text-lg">Components available</div>
+              <div className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-1 sm:mb-4">50 +</div>
+              <div className="text-gray-300 text-xs sm:text-base lg:text-lg">Teams</div>
             </div>
           </div>
 
@@ -725,8 +725,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">15 +</div>
-              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Events</h3>
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">500 +</div>
+              <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">Attendees</h3>
             </div>
           </div>
 
@@ -753,8 +753,8 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#10B981]/10 to-[#10B981]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">15 +</div>
-              <div className="text-gray-300 text-sm sm:text-base lg:text-lg">Categories available</div>
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-4">20+ +</div>
+              <div className="text-gray-300 text-sm sm:text-base lg:text-lg">Speakers</div>
             </div>
           </div>
         </div>
