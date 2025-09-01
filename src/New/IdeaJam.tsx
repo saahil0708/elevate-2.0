@@ -277,7 +277,7 @@ export default function IdeaJamSection() {
             className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 sm:px-12 py-2 text-lg sm:text-xl font-semibold rounded-full transition-all duration-300 border border-emerald-500/30 inline-flex items-center group shadow-lg sm:shadow-xl cursor-pointer shadow-emerald-500/20"
 
           >
-            <span>Register Now</span>
+            <span>Know Now</span>
             <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
 
