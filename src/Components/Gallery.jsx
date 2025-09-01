@@ -1,7 +1,6 @@
-
-
 "use client";
 import { ThreeDMarquee } from "../Components/ui/3d-marquee";
+
 export function ThreeDMarqueeDemo() {
   const images = [
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
@@ -30,21 +29,29 @@ export function ThreeDMarqueeDemo() {
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5YzEehDkdqrAaPiXWyjJwRgVxh49pENQmO51K",
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5J0fUczy9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5vg2aByz6a0ZqJ2rT7EoAFWNp1wtkhYeQnjm4",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5NNCP4gtD6A8SVb3P19FpC4LqXRxIiTuvty7J",
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5JsooN2y9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5VHHm5NJBqCA8IE4RWkpQY10bdL7SKnhfwlJM",
     "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5JsooN2y9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
   ];
+
   return (
-    <div
-      className="mx-auto my-10 max-w- rounded-3xl bg-[#020617] p-2 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
+    <div className="mx-auto my-10 max-w-7xl rounded-3xl bg-[#020617] p-6 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
+      {/* Heading & Description */}
+      <div className="text-center mb-8">
+        <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
+          Glimpses of <span className="text-[#20A97B]"> 2024</span>
+        </h1>
+        <p className="text-gray-400 max-w-2xl mx-auto text-base">
+          A quick look back at some of the most exciting projects, ideas, and
+          moments that defined our journey through the year.
+        </p>
+      </div>
+
+      {/* Marquee */}
       <ThreeDMarquee images={images} />
     </div>
   );
 }
+
 export default ThreeDMarqueeDemo;
