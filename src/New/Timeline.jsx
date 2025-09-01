@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+"use client"
+
+import React from "react"
+import { useState, useEffect, useRef } from "react"
 import {
   Clock,
   Users,
@@ -9,85 +12,90 @@ import {
   BookOpen,
   MessageSquare,
   Award,
-  Presentation,
   Activity,
   MapPin,
-  UserCheck,
   Star,
   Zap,
-  Target
-} from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+  Target,
+  ArrowDown,
+  Sparkles,
+  TrendingUp,
+  Globe,
+  Heart,
+} from "lucide-react"
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 
 const AnimatedEventTimeline = () => {
   const [activeDay, setActiveDay] = useState(1)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [visibleEvents, setVisibleEvents] = useState(new Set())
+  const [hoveredEvent, setHoveredEvent] = useState(null)
   const timelineRef = useRef(null)
-  const eventRefs = useRef({})
+  const { scrollY } = useScroll()
+
+  // Transform scroll to background position
+  const backgroundY = useTransform(scrollY, [0, 1000], ["0%", "50%"])
+  const backgroundRotate = useTransform(scrollY, [0, 1000], [0, 360])
 
   const eventData = {
     1: {
-      title: " Explore Possibilities | Build Foundations ",
+      title: "Explore Possibilities | Build Foundations",
       subtitle: "Keynotes & Strategic Insights",
       date: "Thursday, September 11, 2025",
-      // theme: "Explore Possibilities | Build Foundations",
+      color: "#20A97B",
       keynoteSpeaker: {
         name: "Aman Gupta",
         title: "Co-Founder & CMO, boAt",
         bio: "Aman Gupta, Co-founder and CMO of boAt, is a leading entrepreneur who transformed India's audio and wearable market with affordable, stylish products.",
         image: "https://www.celebzliving.com/wp-content/uploads/2023/09/Aman-Gupta.jpg",
         topic: "Brand Building & Fearless Entrepreneurship",
-        duration: "45 minutes"
+        duration: "45 minutes",
+        rating: 4.9,
       },
       events: [
         {
           id: 1,
           time: "09:30 - 10:15",
-          title: "Opening & Inaugural Ceremony ",
-          description: "Welcome Address by Leadership, Lighting of the Lamp & Institutional Vision and Cultural Welcome Showcase ",
+          title: "Opening & Inaugural Ceremony",
+          description:
+            "Welcome Address by Leadership, Lighting of the Lamp & Institutional Vision and Cultural Welcome Showcase",
           location: "Auditorium",
           attendees: "All participants",
           type: "registration",
           icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 487,
         },
-        // {
-        //   id: 2,
-        //   time: "09:00 - 09:30",
-        //   title: "Opening Ceremony",
-        //   description: "Welcome address by organizing committee and strategic event overview",
-        //   location: "Main Auditorium",
-        //   attendees: "All participants",
-        //   type: "ceremony",
-        //   icon: <Award className="w-5 h-5" />,
-        //   status: "confirmed",
-        //   priority: "high"
-        // },
         {
           id: 2,
           time: "10:30 - 11:15",
-          title: "Celebrity Keynote – Mr. Aman Gupta (Co-Founder, boAt) ",
-          description: "Brand Building & Fearless Entrepreneurship”",
+          title: "Celebrity Keynote – Mr. Aman Gupta (Co-Founder, boAt)",
+          description: "Brand Building & Fearless Entrepreneurship",
           location: "Auditorium",
           attendees: "All participants",
           type: "keynote",
           icon: <Mic className="w-5 h-5" />,
           status: "featured",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 500,
         },
         {
           id: 3,
           time: "11:15 - 12:50",
           title: "Panel Discussion – Shaping Future Careers: Where Academia Meets Industry",
-          description: "Corporate & Academic Stalwarts  and  Insights on future-ready careers, interdisciplinary growth, and aligning passions with profession ",
+          description:
+            "Corporate & Academic Stalwarts and Insights on future-ready careers, interdisciplinary growth, and aligning passions with profession",
           location: "Auditorium",
           attendees: "All participants",
           type: "panel",
           icon: <MessageSquare className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 432,
         },
         {
           id: 4,
@@ -97,33 +105,41 @@ const AnimatedEventTimeline = () => {
           location: "Cusione",
           attendees: "All participants",
           type: "break",
-          icon: <MessageSquare className="w-5 h-5" />,
+          icon: <Coffee className="w-5 h-5" />,
           status: "confirmed",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 500,
         },
         {
           id: 5,
           time: "01:30 - 04:30",
-          title: "Midday Workshops ",
-          description:[ 
-            <span className='text-[#20A97B]'>For Cluster A (Engineering, Business, Hotel Management) </span>,
-            <br />,
+          title: "Midday Workshops",
+          description: [
+            <span key="cluster-a" className="text-[#20A97B] font-semibold">
+              For Cluster A (Engineering, Business, Hotel Management)
+            </span>,
+            <br key="br1" />,
             "Generative AI for Campus Productivity, ",
             "Canva + No-Code Tools for Innovation and, ",
             "Personal Branding on LinkedIn & Beyond ",
-            <br />,
-            <span className='text-[#20A97B]'>For Cluster B (Pharmacy, Paramedical, Law)  </span>,
-            <br />,
-            "AI in Diagnostics & Smart Healthcare , ",
-            "Clinical Innovation & Patient Experience and,  ",
-            "Pharma Branding & Digital Health Trends "
+            <br key="br2" />,
+            <span key="cluster-b" className="text-[#20A97B] font-semibold">
+              For Cluster B (Pharmacy, Paramedical, Law)
+            </span>,
+            <br key="br3" />,
+            "AI in Diagnostics & Smart Healthcare, ",
+            "Clinical Innovation & Patient Experience and, ",
+            "Pharma Branding & Digital Health Trends",
           ],
           location: "Auditorium",
           attendees: "All participants",
-          type: "Workshop",
+          type: "workshop",
           icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 456,
         },
         {
           id: 6,
@@ -132,29 +148,35 @@ const AnimatedEventTimeline = () => {
           description: "High Tea with networking opportunities",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Break",
+          type: "break",
           icon: <Coffee className="w-5 h-5" />,
           status: "confirmed",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 500,
         },
         {
           id: 7,
           time: "05:00 - onwards",
           title: "Comedy Night – Laugh & Connect",
-          description: "Live Stand-Up by National Artists | Student Open Mic Slots A relaxed evening to unwind and connect through humour ",
+          description:
+            "Live Stand-Up by National Artists | Student Open Mic Slots A relaxed evening to unwind and connect through humour",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Enjoyment",
-          icon: <Award className="w-5 h-5" />,
+          type: "activity",
+          icon: <Heart className="w-5 h-5" />,
           status: "confirmed",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 478,
         },
-      ]
+      ],
     },
     2: {
-      title: "Dream. Design. Disrupt. ",
+      title: "Dream. Design. Disrupt.",
       subtitle: "Workshops & Team Building",
       date: "Friday, September 12, 2025",
+      color: "#3B82F6",
       theme: "Dream and Live it.",
       keynoteSpeaker: {
         name: "Anand Kumar",
@@ -162,80 +184,95 @@ const AnimatedEventTimeline = () => {
         bio: "Anand Kumar, founder of Super 30, is renowned for coaching underprivileged students for IIT exams and making quality education accessible to all.",
         image: "https://www.mbarendezvous.com/images/top-stories-img/bannerimage_1559647607.jpg",
         topic: "Grit & Grace – The Real Superpower",
-        duration: "60 minutes"
+        duration: "60 minutes",
+        rating: 4.8,
       },
       events: [
         {
           id: 11,
           time: "09:30 - 10:30",
-          title: "Startup ALLY Expo ",
-          description: "Powered by SVGOI Students & Alumni,  Startup Booths | Product Showcases | Internship Zones and,  First-hand experience of innovation, entrepreneurship & possibility",
+          title: "Startup ALLY Expo",
+          description:
+            "Powered by SVGOI Students & Alumni, Startup Booths | Product Showcases | Internship Zones and, First-hand experience of innovation, entrepreneurship & possibility",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Project Showcase",
-          icon: <Users2 className="w-5 h-5" />,
+          type: "presentation",
+          icon: <TrendingUp className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 423,
         },
         {
           id: 12,
           time: "10:30 - 11:15",
-          title: "Startup Panel – “From Garage to Growth”",
-          description: "Alumni Founders | Incubation Leaders and, Stories of resilience, pivoting & early-stage risk-taking",
+          title: "Startup Panel – From Garage to Growth",
+          description:
+            "Alumni Founders | Incubation Leaders and, Stories of resilience, pivoting & early-stage risk-taking",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Panel",
+          type: "panel",
           icon: <MessageSquare className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 445,
         },
         {
           id: 13,
           time: "11:15 - 11:45",
-          title: "Tech Communities Panel – “Connect with the Tech Universe”",
+          title: "Tech Communities Panel – Connect with the Tech Universe",
           description: "A space to connect, collaborate, and explore the tech universe.",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Panel",
-          icon: <MessageSquare className="w-5 h-5" />,
+          type: "panel",
+          icon: <Globe className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 389,
         },
         {
           id: 14,
           time: "11:45 - 12:10",
-          title: " DCA-NEXTEDGE – Soft Skills Session ",
-          description: "Next-gen communication, leadership & career skills ",
+          title: "DCA-NEXTEDGE – Soft Skills Session",
+          description: "Next-gen communication, leadership & career skills",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Presentation",
+          type: "workshop",
           icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 467,
         },
         {
           id: 15,
           time: "12:10 - 12:30",
           title: "Placement Orientation",
-          description: "SVGOI Career Services Team and, Roadmap for internships, placements & beyond ",
+          description: "SVGOI Career Services Team and, Roadmap for internships, placements & beyond",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Presentation",
-          icon: <Users2 className="w-5 h-5" />,
+          type: "presentation",
+          icon: <Target className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 489,
         },
         {
           id: 16,
           time: "12:30 - 01:00",
-          title: "ERP Session ",
-          description: "SVGOI Career Services Team and, Roadmap for internships, placements & beyond ",
+          title: "ERP Session",
+          description: "SVGOI Career Services Team and, Roadmap for internships, placements & beyond",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Workshop",
+          type: "workshop",
           icon: <Activity className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 401,
         },
         {
           id: 17,
@@ -244,86 +281,100 @@ const AnimatedEventTimeline = () => {
           description: "Lunch with networking opportunities",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Break",
+          type: "break",
           icon: <Coffee className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 500,
         },
         {
           id: 18,
-          time: "02:00 - 30:00",
-          title: "Keynote: Shri Anand Kumar (Founder, Super 30) ",
+          time: "02:00 - 03:00",
+          title: "Keynote: Shri Anand Kumar (Founder, Super 30)",
           description: "Grit & Grace – The Real Superpower",
           location: "Auditorium",
           attendees: "All participants",
           type: "keynote",
           icon: <Mic className="w-5 h-5" />,
           status: "featured",
-          priority: "critical"
+          priority: "critical",
+          capacity: 500,
+          registered: 500,
         },
         {
           id: 19,
           time: "03:00 - 04:00",
-          title: "IDEAJAM 2.0 – Final Pitch Presentations ",
-          description: "Top student teams pitch to investors & faculty ",
+          title: "IDEAJAM 2.0 – Final Pitch Presentations",
+          description: "Top student teams pitch to investors & faculty",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Presentation",
+          type: "presentation",
           icon: <BookOpen className="w-5 h-5" />,
           status: "confirmed",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 378,
         },
         {
           id: 20,
           time: "04:00 - 05:00",
-          title: "Vision Panel – SVGOI Management & Leadership ",
-          description: "Reimagining Educa on: From Degree to Destiny",
+          title: "Vision Panel – SVGOI Management & Leadership",
+          description: "Reimagining Education: From Degree to Destiny",
           location: "Auditorium",
           attendees: "All participants",
-          type: "break",
+          type: "panel",
           icon: <Users2 className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 423,
         },
         {
           id: 21,
           time: "05:00 - 05:30",
-          title: "Spiritual Session ",
-          description: "Reflective hour for inner growth and calm focus ",
+          title: "Spiritual Session",
+          description: "Reflective hour for inner growth and calm focus",
           location: "Auditorium",
           attendees: "All participants",
           type: "activity",
-          icon: <Activity className="w-5 h-5" />,
+          icon: <Sparkles className="w-5 h-5" />,
           status: "confirmed",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 445,
         },
-      ]
+      ],
     },
     3: {
       title: "Unity in Diversity – The SVGOI Spirit",
       subtitle: "Presentations & Future Planning",
       date: "Saturday, September 13, 2025",
-      theme: "Cultural Carnival ",
+      color: "#F59E0B",
+      theme: "Cultural Carnival",
       keynoteSpeaker: {
         name: "Dr. Sarah Mitchell",
         title: "Chief Innovation Officer, TechForward Institute",
         bio: "Dr. Mitchell leads groundbreaking research in emerging technologies and digital transformation strategies for Fortune 500 companies worldwide.",
         image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
-        topic: "Cultural Carnival ",
-        duration: "50 minutes"
+        topic: "Cultural Carnival",
+        duration: "50 minutes",
+        rating: 4.7,
       },
       events: [
         {
           id: 21,
           time: "09:30 - 01:00",
-          title: "Cultural Carnival ",
+          title: "Cultural Carnival",
           description: "Music, Dance, Drama & Fashion Competitions",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Enjoyment",
-          icon: <Users2 className="w-5 h-5" />,
+          type: "activity",
+          icon: <Heart className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 489,
         },
         {
           id: 22,
@@ -332,40 +383,47 @@ const AnimatedEventTimeline = () => {
           description: "College Dance Teams Perform",
           location: "Auditorium",
           attendees: "All participants",
-          type: "Enjoyment",
+          type: "activity",
           icon: <Activity className="w-5 h-5" />,
           status: "featured",
-          priority: "critical"
+          priority: "critical",
+          capacity: 500,
+          registered: 500,
         },
         {
           id: 23,
           time: "03:30 - 04:30",
-          title: "Recognition Ceremony ",
-          description: "Awards for Cultural & Sports Excellence, Faculty & Staff Honours and, Celebrating achievements and contributions",
+          title: "Recognition Ceremony",
+          description:
+            "Awards for Cultural & Sports Excellence, Faculty & Staff Honours and, Celebrating achievements and contributions",
           location: "Auditorium",
           attendees: "All participants",
-          type: "break",
-          icon: <Activity className="w-5 h-5" />,
+          type: "ceremony",
+          icon: <Award className="w-5 h-5" />,
           status: "confirmed",
-          priority: "medium"
+          priority: "medium",
+          capacity: 500,
+          registered: 467,
         },
         {
           id: 24,
           time: "05:30 - onwards",
           title: "Band Night",
-          description: "",
+          description: "Live music performances and celebration",
           location: "Auditorium",
           attendees: "All participants",
-          type: "session",
-          icon: <Target className="w-5 h-5" />,
+          type: "activity",
+          icon: <Activity className="w-5 h-5" />,
           status: "confirmed",
-          priority: "high"
+          priority: "high",
+          capacity: 500,
+          registered: 489,
         },
-      ]
-    }
+      ],
+    },
   }
-  // hello
-  // Scroll-based animation control
+
+  // Enhanced scroll-based animation control
   useEffect(() => {
     const handleScroll = () => {
       if (!timelineRef.current) return
@@ -373,69 +431,66 @@ const AnimatedEventTimeline = () => {
       const timelineElement = timelineRef.current
       const rect = timelineElement.getBoundingClientRect()
       const windowHeight = window.innerHeight
-      
-      // Calculate how much of the timeline is visible
+
       const timelineTop = rect.top
       const timelineHeight = rect.height
-      const viewportStart = windowHeight * 0.2 // Start animation when timeline is 20% into viewport
-      const viewportEnd = windowHeight * 0.8   // Complete animation when timeline is 80% through viewport
-      
-      // Calculate scroll progress (0 to 1)
+      const viewportStart = windowHeight * 0.15
+      const viewportEnd = windowHeight * 0.85
+
       let progress = 0
       if (timelineTop < viewportStart) {
         const scrolled = viewportStart - timelineTop
         const totalScrollDistance = timelineHeight + (viewportStart - viewportEnd)
         progress = Math.min(scrolled / totalScrollDistance, 1)
       }
-      
+
       setScrollProgress(progress)
-      
-      // Check which events should be visible based on scroll progress
+
       const events = eventData[activeDay].events
       const newVisibleEvents = new Set()
-      
+
       events.forEach((event, index) => {
-        const eventProgress = (index + 1) / events.length
+        const eventProgress = (index + 0.5) / events.length
         if (progress >= eventProgress) {
           newVisibleEvents.add(event.id)
         }
       })
-      
+
       setVisibleEvents(newVisibleEvents)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Initial check
-    
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [activeDay])
 
-  // Reset when day changes
   useEffect(() => {
     setScrollProgress(0)
     setVisibleEvents(new Set())
   }, [activeDay])
 
   const getEventTypeStyles = (type, status, priority) => {
-    const baseStyles = "inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-semibold border backdrop-blur-sm"
-    
-    if (status === 'featured') {
-      return `${baseStyles} bg-gradient-to-r from-[#20A97B]/20 to-teal-400/20 text-[#20A97B] border-[#20A97B]/40 shadow-lg shadow-[#20A97B]/20`
+    const baseStyles =
+      "inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-bold border backdrop-blur-sm transition-all duration-300"
+
+    if (status === "featured") {
+      return `${baseStyles} bg-gradient-to-r from-[#20A97B]/30 to-teal-400/30 text-[#20A97B] border-[#20A97B]/50 shadow-lg shadow-[#20A97B]/30 hover:shadow-xl hover:shadow-[#20A97B]/40`
     }
-    
+
     const typeStyles = {
-      registration: "bg-slate-900/40 text-slate-300 border-slate-600/40",
-      ceremony: "bg-amber-900/40 text-amber-300 border-amber-600/40",
-      keynote: "bg-purple-900/40 text-purple-300 border-purple-600/40",
-      break: "bg-green-900/40 text-green-300 border-green-600/40",
-      panel: "bg-blue-900/40 text-blue-300 border-blue-600/40",
-      workshop: "bg-orange-900/40 text-orange-300 border-orange-600/40",
-      session: "bg-indigo-900/40 text-indigo-300 border-indigo-600/40",
-      activity: "bg-pink-900/40 text-pink-300 border-pink-600/40",
-      social: "bg-teal-900/40 text-teal-300 border-teal-600/40",
-      presentation: "bg-violet-900/40 text-violet-300 border-violet-600/40",
+      registration: "bg-slate-900/50 text-slate-200 border-slate-600/50 hover:bg-slate-800/60",
+      ceremony: "bg-amber-900/50 text-amber-200 border-amber-600/50 hover:bg-amber-800/60",
+      keynote: "bg-purple-900/50 text-purple-200 border-purple-600/50 hover:bg-purple-800/60",
+      break: "bg-emerald-900/50 text-emerald-200 border-emerald-600/50 hover:bg-emerald-800/60",
+      panel: "bg-blue-900/50 text-blue-200 border-blue-600/50 hover:bg-blue-800/60",
+      workshop: "bg-orange-900/50 text-orange-200 border-orange-600/50 hover:bg-orange-800/60",
+      session: "bg-indigo-900/50 text-indigo-200 border-indigo-600/50 hover:bg-indigo-800/60",
+      activity: "bg-pink-900/50 text-pink-200 border-pink-600/50 hover:bg-pink-800/60",
+      social: "bg-teal-900/50 text-teal-200 border-teal-600/50 hover:bg-teal-800/60",
+      presentation: "bg-violet-900/50 text-violet-200 border-violet-600/50 hover:bg-violet-800/60",
     }
-    
+
     return `${baseStyles} ${typeStyles[type] || typeStyles.session}`
   }
 
@@ -443,387 +498,700 @@ const AnimatedEventTimeline = () => {
     const indicators = {
       critical: <Zap className="w-3 h-3 text-red-400" />,
       high: <Star className="w-3 h-3 text-[#20A97B]" />,
-      medium: <Target className="w-3 h-3 text-blue-400" />
+      medium: <Target className="w-3 h-3 text-blue-400" />,
     }
     return indicators[priority] || indicators.medium
   }
 
+  // Enhanced animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const eventVariants = {
+    hidden: {
+      opacity: 0,
+      y: 80,
+      scale: 0.9,
+      rotateX: -15,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 20,
+        duration: 0.8,
+      },
+    },
+  }
+
+  const timelineVariants = {
+    hidden: { height: 0 },
+    visible: {
+      height: `${scrollProgress * 100}%`,
+      transition: {
+        type: "spring",
+        stiffness: 60,
+        damping: 25,
+        duration: 0.8,
+      },
+    },
+  }
+
+  const currentDayColor = eventData[activeDay].color || "#20A97B"
+
   return (
-    <div className="min-h-screen bg-transparent relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#20A97B]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-[#20A97B]/5 rounded-full blur-3xl" />
+    <div className="min-h-screen relative overflow-hidden" style={{ background: "#020617" }}>
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-[#20A97B]/15 to-teal-400/15 rounded-full blur-3xl"
+          style={{ y: backgroundY, rotate: backgroundRotate }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-l from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.08, 0.15, 0.08],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 3,
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#20A97B]/8 to-transparent rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.4, 1],
+            opacity: [0.05, 0.12, 0.05],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 6,
+          }}
+        />
+
+        {/* Floating particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-[#20A97B]/30 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-20, -100, -20],
+              opacity: [0, 0.6, 0],
+              scale: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
       </div>
 
-      {/* Header Section */}
-      <div className="relative z-10 border-b border-gray-800/50 backdrop-blur-xl bg-transparent">
+      {/* Enhanced Header Section */}
+      <div className="relative z-10 border-b border-gray-800/30 backdrop-blur-2xl bg-gray-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-8 sm:py-12 text-center">
+          <div className="py-12 sm:py-16 text-center">
             <motion.div
-              initial={{ opacity: 0, y: -30 }}
+              initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{
+                duration: 1.5,
+                type: "spring",
+                stiffness: 80,
+                damping: 20,
+              }}
             >
-              <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
-                Time<span className="text-[#20A97B]">Line</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-300 mb-2">Three-Day Executive Program</p>
-              <p className="text-xs sm:text-sm text-[#20A97B] font-medium uppercase tracking-wider px-4">
-                Digital Transformation • Innovation • Leadership
-              </p>
+              <motion.div className="relative inline-block mb-8">
+                <motion.h1
+                  className="text-6xl md:text-7xl lg:text-6xl font-black bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent mb-6 tracking-tight"
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                  style={{
+                    backgroundSize: "200% 200%",
+                  }}
+                >
+                  Time<span className="text-[#20A97B">Line</span>
+                </motion.h1>
+                <div className="w-40 h-0.5 bg-gradient-to-r from-transparent via-[#20A97B] to-transparent mx-auto animate-line-expand"></div>
+
+                {/* Animated underline */}
+                {/* <motion.div 
+                  className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-[#20A97B] to-teal-400 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: '60%' }}
+                  transition={{ duration: 1.5, delay: 1 }}
+                /> */}
+
+                {/* Floating sparkles */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2"
+                    style={{
+                      left: `${20 + i * 15}%`,
+                      top: `${10 + (i % 2) * 20}%`,
+                    }}
+                    animate={{
+                      scale: [0, 1, 0],
+                      rotate: [0, 180, 360],
+                      opacity: [0, 0.8, 0],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Number.POSITIVE_INFINITY,
+                      delay: i * 0.5 + 2,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <Sparkles className="w-full h-full text-[#20A97B]" />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.p
+                className="text-xl sm:text-2xl text-gray-300 mb-4 font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 1 }}
+              >
+                Three-Day Executive Program
+              </motion.p>
+              <motion.div
+                className="flex flex-wrap justify-center gap-2 sm:gap-3 text-sm sm:text-base text-[#20A97B] font-bold uppercase tracking-wider"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 1 }}
+              >
+                {["AI", "Web3", "Cloud", "Design", "Security"].map((item, i) => (
+                  <motion.span
+                    key={item}
+                    className="px-3 py-1.5 bg-[#20A97B]/10 rounded-xl border border-[#20A97B]/30 backdrop-blur-sm"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.2 + i * 0.1, duration: 0.6 }}
+                    whileHover={{ y: -2 }}
+                  >
+                    {item}
+                  </motion.span>
+                ))}
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
-        {/* Day Navigation & Controls - FIXED */}
-        <div className="mb-8 sm:mb-12 flex justify-center">
-          <div className="inline-flex backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 p-1 sm:p-2 shadow-2xl shadow-[#20A97B]/10">
-            {[1, 2, 3].map((day) => {
-              const isActive = activeDay === day
-              return (
-                <button
-                  key={day}
-                  onClick={() => setActiveDay(day)}
-                  className={`relative px-4 sm:px-6 py-1 rounded-lg sm:rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    isActive
-                      ? 'bg-gradient-to-r from-[#20A97B] to-teal-500 text-white shadow-lg shadow-[#20A97B]/30'
-                      : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                  }`}
-                >
-                  <div className="flex flex-col items-center">
-                    <span className="text-base sm:text-lg font-bold">Day {day}</span>
-                  </div>
-                  {isActive && (
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        {/* Enhanced Day Navigation */}
+        <motion.div
+          className="mb-12 sm:mb-16 flex justify-center"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 1 }}
+        >
+          <div className="relative">
+            <div className="inline-flex backdrop-blur-2xl bg-gray-900/60 rounded-full border border-gray-700/50 p-2 shadow-2xl shadow-[#20A97B]/20">
+              {[1, 2, 3].map((day) => {
+                const isActive = activeDay === day
+                const dayColor = eventData[day].color
+                return (
+                  <motion.button
+                    key={day}
+                    onClick={() => setActiveDay(day)}
+                    className={`relative px-6 sm:px-8 py-1 sm:py-1 rounded-full text-sm font-bold transition-all duration-500 group ${
+                      isActive ? "text-white shadow-xl" : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                    }`}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      background: isActive ? `linear-gradient(135deg, ${dayColor}88, ${dayColor}44)` : "transparent",
+                    }}
+                  >
+                    <div className="flex flex-col items-center relative z-10">
+                      <motion.span
+                        className="text-lg sm:text-xl font-black mb-1"
+                        animate={isActive ? { scale: [1, 1.1, 1] } : {}}
+                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                      >
+                        Day {day}
+                      </motion.span>
+                      {/* <motion.span 
+                        className="text-xs opacity-80 font-medium"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: isActive ? 1 : 0.6 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {eventData[day].events.length} events
+                      </motion.span> */}
+                    </div>
+
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 rounded-xl border-2 opacity-50"
+                        style={{ borderColor: dayColor }}
+                        initial={false}
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+
+                    {/* Hover glow effect */}
                     <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#20A97B]/20 to-teal-500/20 border border-[#20A97B]/40"
-                      initial={false}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                      style={{
+                        background: `linear-gradient(135deg, ${dayColor}40, transparent)`,
+                        boxShadow: `0 0 20px ${dayColor}30`,
+                      }}
                     />
-                  )}
-                </button>
-              )
-            })}
+                  </motion.button>
+                )
+              })}
+            </div>
+
+            {/* Progress indicator */}
+            <motion.div
+              className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex items-center text-gray-400 text-sm"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+            >
+              <ArrowDown className="w-4 h-4 mr-2" />
+              <span>Scroll to explore timeline</span>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Scroll Instruction */}
-        <div className="mb-6 sm:mb-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center backdrop-blur-xl bg-gray-900/40 rounded-xl sm:rounded-2xl border border-gray-700/50 px-4 sm:px-6 py-2 sm:py-3 shadow-xl"
-          >
-            <div className="w-2 h-2 bg-[#20A97B] rounded-full mr-3 animate-pulse"></div>
-            <span className="text-xs sm:text-sm text-gray-300">
-              <span className="text-[#20A97B] font-medium">Scroll down</span> to reveal the timeline
-            </span>
-          </motion.div>
-        </div>
-
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 lg:gap-12">
           {/* Timeline Section */}
           <div className="xl:col-span-3">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeDay}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, x: -50, rotateY: -15 }}
+                animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                exit={{ opacity: 0, x: 50, rotateY: 15 }}
+                transition={{
+                  duration: 0.8,
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 20,
+                }}
                 ref={timelineRef}
+                style={{ perspective: "1000px" }}
               >
                 {/* Day Header */}
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#20A97B]/30 shadow-2xl shadow-[#20A97B]/10 p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#20A97B]/5 to-transparent" />
+                <motion.div
+                  className="relative overflow-hidden rounded-2xl backdrop-blur-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-2xl p-4 sm:p-6 mb-6 sm:mb-8"
+                  style={{
+                    borderColor: `${currentDayColor}40`,
+                    boxShadow: `0 25px 50px -12px ${currentDayColor}20`,
+                  }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.3 },
+                  }}
+                >
+                  {/* Animated background gradient */}
+                  <motion.div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      background: `linear-gradient(45deg, ${currentDayColor}15, transparent, ${currentDayColor}10)`,
+                    }}
+                    animate={{
+                      backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  />
+
                   <div className="relative z-10">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                       <div className="flex-1">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">{eventData[activeDay].title}</h2>
-                        <div className="flex items-center text-gray-300 mb-2">
-                          <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 text-[#20A97B] flex-shrink-0" />
-                          <span className="text-sm sm:text-base lg:text-lg">{eventData[activeDay].date}</span>
-                        </div>
-                        <p className="text-sm sm:text-base text-[#20A97B] font-medium">{eventData[activeDay].theme}</p>
+                        <motion.h2
+                          className="text-3xl sm:text-4xl lg:text-4xl font-black text-white mb-4 leading-tight"
+                          initial={{ opacity: 0, x: -30 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.3 }}
+                        >
+                          {eventData[activeDay].title}
+                        </motion.h2>
+                        <motion.div
+                          className="flex items-center text-gray-200 mb-3"
+                          initial={{ opacity: 0, x: -30 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                          <motion.div
+                            className="w-8 h-8 bg-gradient-to-r from-[#20A97B]/20 to-teal-400/20 rounded-xl flex items-center justify-center mr-3 backdrop-blur-sm border border-[#20A97B]/30"
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <Calendar className="w-4 h-4 text-[#20A97B]" />
+                          </motion.div>
+                          <span className="text-lg sm:text-xl font-medium">{eventData[activeDay].date}</span>
+                        </motion.div>
+                        <motion.p
+                          className="text-base sm:text-lg font-bold bg-gradient-to-r from-[#20A97B] to-teal-400 bg-clip-text text-transparent"
+                          initial={{ opacity: 0, x: -30 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.5 }}
+                        >
+                          {eventData[activeDay].theme || eventData[activeDay].subtitle}
+                        </motion.p>
                       </div>
-                      <div className="text-center sm:text-right">
-                        <div className="text-xs sm:text-sm text-gray-400 mb-1">Total Sessions</div>
-                        <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#20A97B] to-teal-400 bg-clip-text text-transparent">
+
+                      <motion.div
+                        className="text-center lg:text-right"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                      >
+                        <div className="text-sm text-gray-400 mb-2 font-medium">Total Sessions</div>
+                        <motion.div
+                          className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-[#20A97B] to-teal-400 bg-clip-text text-transparent mb-2"
+                          // animate={{ scale: [1, 1.05, 1] }}
+                          transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                        >
                           {eventData[activeDay].events.length}
-                        </div>
-                      </div>
+                        </motion.div>
+                        <div className="text-xs text-gray-500 font-medium">Interactive Events</div>
+                      </motion.div>
                     </div>
+
+                    {/* Progress bar */}
+                    {/* <motion.div 
+                      className="mt-6 sm:mt-8"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                    >
+                      <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
+                        <span>Timeline Progress</span>
+                        <span>{Math.round(scrollProgress * 100)}%</span>
+                      </div>
+                      <div className="w-full bg-gray-700/30 rounded-full h-2 overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-[#20A97B] to-teal-400 rounded-full shadow-lg"
+                          style={{ width: `${scrollProgress * 100}%` }}
+                          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                        />
+                      </div>
+                    </motion.div> */}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Timeline with Path */}
                 <div className="relative">
-                  {/* Animated Timeline Path - Hidden on mobile, shown on sm+ */}
-                  <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-[1.5px] bg-gray-700/30 rounded-full hidden sm:block">
+                  {/* Timeline Path */}
+                  <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-gray-700/40 rounded-full hidden sm:block">
                     <motion.div
-                      className="w-full bg-gradient-to-b from-[#20A97B] to-teal-500 rounded-full shadow-lg shadow-[#20A97B]/50"
-                      initial={{ height: 0 }}
-                      animate={{ 
-                        height: `${scrollProgress * 100}%`
+                      className="w-full rounded-full shadow-xl"
+                      style={{
+                        background: `linear-gradient(to bottom, ${currentDayColor}, ${currentDayColor}88)`,
+                        boxShadow: `0 0 20px ${currentDayColor}40`,
                       }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      variants={timelineVariants}
+                      initial="hidden"
+                      animate="visible"
                     />
-                    
-                    {/* Glowing orb at the end of the path */}
+                    {/* Progress indicator */}
                     {scrollProgress > 0 && (
                       <motion.div
-                        className="absolute -right-[7px] w-4 h-4 bg-gradient-to-r from-[#20A97B] to-teal-500 rounded-full shadow-lg shadow-[#20A97B]/50"
-                        style={{ 
+                        className="absolute -right-[5px] w-3 h-3 rounded-full shadow-xl"
+                        style={{
                           top: `${scrollProgress * 100}%`,
-                          transform: 'translateY(-50%)'
+                          transform: "translateY(-50%)",
+                          background: `linear-gradient(135deg, ${currentDayColor}, ${currentDayColor}aa)`,
+                          boxShadow: `0 0 25px ${currentDayColor}60`,
                         }}
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 150,
+                          damping: 15,
+                        }}
                       >
-                        <div className="absolute inset-0 bg-[#20A97B] rounded-full animate-ping opacity-75" />
+                        <motion.div
+                          className="absolute inset-1 rounded-full"
+                          style={{ background: currentDayColor }}
+                          animate={{ scale: [1, 1.3, 1] }}
+                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                        />
+                        <motion.div
+                          className="absolute inset-0 rounded-full"
+                          style={{ background: `radial-gradient(circle, ${currentDayColor}40, transparent)` }}
+                          animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                        />
                       </motion.div>
                     )}
-                  </div>
-
-                  {/* Events */}
-                  <div className="space-y-4 sm:space-y-6 lg:space-y-8 pl-0 sm:pl-16">
+                    {/* Timeline dots for each event */}
                     {eventData[activeDay].events.map((event, index) => {
-                      const isVisible = visibleEvents.has(event.id)
-                      const eventProgress = (index + 1) / eventData[activeDay].events.length
-                      const isCurrentEvent = scrollProgress >= eventProgress - 0.1 && scrollProgress <= eventProgress + 0.1
-                      
+                      const dotProgress = (index + 1) / eventData[activeDay].events.length
+                      const isActive = scrollProgress >= dotProgress
+
                       return (
                         <motion.div
                           key={event.id}
-                          initial={{ opacity: 0, x: 50, scale: 0.8 }}
-                          animate={{ 
-                            opacity: isVisible ? 1 : 0.05,
-                            x: isVisible ? 0 : 50,
-                            scale: isVisible ? 1 : 0.8
+                          className="absolute -right-[6px] w-3 h-3 rounded-full border-2 border-gray-900"
+                          style={{ top: `${dotProgress * 100}%`, transform: "translateY(-50%)" }}
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{
+                            scale: isActive ? 1 : 0.7,
+                            opacity: isActive ? 1 : 0.4,
+                            background: isActive ? currentDayColor : "#374151",
                           }}
-                          transition={{ 
-                            duration: 0.8,
-                            ease: "easeOut"
+                          transition={{
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 15,
+                            delay: index * 0.1,
                           }}
-                          className={`relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/60 to-gray-800/60 border shadow-xl transition-all duration-500 ${
-                            isCurrentEvent 
-                              ? 'border-[#20A97B]/60 shadow-2xl shadow-[#20A97B]/30 scale-[1.01] sm:scale-[1.02]' 
-                              : 'border-gray-700/50'
-                          }`}
+                        />
+                      )
+                    })}
+                  </div>
+
+                  {/* Events */}
+                  <motion.div
+                    className="space-y-4 sm:space-y-6 lg:space-y-8 pl-0 sm:pl-20"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {eventData[activeDay].events.map((event, index) => {
+                      const isVisible = visibleEvents.has(event.id)
+                      const eventProgress = (index + 1) / eventData[activeDay].events.length
+                      const isCurrentEvent =
+                        scrollProgress >= eventProgress - 0.15 && scrollProgress <= eventProgress + 0.15
+                      const isHovered = hoveredEvent === event.id
+
+                      return (
+                        <motion.div
+                          key={event.id}
+                          variants={eventVariants}
+                          className={`relative overflow-hidden rounded-xl backdrop-blur-xl transition-all duration-700 group cursor-pointer ${
+                            isCurrentEvent ? "shadow-2xl" : "shadow-xl"
+                          } ${isVisible ? "opacity-100" : "opacity-30"}`}
+                          style={{
+                            background: `linear-gradient(135deg, ${isCurrentEvent ? currentDayColor + "15" : "#1F2937"}90, ${isCurrentEvent ? currentDayColor + "08" : "#111827"}90)`,
+                            borderColor: isCurrentEvent ? `${currentDayColor}60` : "#374151",
+                            borderWidth: "1px",
+                            boxShadow: isCurrentEvent
+                              ? `0 12px 24px -6px ${currentDayColor}30`
+                              : "0 12px 24px -6px rgba(0, 0, 0, 0.4)",
+                          }}
+                          whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                          whileTap={{ scale: 0.97 }}
+                          onClick={() => setHoveredEvent(isHovered ? null : event.id)}
                         >
-                          {/* Timeline connector dot - Hidden on mobile */}
-                          <div className="absolute -left-16 top-6 sm:top-8 w-4 h-4 bg-gray-700/50 rounded-full border-4 border-gray-900 hidden sm:block">
-                            {isVisible && (
-                              <motion.div
-                                className="w-full h-full bg-gradient-to-r from-[#20A97B] to-teal-500 rounded-full"
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                transition={{ duration: 0.4 }}
-                              />
-                            )}
-                          </div>
-
-                          {/* Glassmorphism overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
-                          
-                          {/* Priority indicator */}
-                          {event.status === 'featured' && isVisible && (
-                            <motion.div
-                              className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#20A97B] via-teal-400 to-[#20A97B]"
-                              initial={{ scaleX: 0 }}
-                              animate={{ scaleX: 1 }}
-                              transition={{ duration: 0.6 }}
-                            />
-                          )}
-                          
-                          <div className="relative z-10 p-4 sm:p-6">
-                            {/* Event Header */}
-                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-4">
-                              <div className="flex items-start space-x-3 sm:space-x-4 flex-1">
-                                <div className="flex-shrink-0">
-                                  <motion.div
-                                    className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-[#20A97B]/20 to-teal-500/20 rounded-xl flex items-center justify-center border border-[#20A97B]/30 backdrop-blur-sm"
-                                    initial={{ rotate: -180, scale: 0 }}
-                                    animate={isVisible ? { rotate: 0, scale: 1 } : { rotate: -180, scale: 0 }}
-                                    transition={{ duration: 0.6 }}
-                                  >
-                                    <span className="text-[#20A97B]">{event.icon}</span>
-                                  </motion.div>
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <motion.div
-                                    className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                    transition={{ duration: 0.5, delay: 0.1 }}
-                                  >
-                                    <div className="flex items-center text-[#20A97B] font-bold text-base sm:text-lg">
-                                      <Clock className="w-4 sm:w-5 h-4 sm:h-5 mr-2 flex-shrink-0" />
-                                      <span className="truncate">{event.time}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                      <span className={getEventTypeStyles(event.type, event.status, event.priority)}>
-                                        {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-                                      </span>
-                                      <div className="flex items-center">
-                                        {getPriorityIndicator(event.priority)}
-                                      </div>
-                                    </div>
-                                  </motion.div>
-                                  
-                                  <motion.h3
-                                    className="text-lg sm:text-xl font-bold text-white mb-3 leading-tight"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                  >
-                                    {event.title}
-                                  </motion.h3>
-                                  
-                                  <motion.p
-                                    className="text-gray-300 text-sm leading-relaxed mb-4"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                    transition={{ duration: 0.5, delay: 0.3 }}
-                                  >
-                                    {event.description}
-                                  </motion.p>
-                                  
-                                  {/* Event Meta Information */}
-                                  <motion.div
-                                    className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-6 text-sm text-gray-400"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                    transition={{ duration: 0.5, delay: 0.4 }}
-                                  >
-                                    <div className="flex items-center">
-                                      <MapPin className="w-4 h-4 mr-2 text-[#20A97B] flex-shrink-0" />
-                                      <span className="truncate">{event.location}</span>
-                                    </div>
-                                    <div className="flex items-center">
-                                      <UserCheck className="w-4 h-4 mr-2 text-[#20A97B] flex-shrink-0" />
-                                      <span className="truncate">{event.attendees}</span>
-                                    </div>
-                                  </motion.div>
-                                </div>
+                          <div className="p-4 sm:p-5">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-1">
+                                {/* Lower icon size */}
+                                {React.cloneElement(event.icon, { className: "w-4 h-4" })}
+                                <span className="text-base sm:text-lg font-medium">{event.time}</span>
                               </div>
-                              
-                              {/* Status Indicator */}
-                              {event.status === 'featured' && isVisible && (
-                                <motion.div
-                                  className="flex-shrink-0 self-start sm:self-auto"
-                                  initial={{ opacity: 0, scale: 0 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  transition={{ duration: 0.5, delay: 0.5 }}
-                                >
-                                  <div className="flex items-center bg-gradient-to-r from-[#20A97B]/20 to-teal-500/20 border border-[#20A97B]/40 rounded-lg px-3 py-1.5 backdrop-blur-sm">
-                                    <Star className="w-4 h-4 text-[#20A97B] mr-2" />
-                                    <span className="text-xs font-bold text-[#20A97B] uppercase tracking-wide">Featured</span>
-                                  </div>
-                                </motion.div>
-                              )}
+                              <div className="flex items-center gap-1">
+                                {/* Lower priority icon size */}
+                                {React.cloneElement(getPriorityIndicator(event.priority), { className: "w-3 h-3" })}
+                                <span className="text-xs sm:text-sm text-gray-400">{event.status}</span>
+                              </div>
                             </div>
-
-                            {/* Current event glow effect */}
-                            {isCurrentEvent && (
-                              <motion.div
-                                className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#20A97B]/10 via-transparent to-[#20A97B]/10"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.3 }}
-                              />
-                            )}
+                            <motion.h3
+                              className="text-lg sm:text-xl font-bold mb-1"
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4 }}
+                            >
+                              {event.title}
+                            </motion.h3>
+                            <motion.p
+                              className="text-sm sm:text-base text-gray-300 mb-2"
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4 }}
+                            >
+                              {event.description}
+                            </motion.p>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-4 h-4 text-gray-400" />
+                                <span className="text-xs sm:text-sm text-gray-400">{event.location}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Users className="w-4 h-4 text-gray-400" />
+                                <span className="text-xs sm:text-sm text-gray-400">{event.attendees}</span>
+                              </div>
+                            </div>
                           </div>
                         </motion.div>
                       )
                     })}
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Keynote Speaker Sidebar */}
-          <div className="xl:col-span-1 order-first xl:order-last">
-            <div className="xl:sticky xl:top-8 space-y-6 lg:space-y-8">
+          {/* Sidebar Section */}
+          <div className="xl:col-span-1">
+            <motion.div
+              className="relative overflow-hidden rounded-xl backdrop-blur-xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border shadow-xl p-4 sm:p-6"
+              style={{
+                borderColor: `${currentDayColor}40`,
+                boxShadow: `0 12px 24px -6px ${currentDayColor}20`,
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.3 },
+              }}
+            >
               <motion.div
-                key={activeDay}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="relative overflow-hidden rounded-xl sm:rounded-2xl backdrop-blur-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-[#20A97B]/30 shadow-2xl shadow-[#20A97B]/10"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#20A97B]/5 to-transparent" />
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#20A97B]/20 via-transparent to-[#20A97B]/20 blur-sm" />
-                
-                <div className="relative z-10 p-4 sm:p-6">
-                  {/* Header */}
-                  <div className="flex items-center mb-4 sm:mb-6">
-                    <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-[#20A97B]/20 to-teal-500/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 backdrop-blur-sm border border-[#20A97B]/30">
-                      <Mic className="w-5 sm:w-6 h-5 sm:h-6 text-[#20A97B]" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-white mb-1">Keynote Speaker</h3>
-                      <p className="text-xs sm:text-sm text-[#20A97B] font-medium">{eventData[activeDay].theme}</p>
-                    </div>
+                className="absolute inset-0 opacity-20"
+                style={{
+                  background: `linear-gradient(45deg, ${currentDayColor}15, transparent, ${currentDayColor}10)`,
+                }}
+                animate={{
+                  backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              />
+              <div className="relative z-10">
+                <motion.h3
+                  className="text-lg sm:text-xl font-bold mb-2"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  Keynote Speaker
+                </motion.h3>
+                <motion.div
+                  className="flex items-center gap-2 mb-3"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <motion.img
+                    src={eventData[activeDay].keynoteSpeaker.image}
+                    alt={eventData[activeDay].keynoteSpeaker.name}
+                    className="w-10 h-10 rounded-full object-cover"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  <div>
+                    <motion.h4
+                      className="text-base sm:text-lg font-medium mb-1"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {eventData[activeDay].keynoteSpeaker.name}
+                    </motion.h4>
+                    <motion.p
+                      className="text-xs sm:text-sm text-gray-400 mb-1"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {eventData[activeDay].keynoteSpeaker.title}
+                    </motion.p>
+                    <motion.div
+                      className="text-xs sm:text-sm text-gray-400"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {eventData[activeDay].keynoteSpeaker.bio}
+                    </motion.div>
                   </div>
-
-                  {/* Speaker Image and Info */}
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4 mb-4 sm:mb-6">
-                    <div className="relative flex-shrink-0">
-                      <img
-                        src={eventData[activeDay].keynoteSpeaker.image}
-                        alt={eventData[activeDay].keynoteSpeaker.name}
-                        className="w-16 sm:w-20 h-16 sm:h-20 rounded-xl object-cover border-2 border-[#20A97B]/40 shadow-lg"
-                      />
-                      <div className="absolute -bottom-1 sm:-bottom-2 -right-1 sm:-right-2 w-5 sm:w-6 h-5 sm:h-6 bg-[#20A97B] rounded-full flex items-center justify-center shadow-lg shadow-[#20A97B]/50">
-                        <Star className="w-2 sm:w-3 h-2 sm:h-3 text-white" />
-                      </div>
-                    </div>
-                    <div className="flex-1 text-center sm:text-left">
-                      <h4 className="text-lg sm:text-xl font-bold text-white mb-1">{eventData[activeDay].keynoteSpeaker.name}</h4>
-                      <p className="text-xs sm:text-sm text-[#20A97B] font-medium mb-2">{eventData[activeDay].keynoteSpeaker.title}</p>
-                      <div className="flex items-center justify-center sm:justify-start text-xs text-gray-400">
-                        <Clock className="w-3 h-3 mr-1" />
-                        <span>{eventData[activeDay].keynoteSpeaker.duration}</span>
-                      </div>
-                    </div>
+                </motion.div>
+                <motion.div
+                  className="flex items-center justify-between mb-2"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="flex items-center gap-1">
+                    <Mic className="w-3 h-3 text-gray-400" />
+                    <span className="text-xs sm:text-sm text-gray-400">
+                      {eventData[activeDay].keynoteSpeaker.topic}
+                    </span>
                   </div>
-
-                  <p className="text-sm text-gray-300 leading-relaxed mb-4 sm:mb-6 text-center sm:text-left">{eventData[activeDay].keynoteSpeaker.bio}</p>
-
-                  {/* Topic */}
-                  <div className="relative overflow-hidden rounded-xl backdrop-blur-sm bg-gradient-to-br from-[#20A97B]/10 to-teal-500/10 border border-[#20A97B]/30 p-3 sm:p-4 mb-4">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#20A97B]/5 to-transparent" />
-                    <div className="relative z-10">
-                      <div className="flex items-center mb-2">
-                        <div className="w-7 sm:w-8 h-7 sm:h-8 bg-[#20A97B]/20 rounded-lg flex items-center justify-center mr-3 backdrop-blur-sm">
-                          <Presentation className="w-3 sm:w-4 h-3 sm:h-4 text-[#20A97B]" />
-                        </div>
-                        <span className="text-xs font-bold text-[#20A97B] uppercase tracking-wider">Speaking Topic</span>
-                      </div>
-                      <h5 className="text-sm font-bold text-white">{eventData[activeDay].keynoteSpeaker.topic}</h5>
-                    </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-gray-400" />
+                    <span className="text-xs sm:text-sm text-gray-400">
+                      {eventData[activeDay].keynoteSpeaker.duration}
+                    </span>
                   </div>
-
-                  <div className="flex items-center justify-between text-xs text-gray-400 pt-3 sm:pt-4 border-t border-gray-700/50">
-                    <div className="flex items-center">
-                      <Calendar className="w-3 h-3 mr-2" />
-                      <span className="truncate">{eventData[activeDay].date.split(',')[0]}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Users className="w-3 h-3 mr-1" />
-                      <span>{eventData[activeDay].events.length} sessions</span>
-                    </div>
+                </motion.div>
+                <motion.div
+                  className="flex items-center justify-between"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="flex items-center gap-1">
+                    <Star className="w-3 h-3 text-[#20A97B]" />
+                    <span className="text-xs sm:text-sm text-gray-400">
+                      Rating: {eventData[activeDay].keynoteSpeaker.rating}
+                    </span>
                   </div>
-                </div>
-              </motion.div>
-            </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
