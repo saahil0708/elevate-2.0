@@ -9,6 +9,7 @@ import Footer from "@/Components/Footer";
 import Timeline from '@/New/Timeline';
 import Panel from "@/New/panel";
 import Speakers from "@/Components/ThreeScene"
+import SIH from "@/New/index"
 
 export default function Layout() {
   return (
@@ -28,6 +29,7 @@ export default function Layout() {
       <section id="speakers" className="w-full"><Speakers /></section>
       <section id="timeline" className="w-full"><Timeline /></section>
       <section id="panel" className="w-full"><Panel /></section>
+      <section id="panel" className="w-full"><SIH /></section>      
       <section id="ideajam" className="w-full"><IdeaJamSection /></section>
       <section id="gallery" className="w-full"><ThreeDMarqueeDemo /></section>
       <section id="testimonials" className="w-full"><Testimonials /></section>

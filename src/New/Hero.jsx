@@ -525,9 +525,9 @@ export default function Hero() {
   const [cursorPosition, setCursorPosition] = useState({ x: 50, y: 50 })
 
   useEffect(() => {
-    // Set up the Audiowide font
+    // Set up the Montserrat font
     const link = document.createElement('link')
-    link.href = 'https://fonts.googleapis.com/css2?family=Audiowide&display=swap'
+    link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap'
     link.rel = 'stylesheet'
     document.head.appendChild(link)
 
@@ -665,7 +665,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Main Title with Audiowide font - Improved responsive sizing */}
+        {/* Main Title with Montserrat font - Improved responsive sizing */}
         <div 
           ref={titleRef} 
           className="mb-6 sm:mb-8 relative px-2"
@@ -676,7 +676,8 @@ export default function Hero() {
             <span 
               className="block bg-clip-text text-transparent drop-shadow-2xl relative z-10"
               style={{ 
-                fontFamily: "'Audiowide', cursive",
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 400,
                 backgroundImage: `radial-gradient(circle at ${cursorPosition.x}% ${cursorPosition.y}%, #10B981, white, #10B981)`,
                 backgroundSize: '200% 200%',
                 transition: 'background-position 0.1s ease'

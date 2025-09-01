@@ -408,7 +408,7 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 const coaches = [
   {
@@ -416,168 +416,161 @@ const coaches = [
     name: "AMAN GUPTA",
     designation: "CEO, BOAT",
     image: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5oczgnl4PeMihumzLlUbvjISDBp9sdwO5XFrc",
-    title: "WHY HIRE AN EXECUTIVE COACH?",
+    title: "Celebrity Key Note by Aman Gupta",
     description:
-      "As an executive coach, I work to empower business leaders through a personal partnership. I jump into the trenches with you, have the hard conversations, ask the right questions, uncover insights and discover the solutions that will help you and your business reach full potential.",
+      "An inspiring keynote on entrepreneurship, resilience, and innovation, sharing real-life lessons and strategies to overcome challenges and achieve success.",
+    day: 1,
   },
   {
     id: "sarah",
-    name: "SARAH JOHNSON",
-    designation: "LEADERSHIP COACH",
-    image: "/professional-woman-executive-coach.png",
-    title: "WHY CHOOSE LEADERSHIP COACHING?",
+    name: "ANAND KUMAR",
+    designation: "MATHEMATICIAN, SUPER 30 FAME",
+    image: "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5rRLCLqf8BWI64UPVzZcp0EidljyDOusNoxLG",
+    title: "Keynote Address by Shree Anand Kumar",
     description:
-      "Leadership coaching transforms how you lead and inspire others. I help executives develop authentic leadership styles, build high-performing teams, and create cultures of excellence that drive sustainable business growth and innovation.",
-  },
-  {
-    id: "michael",
-    name: "MICHAEL CHEN",
-    designation: "PERFORMANCE COACH",
-    image: "/professional-man-performance-coach.png",
-    title: "WHY INVEST IN PERFORMANCE COACHING?",
-    description:
-      "Performance coaching unlocks your highest potential through strategic goal-setting and accountability. I work with leaders to optimize their effectiveness, overcome limiting beliefs, and achieve breakthrough results in both personal and professional domains.",
+      "An inspiring keynote on grit, determination, and purposeful success, offering valuable insights on turning challenges into opportunities and staying committed to goals.",
+    day: 2,
   },
 ]
 
-export default function Home() {
-  const [activeTab, setActiveTab] = useState("bubba")
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const currentCoach = coaches.find((coach) => coach.id === activeTab) || coaches[0]
+export default function SpeakersPage() {
+  const [isVisible, setIsVisible] = useState(false)
+  const [dayFilter, setDayFilter] = useState(0) // 0 = All, 1 = Day 1, 2 = Day 2
 
   useEffect(() => {
-    setIsTransitioning(true)
-    const timer = setTimeout(() => setIsTransitioning(false), 500)
-    return () => clearTimeout(timer)
-  }, [activeTab])
+    setIsVisible(true)
+  }, [])
+
+  const filtered = useMemo(
+    () => coaches.filter((c) => (dayFilter === 0 ? true : c.day === dayFilter)),
+    [dayFilter]
+  )
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden flex flex-col">
-      {/* Background */}
+    <main className="min-h-screen bg-black text-white relative overflow-hidden flex flex-col">
+      {/* Background image with a single readability overlay (no gradients/blobs) */}
       <div className="absolute inset-0">
         <div
-          className="absolute grayscale inset-0 bg-cover bg-center bg-no-repeat opacity-40 transition-all duration-1000"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35 transition-opacity duration-700"
           style={{
             backgroundImage:
               "url('https://upload.wikimedia.org/wikipedia/commons/b/bd/New_York_City_Skyline_at_Dusk.jpg')",
           }}
+          aria-hidden="true"
         />
-
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80" />
-        <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-black via-black/90 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/90 to-transparent" />
-
-        {/* Subtle Background Elements */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#20A97B]/5 rounded-full filter blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse-medium" />
+        <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col flex-1">
-        {/* Header Section */}
-        <div className="container mx-auto px-6 md:px-8 py-8 text-center">
-         
-          <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
-                CELEBRITY <span className="text-[#20A97B]">SPEAKERS</span>
+        {/* Header */}
+        <header className="container mx-auto px-6 md:px-8 py-10 text-center">
+          <h1 className="text-5xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-4 tracking-tight">
+            CELEBRITY <span className="text-[#20A97B]">SPEAKERS</span>
           </h1>
-          <p className="text-gray-300 text-lg animate-fade-in delay-100">
+          <p className="text-gray-300 text-base md:text-lg animate-fade-in delay-100 text-pretty">
             World-class coaching from industry leaders
           </p>
-        </div>
 
-        {/* Tab Navigation */}
-        <div className="container mx-auto px-6 md:px-8 py-4">
-          <div className="flex justify-center">
-            <div className="flex space-x-1 bg-white/10 backdrop-blur-sm rounded-lg p-1 border border-white/10 shadow-lg">
-              {coaches.map((coach) => (
+          <div
+            role="tablist"
+            aria-label="Filter speakers by day"
+            className="mt-6 inline-flex items-center gap-1 rounded-md bg-white/10 p-1"
+          >
+            {[
+              { label: "All", value: 0 },
+              { label: "Day 1", value: 1 },
+              { label: "Day 2", value: 2 },
+            ].map((opt) => {
+              const active = dayFilter === opt.value
+              return (
                 <button
-                  key={coach.id}
-                  onClick={() => setActiveTab(coach.id)}
-                  className={`px-6 py-3 rounded-md text-sm font-medium transition-all duration-300 relative overflow-hidden ${
-                    activeTab === coach.id
-                      ? "bg-[#20A97B] text-white shadow-md"
-                      : "text-white hover:bg-white/20"
-                  }`}
+                  key={opt.label}
+                  role="tab"
+                  aria-selected={active}
+                  aria-pressed={active}
+                  onClick={() => setDayFilter(opt.value)}
+                  className={[
+                    "px-3 py-1.5 text-sm md:text-base rounded",
+                    "transition-colors duration-150 focus-visible:outline-none",
+                    "focus-visible:ring-2 focus-visible:ring-[#20A97B]",
+                    active ? "bg-[#20A97B] text-black" : "bg-transparent text-white hover:bg-white/10",
+                  ].join(" ")}
                 >
-                  {coach.name.split(" ")[0]} {coach.name.split(" ")[1]}
-                  {activeTab === coach.id && (
-                    <span className="absolute inset-0 bg-white/10 animate-ping rounded-md opacity-75"></span>
-                  )}
+                  {opt.label}
                 </button>
-              ))}
-            </div>
+              )
+            })}
           </div>
-        </div>
 
-        {/* Main Hero Section */}
-        <div className="container mx-auto px-6 md:px-8 py-4 md:py-8 flex-1 flex items-center">
-          <div className="flex flex-col items-center space-y-8 w-full">
-            <div className="relative flex justify-center">
-              <div className="relative">
-                <div className="w-72 h-80 md:w-96 md:h-[420px] relative transition-all duration-500">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#20A97B] to-[#32C38E] rounded-lg opacity-30 animate-pulse-slow"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#20A97B] to-[#32C38E] rounded-lg opacity-0 transition-opacity duration-700 hover:opacity-20"></div>
+          <p className="sr-only" aria-live="polite">
+            {`${filtered.length} speaker${filtered.length === 1 ? "" : "s"} shown`}
+          </p>
+        </header>
 
+        {/* Speakers grid */}
+        <section className="container mx-auto px-6 md:px-8 pb-12 flex-1 flex items-start justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+            {filtered.map((coach, index) => (
+              <article
+                key={coach.id}
+                aria-labelledby={`${coach.id}-name`}
+                className={[
+                  "relative transition-all duration-700 group",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+                ].join(" ")}
+                style={{ transitionDelay: `${index * 140}ms` }}
+              >
+                {/* Card */}
+                <div
+                  tabIndex={0}
+                  className={[
+                    "w-full h-80 md:h-96 relative rounded-lg overflow-hidden",
+                    "ring-1 ring-white/10 hover:ring-[#20A97B]/60 focus-visible:ring-2 focus-visible:ring-[#20A97B]",
+                    "shadow-[0_10px_30px_rgba(0,0,0,0.4)]",
+                  ].join(" ")}
+                >
+                  {/* Day badge */}
+                  <div
+                    className="absolute top-3 left-3 z-30 bg-[#20A97B] rounded-full w-14 h-14 flex items-center justify-center shadow"
+                    aria-label={`Day ${coach.day}`}
+                  >
+                    <div className="text-center leading-tight">
+                      <div className="text-xs font-normal text-black/80">Day</div>
+                      <div className="text-xl font-extrabold text-black">{coach.day}</div>
+                    </div>
+                  </div>
+
+                  {/* Speaker image */}
                   <img
-                    src={currentCoach.image || "/placeholder.svg"}
-                    alt={`${currentCoach.name} - ${currentCoach.designation}`}
-                    className={`w-full h-full object-cover object-center rounded-lg relative z-10 transition-all duration-500 ${
-                      isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
-                    }`}
+                    src={coach.image || "/placeholder.svg?height=384&width=640&query=Speaker%20photo"}
+                    alt={`${coach.name} — ${coach.designation}`}
+                    className="w-full h-full object-cover object-center"
                   />
 
-                  {/* Text Overlay */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/40 rounded-lg z-20 transition-all duration-500">
-                    <h2
-                      className={`text-2xl md:text-4xl font-bold tracking-[0.2em] text-white drop-shadow-2xl whitespace-nowrap transition-all duration-700 ${
-                        isTransitioning ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-                      }`}
-                    >
-                      {currentCoach.name}
+                  {/* Overlay */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black/35 hover:bg-black/25 transition-colors duration-200">
+                    <h2 id={`${coach.id}-name`} className="text-2xl md:text-3xl font-bold tracking-wide text-white">
+                      {coach.name}
                     </h2>
-                    <p
-                      className={`text-sm md:text-lg text-white/90 tracking-widest font-light mt-2 drop-shadow-lg transition-all duration-700 delay-100 ${
-                        isTransitioning ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-                      }`}
-                    >
-                      {currentCoach.designation}
+                    <p className="text-sm md:text-base text-gray-200 tracking-widest font-light mt-2">
+                      {coach.designation}
                     </p>
-                    <div
-                      className={`w-16 h-0.5 bg-[#20A97B] mt-4 transition-all duration-700 delay-200 ${
-                        isTransitioning ? "scale-0 opacity-0" : "scale-100 opacity-100"
-                      }`}
-                    />
+                    <div className="w-16 h-0.5 bg-[#20A97B] mt-4" />
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Why Hire Section */}
-        <div className="container mx-auto px-6 bg-gradient-to-b from-[#020617] to-black md:px-8 py-8 md:py-12">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h2
-              className={`text-2xl md:text-3xl font-bold tracking-wider transition-all duration-700 text-[#20A97B] ${
-                isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-              }`}
-            >
-              {currentCoach.title}
-            </h2>
-
-            <p
-              className={`text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto transition-all duration-700 delay-100 ${
-                isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-              }`}
-            >
-              {currentCoach.description}
-            </p>
+                {/* Details */}
+                <div className="mt-6 text-center space-y-3">
+                  <h3 className="text-xl md:text-2xl font-bold tracking-wide text-[#20A97B]">{coach.title}</h3>
+                  <p className="text-gray-300 text-base leading-relaxed">{coach.description}</p>
+                </div>
+              </article>
+            ))}
           </div>
-        </div>
+        </section>
       </div>
 
-      {/* Global Styles for Animations */}
       <style jsx global>{`
         @keyframes fadeIn {
           from {
@@ -587,37 +580,13 @@ export default function Home() {
             opacity: 1;
           }
         }
-        @keyframes pulseSlow {
-          0%,
-          100% {
-            opacity: 0.3;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-        @keyframes pulseMedium {
-          0%,
-          100% {
-            opacity: 0.2;
-          }
-          50% {
-            opacity: 0.4;
-          }
-        }
         .animate-fade-in {
           animation: fadeIn 0.8s ease-out forwards;
         }
         .delay-100 {
           animation-delay: 0.1s;
         }
-        .animate-pulse-slow {
-          animation: pulseSlow 6s infinite;
-        }
-        .animate-pulse-medium {
-          animation: pulseMedium 4s infinite;
-        }
       `}</style>
-    </div>
+    </main>
   )
 }
