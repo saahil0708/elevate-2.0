@@ -8,7 +8,7 @@ const ElevatePage = () => {
   const yearData = {
     "2025": {
       image:
-        "https://hire4event.com/blogs/wp-content/uploads/2019/02/hire4event.com_-1.jpg",
+        "https://www.shutterstock.com/image-photo/image-auditorium-where-seminar-on-600nw-2516204155.jpg",
       title: "Elevate 2025 | Elevate 2.0 - Bigger, Grander, Impactful",
       description: [
         "ELEVATE 2.0 is set to be bigger, grander, and more impactful.",
