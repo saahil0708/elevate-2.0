@@ -23,7 +23,7 @@ const ElevatePage = () => {
     },
     "2024": {
       image:
-        "https://home.iitd.ac.in/public/storage/uploads/president-2_1662305561.jpg",
+        "/images/Image (10).JPG",
       title: "Elevate 2024 | Elevate 1.0 - The Beginning of a Revolution",
       description: [
         "Elevate 1.0 marked the beginning of a new era of innovation and collaboration.",
