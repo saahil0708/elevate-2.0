@@ -21,14 +21,6 @@ export default function Header() {
         history.replaceState(null, null, " ");
         window.scrollTo(0, 0);
       }
-
-      const SmoothScroll = require("smooth-scroll")
-      new SmoothScroll('a[href*="#"]', {
-        speed: 700,
-        speedAsDuration: true,
-        updateURL: false,
-        offset: 0,
-      })
     }
   }, [])
 
@@ -47,7 +39,7 @@ export default function Header() {
             {[
               { name: "Home", href: "#home" },
               { name: "About", href: "#about" },
-              { name: "SIH", href: "#sih" },
+              // { name: "SIH", href: "#sih" },
               { name: "IdeaJam", href: "#ideajam" },
               { name: "Gallery", href: "#gallery" },
               { name: "Contact", href: "#footer" },

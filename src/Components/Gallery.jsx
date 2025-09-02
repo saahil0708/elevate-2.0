@@ -3,37 +3,36 @@ import { ThreeDMarquee } from "../Components/ui/3d-marquee";
 
 export function ThreeDMarqueeDemo() {
   const images = [
-    "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
-    "https://assets.aceternity.com/animated-modal.png",
-    "https://assets.aceternity.com/animated-testimonials.webp",
-    "https://assets.aceternity.com/cloudinary_bkp/Tooltip_luwy44.png",
-    "https://assets.aceternity.com/github-globe.png",
-    "https://assets.aceternity.com/glare-card.png",
-    "https://assets.aceternity.com/layout-grid.png",
-    "https://assets.aceternity.com/flip-text.png",
-    "https://assets.aceternity.com/hero-highlight.png",
-    "https://assets.aceternity.com/carousel.webp",
-    "https://assets.aceternity.com/placeholders-and-vanish-input.png",
-    "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
-    "https://assets.aceternity.com/signup-form.png",
-    "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
-    "https://assets.aceternity.com/spotlight-new.webp",
-    "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
-    "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
-    "https://assets.aceternity.com/tabs.png",
-    "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
-    "https://assets.aceternity.com/cloudinary_bkp/typewriter-effect.png",
-    "https://assets.aceternity.com/glowing-effect.webp",
-    "https://assets.aceternity.com/hover-border-gradient.png",
-    "https://assets.aceternity.com/cloudinary_bkp/Infinite_Moving_Cards_evhzur.png",
-    "https://assets.aceternity.com/cloudinary_bkp/Lamp_hlq3ln.png",
-    "https://assets.aceternity.com/macbook-scroll.png",
-    "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
-    "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
-    "https://assets.aceternity.com/multi-step-loader.png",
-    "https://assets.aceternity.com/vortex.png",
-    "https://assets.aceternity.com/wobble-card.png",
-    "https://assets.aceternity.com/world-map.webp",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5Ca6BGlwwarTshFH2qLQgVjOB8mn70vt9Gyeb",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5tVLipgmEyKp7vbuh4aZnGcCs8ARDxHFO2LY0",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5iK7tueRXkhA6xHi4ILWcPj7Rg81esEKXtYpG",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5V0H6sVJBqCA8IE4RWkpQY10bdL7SKnhfwlJM",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5XqgaJQBdwE1zgNU9nBLxO62lZYuAWsqiRGCt",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5KErBrVovpGOZJ0MUag4QI3kRmCE7P1nwNtSF",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5D1Mxh8kQ57NPj9YlOJCumqw8S4bfTIih3gXv",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5k80SSdMYBRf87C5LUQXSgcykKxONi09ouWEG",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5XNdNRSBdwE1zgNU9nBLxO62lZYuAWsqiRGCt",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX51tVzCzFhoBK4jiLIxpqH12cfwXagPVrDvsQE",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5PmeYspAzBSLiewkCxXU8hRDP7Gcm6advYVo5",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX57v0fV5kRaEL32ihjAvdIlU4N0TBZzbXuGMPf",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5BBwWPoKzPWfylH5GYExmgnb83j4RheVQD0JN",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5V4vcxZJBqCA8IE4RWkpQY10bdL7SKnhfwlJM",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX51Rx0a6hoBK4jiLIxpqH12cfwXagPVrDvsQEY",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX51trpgwDhoBK4jiLIxpqH12cfwXagPVrDvsQE",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5jevHsmuwPDOZcf3RGji8gyb6rvsJnXCHtkIY",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5rcVPDaf8BWI64UPVzZcp0EidljyDOusNoxLG",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5EJM3A0VLj2uNUwsbW36KpmTHhezIOfoG4ydS",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5ts1iq2EyKp7vbuh4aZnGcCs8ARDxHFO2LY0S",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5XtChYcBdwE1zgNU9nBLxO62lZYuAWsqiRGCt",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5YzEehDkdqrAaPiXWyjJwRgVxh49pENQmO51K",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5J0fUczy9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5vg2aByz6a0ZqJ2rT7EoAFWNp1wtkhYeQnjm4",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5NNCP4gtD6A8SVb3P19FpC4LqXRxIiTuvty7J",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5JsooN2y9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5VHHm5NJBqCA8IE4RWkpQY10bdL7SKnhfwlJM",
+    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5JsooN2y9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
   ];
 
   return (
@@ -41,8 +40,8 @@ export function ThreeDMarqueeDemo() {
       {/* Heading & Description */}
       <div className="text-center mb-8">
         <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
-                Glimpses of <span className="text-[#20A97B]"> 2024</span>
-              </h1>
+          Glimpses of <span className="text-[#20A97B]"> 2024</span>
+        </h1>
         <p className="text-gray-400 max-w-2xl mx-auto text-base">
           A quick look back at some of the most exciting projects, ideas, and
           moments that defined our journey through the year.
