@@ -693,7 +693,7 @@ const AnimatedEventTimeline = () => {
                 damping: 20,
               }}
             >
-              <motion.div className="relative inline-block mb-8">
+              <motion.div className="relative inline-block mb-6">
                 <motion.h1
                   className="text-6xl md:text-7xl lg:text-6xl font-black bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent mb-6 tracking-tight"
                   animate={{
@@ -752,32 +752,13 @@ const AnimatedEventTimeline = () => {
               </motion.div>
 
               <motion.p
-                className="text-xl sm:text-2xl text-gray-300 mb-4 font-medium"
+                className="text-xl sm:text-2xl text-gray-300 mb-1 font-medium"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 1 }}
               >
                 Three-Day Executive Program
               </motion.p>
-              <motion.div
-                className="flex flex-wrap justify-center gap-2 sm:gap-3 text-sm sm:text-base text-[#20A97B] font-bold uppercase tracking-wider"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 1 }}
-              >
-                {["AI", "Web3", "Cloud", "Design", "Security"].map((item, i) => (
-                  <motion.span
-                    key={item}
-                    className="px-3 py-1.5 bg-[#20A97B]/10 rounded-xl border border-[#20A97B]/30 backdrop-blur-sm"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.2 + i * 0.1, duration: 0.6 }}
-                    whileHover={{ y: -2 }}
-                  >
-                    {item}
-                  </motion.span>
-                ))}
-              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -848,16 +829,6 @@ const AnimatedEventTimeline = () => {
                 )
               })}
             </div>
-
-            {/* Progress indicator */}
-            <motion.div
-              className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex items-center text-gray-400 text-sm"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-            >
-              <ArrowDown className="w-4 h-4 mr-2" />
-              <span>Scroll to explore timeline</span>
-            </motion.div>
           </div>
         </motion.div>
 
