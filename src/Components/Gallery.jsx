@@ -3,52 +3,52 @@ import { ThreeDMarquee } from "../Components/ui/3d-marquee";
 
 export function ThreeDMarqueeDemo() {
   const images = [
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5Ca6BGlwwarTshFH2qLQgVjOB8mn70vt9Gyeb",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5tVLipgmEyKp7vbuh4aZnGcCs8ARDxHFO2LY0",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5iK7tueRXkhA6xHi4ILWcPj7Rg81esEKXtYpG",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5V0H6sVJBqCA8IE4RWkpQY10bdL7SKnhfwlJM",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5XqgaJQBdwE1zgNU9nBLxO62lZYuAWsqiRGCt",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5KErBrVovpGOZJ0MUag4QI3kRmCE7P1nwNtSF",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5D1Mxh8kQ57NPj9YlOJCumqw8S4bfTIih3gXv",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5k80SSdMYBRf87C5LUQXSgcykKxONi09ouWEG",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5XNdNRSBdwE1zgNU9nBLxO62lZYuAWsqiRGCt",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX51tVzCzFhoBK4jiLIxpqH12cfwXagPVrDvsQE",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5PmeYspAzBSLiewkCxXU8hRDP7Gcm6advYVo5",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX57v0fV5kRaEL32ihjAvdIlU4N0TBZzbXuGMPf",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5BBwWPoKzPWfylH5GYExmgnb83j4RheVQD0JN",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5V4vcxZJBqCA8IE4RWkpQY10bdL7SKnhfwlJM",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX51Rx0a6hoBK4jiLIxpqH12cfwXagPVrDvsQEY",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX51trpgwDhoBK4jiLIxpqH12cfwXagPVrDvsQE",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5jevHsmuwPDOZcf3RGji8gyb6rvsJnXCHtkIY",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5rcVPDaf8BWI64UPVzZcp0EidljyDOusNoxLG",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5EJM3A0VLj2uNUwsbW36KpmTHhezIOfoG4ydS",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5ts1iq2EyKp7vbuh4aZnGcCs8ARDxHFO2LY0S",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5XtChYcBdwE1zgNU9nBLxO62lZYuAWsqiRGCt",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5x86ndBPkntDRIgTLohXOs5baQ3uEZAVyY9GC",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5YzEehDkdqrAaPiXWyjJwRgVxh49pENQmO51K",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5J0fUczy9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5vg2aByz6a0ZqJ2rT7EoAFWNp1wtkhYeQnjm4",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5NNCP4gtD6A8SVb3P19FpC4LqXRxIiTuvty7J",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5JsooN2y9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5VHHm5NJBqCA8IE4RWkpQY10bdL7SKnhfwlJM",
-    "https://1kga789wdc.ufs.sh/f/lJZn16SaUVX5JsooN2y9FUr8wSBmdRlxC2QcbsW6hGoM30u7",
+    "/images/Image (1).JPG",
+    "/images/Image (2).JPG",
+    "/images/Image (3).JPG",
+    "/images/Image (4).JPG",
+    "/images/Image (5).JPG",
+    "/images/Image (6).JPG",
+    "/images/Image (7).JPG",
+    "/images/Image (8).JPG",
+    "/images/Image (9).JPG",
+    "/images/Image (10).JPG",
+    "/images/Image (11).JPG",
+    "/images/Image (12).JPG",
+    "/images/Image (13).JPG",
+    "/images/Image (14).JPG",
+    "/images/Image (15).JPG",
+    "/images/Image (16).JPG",
+    "/images/Image (17).JPG",
+    "/images/Image (18).JPG",
+    "/images/Image (19).JPG",
+    "/images/Image (20).JPG",
+    "/images/Image (21).JPG",
+    "/images/Image (22).JPG",
+    "/images/Image (23).JPG",
+    "/images/Image (24).JPG",
+    "/images/Image (25).JPG",
+    "/images/Image (26).JPG",
+    "/images/Image (27).JPG",
+    "/images/Image (28).JPG",
+    "/images/Image (29).JPG",
+    "/images/Image (30).JPG",
+    "/images/Image (31).JPG",
+    "/images/Image (32).JPG",
+    "/images/Image (33).JPG",
+    "/images/Image (34).JPG",
+    "/images/Image (35).JPG",
+    "/images/Image (36).JPG",
+    "/images/Image (37).JPG",
+    "/images/Image (38).JPG",
+    "/images/Image (39).JPG",
+    "/images/Image (40).JPG",
+    "/images/Image (41).JPG",
+    "/images/Image (42).JPG",
   ];
 
   return (
-    <div className="mx-auto my-10 max-w-7xl rounded-3xl bg-[#020617] p-6 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
-      {/* Heading & Description */}
-      <div className="text-center mb-8">
-        <h1 className="text-6xl md:text-7xl font-extrabold bg-white bg-clip-text text-transparent mb-6 tracking-tight drop-shadow-[0_0_30px_rgba(12,83,82,0.5)]">
-          Glimpses of <span className="text-[#20A97B]"> 2024</span>
-        </h1>
-        <p className="text-gray-400 max-w-2xl mx-auto text-base">
-          A quick look back at some of the most exciting projects, ideas, and
-          moments that defined our journey through the year.
-        </p>
-      </div>
-
-      {/* Marquee */}
+    <div className="mx-auto my-10 max-w- rounded-3xl bg-[#020617] p-2 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
       <ThreeDMarquee images={images} />
     </div>
   );
