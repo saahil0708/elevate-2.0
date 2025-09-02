@@ -20,7 +20,7 @@ export function ThreeDMarqueeDemo() {
     "/images/Image (15).JPG",
     "/images/Image (16).JPG",
     "/images/Image (17).JPG",
-    "/images/Image (18).JPG",
+    "/images/Image (11).JPG",
     "/images/Image (19).JPG",
     "/images/Image (20).JPG",
     "/images/Image (21).JPG",
