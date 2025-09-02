@@ -46,10 +46,10 @@ export default function SpeakersPage() {
       {/* Background image with enhanced overlay */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 transition-all duration-1000 animate-subtle-zoom"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 transition-all duration-1000 animate-subtle-zoom"
           style={{
             backgroundImage:
-              "url('https://upload.wikimedia.org/wikipedia/commons/b/bd/New_York_City_Skyline_at_Dusk.jpg')",
+              "url('/images/Image (43).png')",
           }}
           aria-hidden="true"
         />
