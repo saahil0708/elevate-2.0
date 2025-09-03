@@ -39,7 +39,6 @@ export default function Header() {
             {[
               { name: "Home", href: "#home" },
               { name: "About", href: "#about" },
-              // { name: "SIH", href: "#sih" },
               { name: "IdeaJam", href: "#ideajam" },
               { name: "Gallery", href: "#gallery" },
               { name: "Contact", href: "#footer" },
@@ -91,7 +90,6 @@ export default function Header() {
             {[
               { name: "Home", href: "#home" },
               { name: "About", href: "#about" },
-              { name: "SIH", href: "#sih" },
               { name: "IdeaJam", href: "#ideajam" },
               { name: "Gallery", href: "#gallery" },
               { name: "Contact", href: "#footer" },
