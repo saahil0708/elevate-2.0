@@ -312,7 +312,7 @@ export default function RegisterForm() {
             <div className="grid grid-cols-3 gap-4 max-w-xs">
               <div className="text-center bg-gray-900/50 p-4 rounded-xl border border-gray-700/40 backdrop-blur-sm transition-all hover:border-emerald-500/30 hover:scale-105">
                 <div className="text-2xl font-black bg-gradient-to-br from-[#20A97B] to-emerald-400 bg-clip-text text-transparent mb-1">
-                  100+
+                  150+
                 </div>
                 <div className="text-xs text-gray-400 uppercase tracking-wider">
                   Teams
@@ -362,7 +362,7 @@ export default function RegisterForm() {
                   <input
                     type="text"
                     name="name"
-                    placeholder="Suryanshi"
+                    placeholder="Suryavanshi"
                     value={form.name}
                     onChange={handleChange}
                     className="w-full p-3 rounded-lg bg-gray-900/50 border border-gray-700/40 text-white focus:outline-none focus:ring-2 focus:ring-[#20A97B]/80 transition-all"
