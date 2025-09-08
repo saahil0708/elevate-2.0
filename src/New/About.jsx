@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const ElevatePage = () => {
-  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedYear, setSelectedYear] = useState("2025");
 
   const [isLoading, setIsLoading] = useState(false);
 
