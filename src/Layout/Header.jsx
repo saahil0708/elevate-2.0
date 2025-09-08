@@ -42,7 +42,7 @@ export default function Header() {
               // { name: "SIH", href: "#sih" },
               { name: "IdeaJam", href: "#ideajam" },
               { name: "Gallery", href: "#gallery" },
-              { name: "Contact", href: "#footer" },
+              { name: "Register", href: "#register" },
             ].map((item) => (
               <li key={item.name}>
                 <a
