@@ -5,52 +5,32 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 
 const GlowingCarousel = () => {
   const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "Marketing Director",
-      company: "TechCorp",
-      avatar: "/professional-woman-diverse.png",
-      text: "This product has completely transformed our workflow. The team productivity increased by 40% within the first month.",
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "Product Manager",
-      company: "InnovateLab",
-      avatar: "/professional-man.png",
-      text: "Outstanding customer service and incredible attention to detail. I couldn't be happier with the results we've achieved.",
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: "Emily Davis",
-      role: "CEO",
-      company: "StartupHub",
-      avatar: "/professional-woman-smiling.png",
-      text: "The best investment we've made for our business. The ROI has exceeded all our expectations by far.",
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: "David Rodriguez",
-      role: "Operations Lead",
-      company: "GrowthCo",
-      avatar: "/professional-man-glasses.png",
-      text: "Seamless integration and powerful features. This solution has streamlined our entire process beautifully.",
-      rating: 5,
-    },
-    {
-      id: 5,
-      name: "Lisa Thompson",
-      role: "Design Director",
-      company: "CreativeStudio",
-      avatar: "/professional-asian-woman.png",
-      text: "Intuitive interface and robust functionality. Our team adopted it immediately without any learning curve.",
-      rating: 5,
-    },
-  ]
+   {
+    name: "Rohan Malhotra",
+    role: "Startup Founder",
+    text: "Elevate 1.0 was a game-changer! The networking opportunities and mentorship helped me scale my business faster than I imagined.",
+  },
+  {
+    name: "Ananya Sharma",
+    role: "Product Designer",
+    text: "Listening to Ashneer Grover and other leaders was inspiring. The sessions gave me clarity on how to approach innovation with purpose.",
+  },
+  {
+    name: "Karan Patel",
+    role: "Tech Enthusiast",
+    text: "The energy at Elevate was unmatched. From startups to culture, it felt like the start of something much bigger.",
+  },
+  {
+    name: "Sneha Verma",
+    role: "Marketing Professional",
+    text: "Elevate 1.0 was more than just an event — it was a platform to connect with visionaries and learn from the best in the industry.",
+  },
+  {
+    name: "Aditya Rao",
+    role: "Student Innovator",
+    text: "As a student, being part of Elevate gave me exposure to real-world innovation and the confidence to pursue my ideas.",
+  },
+];
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -70,8 +50,8 @@ const GlowingCarousel = () => {
     setTimeout(() => setIsAnimating(false), 800)
   }, [isAnimating, totalCards])
 
-  const renderStars = (rating) => {
-    return [...Array(5)].map((_, i) => (
+  const renderStars = (rating) =>
+    [...Array(5)].map((_, i) => (
       <svg
         key={i}
         className={`w-4 h-4 ${i < rating ? "text-[#20A97B]" : "text-gray-600"}`}
@@ -81,7 +61,6 @@ const GlowingCarousel = () => {
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
       </svg>
     ))
-  }
 
   const getCardStyle = (index) => {
     const isActive = index === currentIndex
@@ -95,7 +74,7 @@ const GlowingCarousel = () => {
     else if (distance === 4) positionIndex = 1
 
     const positions = [
-      { left: "8%", scale: 0.6, opacity: 0.3, blur: 2 },
+      { left: "8%", scale: 0.6, opacity: 1, blur: 2 },
       { left: "25%", scale: 0.75, opacity: 0.5, blur: 1 },
       { left: "50%", scale: 1, opacity: 1, blur: 0 },
       { left: "75%", scale: 0.75, opacity: 0.5, blur: 1 },
@@ -107,17 +86,24 @@ const GlowingCarousel = () => {
     return {
       position: "absolute",
       left: pos.left,
-      top: "60%",
+      top: "50%",
       transform: `translate(-50%, -50%) scale(${pos.scale})`,
       width: "320px",
+      maxWidth: "90vw",
       height: "420px",
       border: isActive ? "2px solid #20A97B" : "1px solid #2a3441",
       borderRadius: "24px",
       opacity: pos.opacity,
-      transition: isAnimating ? "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "all 0.3s ease-out",
+      transition: isAnimating
+        ? "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        : "all 0.3s ease-out",
       cursor: "pointer",
       zIndex: isActive ? 10 : 5,
-      filter: `blur(${pos.blur}px) ${isAnimating && isActive ? "brightness(1.3) saturate(1.2)" : "brightness(1)"}`,
+      filter: `blur(${pos.blur}px) ${
+        isAnimating && isActive
+          ? "brightness(1.3) saturate(1.2)"
+          : "brightness(1)"
+      }`,
       boxShadow: isActive
         ? `
           0 0 12px #20A97B,
@@ -134,65 +120,57 @@ const GlowingCarousel = () => {
   }
 
   return (
-    <div
-      className="w-full h-screen flex flex-col py-1 items-center justify-center overflow-hidden relative"
+    <section
+      className="w-full min-h-screen flex flex-col items-center justify-center relative overflow-hidden py-20"
       style={{
         background: "radial-gradient(ellipse at center, #0a1520 0%, #000000 70%)",
       }}
     >
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-        @keyframes glow {
-          0%, 100% { text-shadow: 0 0 20px rgba(12, 83, 82, 0.5); }
-          50% { text-shadow: 0 0 30px rgba(12, 83, 82, 0.8), 0 0 40px rgba(12, 83, 82, 0.6); }
-        }
-      `}</style>
-
-      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-center z-30">
+      {/* Title + description */}
+      <div className="text-center px-4 mb-16">
         <div className="flex items-center justify-center mb-4">
-          <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-[#20A97B] mr-4"></div>
+          <div className="w-8 md:w-12 h-0.5 bg-gradient-to-r from-transparent to-[#20A97B] mr-2 md:mr-4"></div>
           <h1
-            className="text-4xl md:text-5xl font-bold text-white tracking-wide"
-            style={{ animation: "glow 3s ease-in-out infinite" }}
+            className="text-3xl md:text-5xl font-bold tracking-wide"
+            style={{
+              textShadow:
+                "0 0 20px rgba(12, 83, 82, 0.5), 0 0 30px rgba(12, 83, 82, 0.6)",
+            }}
           >
             TESTIMONIALS
           </h1>
-          <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-[#20A97B] ml-4"></div>
+          <div className="w-8 md:w-12 h-0.5 bg-gradient-to-l from-transparent to-[#20A97B] ml-2 md:ml-4"></div>
         </div>
-        <p className="text-gray-300 text-lg md:text-xl max-w-2xl leading-relaxed">
-          Discover what our valued clients say about their transformative experiences with our innovative solutions
+        <p className="text-gray-300 text-base md:text-xl max-w-2xl leading-relaxed text-center mx-auto mt-4">
+          Discover what our valued clients say about their transformative
+          experiences with our innovative solutions
         </p>
       </div>
 
       {/* Card counter */}
-      <div className="absolute top-8 right-8 text-[#20A97B] text-sm font-medium px-3 py-1 rounded-full backdrop-blur-sm border border-[#20A97B]/20">
+      <div className="absolute top-6 right-4 md:right-12 text-[#20A97B] text-sm font-medium px-3 py-1 rounded-full backdrop-blur-sm border border-[#20A97B]/20">
         {currentIndex + 1} / {totalCards}
       </div>
 
+      {/* Navigation buttons */}
       <button
         onClick={goToPrevious}
         disabled={isAnimating}
-        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#20A97B]/20 border border-[#20A97B]/40 flex items-center justify-center text-[#20A97B] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
+        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#20A97B]/20 border border-[#20A97B]/40 flex items-center justify-center text-[#20A97B] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={20} className="md:w-6 md:h-6" />
       </button>
 
       <button
         onClick={goToNext}
         disabled={isAnimating}
-        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#20A97B]/20 border border-[#20A97B]/40 flex items-center justify-center text-[#20A97B] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
+        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#20A97B]/20 border border-[#20A97B]/40 flex items-center justify-center text-[#20A97B] hover:bg-[#107372]/30 hover:border-[#107372]/60 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={20} className="md:w-6 md:h-6" />
       </button>
 
-      <div className="relative w-full h-full max-w-6xl">
+      {/* Cards */}
+      <div className="relative w-full h-96 md:h-[500px] max-w-6xl">
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
@@ -206,8 +184,8 @@ const GlowingCarousel = () => {
             }}
           >
             <div
-              className="p-8 h-full flex flex-col justify-between transition-opacity duration-500 relative overflow-hidden"
-              style={{ opacity: index === currentIndex ? 1 : 0.7 }}
+              className={`p-6 md:p-8 h-full flex flex-col justify-between transition-opacity duration-500 relative overflow-hidden rounded-2xl 
+                ${index === currentIndex ? "bg-[#0f1a25]" : "bg-[#0a0f14]/80"}`}
             >
               <div className="absolute top-6 left-6 opacity-20">
                 <Quote size={32} className="text-[#20A97B]" />
@@ -220,8 +198,10 @@ const GlowingCarousel = () => {
               </div>
 
               <blockquote
-                className={`text-center leading-relaxed mb-8 transition-all duration-300 relative z-10 ${
-                  index === currentIndex ? "text-white text-lg font-light italic" : "text-gray-400 text-base opacity-70"
+                className={`text-center leading-relaxed mb-6 md:mb-8 transition-all duration-300 relative z-10 ${
+                  index === currentIndex
+                    ? "text-white text-base md:text-lg font-light italic"
+                    : "text-gray-400 text-sm md:text-base opacity-70"
                 }`}
               >
                 "{testimonial.text}"
@@ -232,7 +212,7 @@ const GlowingCarousel = () => {
                   <img
                     src={testimonial.avatar || "/placeholder.svg"}
                     alt={testimonial.name}
-                    className={`w-14 h-14 rounded-full object-cover transition-all duration-300 ${
+                    className={`w-12 h-12 md:w-14 md:h-14 rounded-full object-cover transition-all duration-300 ${
                       index === currentIndex
                         ? "ring-2 ring-[#20A97B] shadow-lg shadow-[#20A97B]/40"
                         : "ring-1 ring-gray-600"
@@ -245,19 +225,23 @@ const GlowingCarousel = () => {
                 <div className="text-left">
                   <div
                     className={`font-semibold transition-all duration-300 ${
-                      index === currentIndex ? "text-white text-base" : "text-gray-300 text-sm"
+                      index === currentIndex
+                        ? "text-white text-sm md:text-base"
+                        : "text-gray-300 text-xs md:text-sm"
                     }`}
                   >
                     {testimonial.name}
                   </div>
                   <div
                     className={`text-[#20A97B] transition-all duration-300 font-medium ${
-                      index === currentIndex ? "text-sm" : "text-xs"
+                      index === currentIndex ? "text-xs md:text-sm" : "text-xs"
                     }`}
                   >
                     {testimonial.role}
                   </div>
-                  <div className="text-gray-400 text-xs font-light">{testimonial.company}</div>
+                  <div className="text-gray-400 text-xs font-light">
+                    {testimonial.company}
+                  </div>
                 </div>
               </div>
 
@@ -266,7 +250,7 @@ const GlowingCarousel = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 

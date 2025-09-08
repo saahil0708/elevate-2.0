@@ -10,6 +10,7 @@ import Timeline from '@/New/Timeline';
 import Panel from "@/New/panel";
 import Speakers from "@/Components/ThreeScene"
 import SIH from "@/New/index"
+import RegisterForm from "@/RegisterForm"
 
 export default function Layout() {
   return (
@@ -27,12 +28,15 @@ export default function Layout() {
       <section id="about" className="w-full"><ElevateAftermovies /></section>
       <section id="cultural" className="w-full"><Cultural /></section>
       <section id="speakers" className="w-full"><Speakers /></section>
-      <section id="timeline" className="w-full"><Timeline /></section>
       <section id="panel" className="w-full"><Panel /></section>  
+      <section id="timeline" className="w-full"><Timeline /></section>
       {/* <section id="sih" className="w-full"><SIH /></section>     */}
       <section id="ideajam" className="w-full"><IdeaJamSection /></section>
+      
       <section id="gallery" className="w-full"><ThreeDMarqueeDemo /></section>
+      <section id="register" className="w-full"><RegisterForm /></section>
       <section id="testimonials" className="w-full"><Testimonials /></section>
+
       <section id="footer" className="w-full"><Footer /></section>
     </div>
   );

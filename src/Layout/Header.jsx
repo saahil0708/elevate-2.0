@@ -21,14 +21,6 @@ export default function Header() {
         history.replaceState(null, null, " ");
         window.scrollTo(0, 0);
       }
-
-      const SmoothScroll = require("smooth-scroll")
-      new SmoothScroll('a[href*="#"]', {
-        speed: 700,
-        speedAsDuration: true,
-        updateURL: false,
-        offset: 0,
-      })
     }
   }, [])
 

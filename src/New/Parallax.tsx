@@ -1,6 +1,7 @@
 "use client"
 import React from "react"
-import { motion, useScroll, useTransform, useSpring, type MotionValue } from "motion/react"
+import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion"
+import Image from "next/image"
 
 export const HeroParallax = ({
   products,
@@ -114,12 +115,12 @@ export const ProductCard = ({
       <a href={product.link} className="block group-hover/product:shadow-2xl transition-all duration-300">
         <div className="absolute inset-0 bg-gray-800/20 border border-[#1cb683]/30 rounded-lg group-hover/product:border-[#1cb683] transition-all duration-300 z-10"></div>
 
-        <img
+        <Image
           src={product.thumbnail || "/placeholder.svg"}
-          height="600"
-          width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0 rounded-lg"
           alt={product.title}
+          fill
+          className="object-cover object-left-top rounded-lg"
+          sizes="30rem"
         />
       </a>
       <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-semibold text-lg z-30 transition-opacity duration-300">
