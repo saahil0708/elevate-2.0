@@ -5,32 +5,32 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 
 const GlowingCarousel = () => {
   const testimonials = [
-   {
-    name: "Rohan Malhotra",
-    role: "Startup Founder",
-    text: "Elevate 1.0 was a game-changer! The networking opportunities and mentorship helped me scale my business faster than I imagined.",
-  },
-  {
-    name: "Ananya Sharma",
-    role: "Product Designer",
-    text: "Listening to Ashneer Grover and other leaders was inspiring. The sessions gave me clarity on how to approach innovation with purpose.",
-  },
-  {
-    name: "Karan Patel",
-    role: "Tech Enthusiast",
-    text: "The energy at Elevate was unmatched. From startups to culture, it felt like the start of something much bigger.",
-  },
-  {
-    name: "Sneha Verma",
-    role: "Marketing Professional",
-    text: "Elevate 1.0 was more than just an event — it was a platform to connect with visionaries and learn from the best in the industry.",
-  },
-  {
-    name: "Aditya Rao",
-    role: "Student Innovator",
-    text: "As a student, being part of Elevate gave me exposure to real-world innovation and the confidence to pursue my ideas.",
-  },
-];
+    {
+      name: "Pankaj Judge",
+      role: "Founder of Chai Thela",
+      text: "Elevate 1.0 was a game-changer — the mentorship and networking gave me the push I needed to scale my venture faster than ever.",
+    },
+    {
+      name: "Vivek Atray",
+      role: "Co-Founder of Playwrite",
+      text: "Hearing Ashneer Grover and other leaders at Elevate inspired me to rethink innovation and lead Playwrite with greater purpose.",
+    },
+    {
+      name: "Shalu Narula",
+      role: "Founder of Creative Hatti",
+      text: "The energy of Elevate was unmatched. For a creative entrepreneur like me, it felt like the spark of a larger cultural and startup movement.",
+    },
+    {
+      name: "Dr. Ripudaman Gaur",
+      role: "Industry & Educator",
+      text: "Elevate 1.0 became more than just an event — it was a true platform to connect educators, industry experts, and visionaries in one space.",
+    },
+    {
+      name: "Aditya Rao",
+      role: "Student Innovator",
+      text: "Elevate exposed me to real-world innovation and gave me the confidence to chase my ideas with conviction.",
+    },
+  ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -173,7 +173,7 @@ const GlowingCarousel = () => {
       <div className="relative w-full h-96 md:h-[500px] max-w-6xl">
         {testimonials.map((testimonial, index) => (
           <div
-            key={testimonial.id}
+            key={index}
             style={getCardStyle(index)}
             onClick={() => {
               if (!isAnimating && index !== currentIndex) {
@@ -209,15 +209,31 @@ const GlowingCarousel = () => {
 
               <div className="flex items-center justify-center relative z-10">
                 <div className="relative mr-4">
-                  <img
-                    src={testimonial.avatar || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    className={`w-12 h-12 md:w-14 md:h-14 rounded-full object-cover transition-all duration-300 ${
-                      index === currentIndex
-                        ? "ring-2 ring-[#20A97B] shadow-lg shadow-[#20A97B]/40"
-                        : "ring-1 ring-gray-600"
-                    }`}
-                  />
+                  {testimonial.avatar ? (
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className={`w-12 h-12 md:w-14 md:h-14 rounded-full object-cover transition-all duration-300 ${
+                        index === currentIndex
+                          ? "ring-2 ring-[#20A97B] shadow-lg shadow-[#20A97B]/40"
+                          : "ring-1 ring-gray-600"
+                      }`}
+                    />
+                  ) : (
+                    <div
+                      className={`w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-[#13202d] text-[#20A97B] font-bold text-lg md:text-xl transition-all duration-300 ${
+                        index === currentIndex
+                          ? "ring-2 ring-[#20A97B] shadow-lg shadow-[#20A97B]/40"
+                          : "ring-1 ring-gray-600"
+                      }`}
+                    >
+                      {(() => {
+                        const parts = testimonial.name.trim().split(" ")
+                        if (parts.length === 1) return parts[0][0].toUpperCase()
+                        return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
+                      })()}
+                    </div>
+                  )}
                   {index === currentIndex && (
                     <div className="absolute inset-0 rounded-full bg-[#20A97B]/20 animate-pulse"></div>
                   )}
@@ -230,7 +246,11 @@ const GlowingCarousel = () => {
                         : "text-gray-300 text-xs md:text-sm"
                     }`}
                   >
-                    {testimonial.name}
+                    {(() => {
+                      const parts = testimonial.name.trim().split(" ")
+                      if (parts.length === 1) return parts[0]
+                      return `${parts[0]} ${parts[parts.length - 1]}`
+                    })()}
                   </div>
                   <div
                     className={`text-[#20A97B] transition-all duration-300 font-medium ${
