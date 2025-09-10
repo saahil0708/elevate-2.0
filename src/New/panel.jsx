@@ -10,7 +10,6 @@ export default function CommunityPanelistDemo() {
           designation: "Founder of Chai Thela",
           bio: "From a failed startup to scaling a 32-store QSR chain across 6 cities with 1.5 Cr funding and 6.5 Cr ARR—this journey proves that resilience and relentless execution can turn setbacks into success. Biggest takeaways: move fast, build unstoppable teams, never quit, and remember—sales cure all startup pains.",
           src: "https://gvu57hqxi3.ufs.sh/f/FOd38ztMu1UwlrcKc1aQ3YHk9hW74806ftIadsTljLwGBUog",
-          src: "https://gvu57hqxi3.ufs.sh/f/FOd38ztMu1UwmKPozycW8p1VwSr6YDJTLjBZXz3x49d205ya",
           instagram: "https://instagram.com/sarahchen",
           linkedin: "https://linkedin.com/in/sarahchen",
         },
